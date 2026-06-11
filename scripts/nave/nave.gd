@@ -28,6 +28,7 @@ var points = 0
 var original_modulate: Color
 var current_modulate: Color
 var vibrate_time: int  = 100
+var vibrate_time_hard: int  = 500
 var player_id
 
 func _ready():
@@ -78,6 +79,11 @@ func reset_rotation():
 	velocity = Vector2.ZERO
 	print("Reset")
 
+func can_be_damaged():
+	if is_in_group("player_shield"):
+		return false
+	return true
+
 func update_from_gyro(gyro: Vector3):
 	pass
 	
@@ -86,6 +92,15 @@ func collect_coin(points):
 	flash_golden_border()
 	show_points_received(points)
 	Global.normal_coin_sound(player_id)
+
+func hit_by_spike(damage: int):
+	points += damage
+	flash_red()
+	show_damage_received(damage)
+	Global.normal_damage_sound(player_id)
+	vibrate_player(player_id, vibrate_time_hard)
+	set_core_enabled(false)
+	Global.disable_player_direction(player_id, "core")
 
 func hit_by_norma_ball(damage: int = 10):
 	points -= damage

@@ -165,6 +165,8 @@ func disable_player_direction(player_id: int, direction: String):
 			rpc_id(player_id, "set_up_enabled", false)
 		"down":
 			rpc_id(player_id, "set_down_enabled", false)
+		"core":
+			rpc_id(player_id, "set_core_enabled", false)
 
 @rpc("any_peer", "call_remote", "unreliable")
 func update_systems_left():
