@@ -93,6 +93,14 @@ func set_player_name(player_name: String):
 		print("Player: ", player_id, " name: ", player_name)
 
 @rpc("any_peer", "call_remote", "reliable")
+func set_player_color(player_color: Color):
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	if players.has(player_id):
+		players[player_id].modulate = player_color
+		print("Player: ", player_id, " color: ", player_color)
+
+@rpc("any_peer", "call_remote", "reliable")
 func add_speed_powerup():
 	var player_id = multiplayer.get_remote_sender_id()
 	

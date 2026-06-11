@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var damage_color: Color = Color.RED
 @export var coin_color: Color = Color.GOLD
 @export var dents: int = 0
-@export var max_dents: int = 1
+@export var max_dents: int = 2
 
 @onready var speed_timer: Timer = $SpeedTimer
 @onready var shield_timer: Timer = $ShieldTimer
