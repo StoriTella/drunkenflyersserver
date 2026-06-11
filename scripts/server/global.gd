@@ -109,5 +109,137 @@ func add_shield_powerup():
 		players[player_id].shield_powerup()
 		print("Player: ", player_id, " speed power up")
 
+@rpc("any_peer", "call_remote", "unreliable")
+func nuclear_missile_powerup():
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	for p in players:
+		rpc_id(p, "set_core_enabled", false)
+		players[p].set_core_enabled(false)
+	
+	print("Player: ", player_id, " nuked")
+
 func vibrate_all_players(vibrate_time):
 	rpc("vibrate_player", vibrate_time)
+
+#system movement and core
+func disable_player_direction(player_id: int, direction: String):
+	match direction:
+		"left":
+			rpc_id(player_id, "set_left_enabled", false)
+		"right":
+			rpc_id(player_id, "set_right_enabled", false)
+		"up":
+			rpc_id(player_id, "set_up_enabled", false)
+		"down":
+			rpc_id(player_id, "set_down_enabled", false)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func update_systems_left():
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	for p in players:
+		rpc_id(p, "set_left_enabled", false)
+		players[p].set_left_enabled(false)
+	
+	print("Player: ", player_id, " disabled left for all")
+
+@rpc("any_peer", "call_remote", "unreliable")
+func update_systems_right():
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	for p in players:
+		rpc_id(p, "set_right_enabled", false)
+		players[p].set_right_enabled(false)
+	
+	print("Player: ", player_id, " disabled right for all")
+
+@rpc("any_peer", "call_remote", "unreliable")
+func update_systems_up():
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	for p in players:
+		rpc_id(p, "set_up_enabled", false)
+		players[p].set_up_enabled(false)
+	
+	print("Player: ", player_id, " disabled up for all")
+
+@rpc("any_peer", "call_remote", "unreliable")
+func update_systems_down():
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	for p in players:
+		rpc_id(p, "set_down_enabled", false)
+		players[p].set_down_enabled(false)
+	
+	print("Player: ", player_id, " disabled down for all")
+
+@rpc("any_peer", "call_remote", "unreliable")
+func update_systems_core():
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	for p in players:
+		rpc_id(p, "set_core_enabled", false)
+		players[p].set_core_enabled(false)
+	
+	print("Player: ", player_id, " disabled core for all")
+
+@rpc("any_peer", "call_remote", "unreliable")
+func repair_systems_left():
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	if players.has(player_id):
+		rpc_id(player_id, "set_left_enabled", true)
+		players[player_id].set_left_enabled(true)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func repair_systems_right():
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	if players.has(player_id):
+		rpc_id(player_id, "set_right_enabled", true)
+		players[player_id].set_right_enabled(true)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func repair_systems_up():
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	if players.has(player_id):
+		rpc_id(player_id, "set_up_enabled", true)
+		players[player_id].set_up_enabled(true)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func repair_systems_down():
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	if players.has(player_id):
+		rpc_id(player_id, "set_down_enabled", true)
+		players[player_id].set_down_enabled(true)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func repair_systems_core():
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	if players.has(player_id):
+		rpc_id(player_id, "set_core_enabled", true)
+		players[player_id].set_core_enabled(true)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func set_left_enabled(enabled: bool):
+	pass
+
+@rpc("any_peer", "call_remote", "unreliable")
+func set_right_enabled(enabled: bool):
+	pass
+
+@rpc("any_peer", "call_remote", "unreliable")
+func set_up_enabled(enabled: bool):
+	pass
+
+@rpc("any_peer", "call_remote", "unreliable")
+func set_down_enabled(enabled: bool):
+	pass
+
+@rpc("any_peer", "call_remote", "unreliable")
+func set_core_enabled(enabled: bool):
+	pass

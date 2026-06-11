@@ -33,6 +33,7 @@ window/stretch/mode="canvas_items"
 
 game_server=""
 player="player"
+player_shield=""
 
 [input]
 

@@ -3,17 +3,30 @@ extends CharacterBody2D
 @export var current_speed: float = 500 
 @export var default_speed: float = 500.0
 @export var speed_boost: float = 800.0
+@export var speed_color: Color = Color(0.5, 0.8, 1.0)
+@export var shield_color: Color =Color(0.5, 1.0, 0.5)
+@export var damage_color: Color = Color.RED
+@export var coin_color: Color = Color.GOLD
+@export var dents: int = 0
+@export var max_dents: int = 5
 
 @onready var speed_timer: Timer = $SpeedTimer
 @onready var shield_timer: Timer = $ShieldTimer
 @onready var sprite = $Sprite2D
 @onready var name_label = $NameLabel
 
+var left_enabled: bool = true
+var right_enabled: bool = true
+var up_enabled: bool = true
+var down_enabled: bool = false
+var core_enabled: bool = true
+
 var initial_position: Vector2
 var initial_rotation: float
 var max_gyroscope: float = 10.0
 var points = 0
 var original_modulate: Color
+var current_modulate: Color
 var vibrate_time: int  = 100
 var player_id
 
@@ -22,18 +35,34 @@ func _ready():
 	initial_rotation = rotation
 	name_label.text = "John Doe"
 	original_modulate = modulate
+	current_modulate = original_modulate
 
 func update_from_gravity(gravity: Vector3):
-	var horizontal = gravity.x   # LEFT-/RIGHT+
-	var vertical = gravity.z     # FORWARD-/BACK+
+	var horizontal = gravity.x
+	var vertical = gravity.z
 	
 	horizontal = clamp(horizontal / max_gyroscope, -1.0, 1.0)
 	vertical = clamp(vertical / max_gyroscope, -1.0, 1.0)
 	
-	#DEADZONE
 	if abs(horizontal) < 0.1:
 		horizontal = 0.0
 	if abs(vertical) < 0.1:
+		vertical = 0.0
+	
+	var raw_horizontal = horizontal
+	var raw_vertical = vertical
+	
+	if not left_enabled and raw_horizontal < 0:
+		horizontal = 0.0
+	if not right_enabled and raw_horizontal > 0:
+		horizontal = 0.0
+	if not up_enabled and raw_vertical < 0:
+		vertical = 0.0
+	if not down_enabled and raw_vertical > 0:
+		vertical = 0.0
+	
+	if not core_enabled:
+		horizontal = 0.0
 		vertical = 0.0
 	
 	var input_dir = Vector2(horizontal, vertical)
@@ -60,15 +89,36 @@ func collect_coin(points):
 
 func hit_by_norma_ball(damage: int = 10):
 	points -= damage
+	dents += 1
 	flash_red()
 	show_damage_received(damage)
 	Global.normal_damage_sound(player_id)
 	vibrate_player(player_id, vibrate_time)
+	check_ship_failure()
+
+func check_ship_failure():
+	if dents >= max_dents:
+		var random_dir = randi_range(0, 3)
+		match random_dir:
+			0:
+				set_left_enabled(false)
+				Global.disable_player_direction(player_id, "left")
+			1:
+				set_right_enabled(false)
+				Global.disable_player_direction(player_id, "right")
+			2:
+				set_up_enabled(false)
+				Global.disable_player_direction(player_id, "up")
+			3:
+				set_down_enabled(false)
+				Global.disable_player_direction(player_id, "down")
+		
+		dents = 0
 
 func flash_golden_border():
-	modulate = Color.GOLD
+	modulate = coin_color
 	await get_tree().create_timer(0.2).timeout
-	modulate = original_modulate
+	modulate = current_modulate
 
 # Método para mostrar pontos recebidos
 func show_points_received(amount: int):
@@ -77,7 +127,7 @@ func show_points_received(amount: int):
 	points_label.text = "+" + str(amount)
 	points_label.position = Vector2(-20, -50)
 	points_label.add_theme_font_size_override("font_size", 20)
-	points_label.modulate = Color.GOLD
+	points_label.modulate = coin_color
 	add_child(points_label)
 	
 	var tween = create_tween()
@@ -86,16 +136,16 @@ func show_points_received(amount: int):
 	tween.tween_callback(points_label.queue_free)
 
 func flash_red():
-	modulate = Color.RED
+	modulate = damage_color
 	await get_tree().create_timer(0.2).timeout
-	modulate = original_modulate
+	modulate = current_modulate
 
 func show_damage_received(amount: int):
 	var damage_label = Label.new()
 	damage_label.text = "-" + str(amount)
 	damage_label.position = Vector2(-20, -50)
 	damage_label.add_theme_font_size_override("font_size", 20)
-	damage_label.modulate = Color.RED
+	damage_label.modulate = damage_color
 	add_child(damage_label)
 	
 	var tween = create_tween()
@@ -103,9 +153,10 @@ func show_damage_received(amount: int):
 	tween.parallel().tween_property(damage_label, "modulate", Color.TRANSPARENT, 0.5)
 	tween.tween_callback(damage_label.queue_free)
 
-# Para vibrar um jogador específico
 func vibrate_player(player_id: int, vibrate_time):
 	Global.vibrate_player(player_id, vibrate_time)
+
+#POWER UPS
 
 func update_name(new_name: String):
 	if name_label:
@@ -116,19 +167,40 @@ func speed_powerup():
 		speed_timer.stop()
 	speed_timer.start()
 	current_speed = speed_boost
-	modulate = Color(0.5, 0.8, 1.0)
+	modulate = speed_color
+	current_modulate = speed_color
 
 func _on_speed_timer_timeout() -> void:
 	current_speed = default_speed
 	modulate = original_modulate
+	current_modulate = original_modulate
 
 func shield_powerup():
 	if !shield_timer.is_stopped():
 		shield_timer.stop()
 	shield_timer.start()
-	collision_mask = 1
-	modulate = Color(0.5, 1.0, 0.5)
+	add_to_group("player_shield")
+	modulate = shield_color
+	current_modulate = shield_color
 
 func _on_shield_timer_timeout() -> void:
-	collision_mask = 1 | 3
+	remove_from_group("player_shield")
 	modulate = original_modulate
+	current_modulate = original_modulate
+
+#MOVEMENT AND CORE
+
+func set_left_enabled(enabled: bool):
+	left_enabled = enabled
+
+func set_right_enabled(enabled: bool):
+	right_enabled = enabled
+
+func set_up_enabled(enabled: bool):
+	up_enabled = enabled
+
+func set_down_enabled(enabled: bool):
+	down_enabled = enabled
+
+func set_core_enabled(enabled: bool):
+	core_enabled = enabled

@@ -24,7 +24,7 @@ func initialize(start_pos: Vector2, end_pos: Vector2, ball_speed: float):
 	linear_velocity = direction * speed
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
+	if body.is_in_group("player") && !body.is_in_group("player_shield"):
 		on_hit_player(body)
 
 func on_hit_player(body):
