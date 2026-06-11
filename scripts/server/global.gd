@@ -52,7 +52,7 @@ func update_gyro(gyro_data: Vector3):
 	if players.has(player_id):
 		players[player_id].update_from_gyro(gyro_data)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func reset_orientation():
 	var player_id = multiplayer.get_remote_sender_id()
 	if players.has(player_id):
@@ -72,19 +72,19 @@ func update_gravity(gravity_data: Vector3):
 	if players.has(player_id):
 		players[player_id].update_from_gravity(gravity_data)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func vibrate_player(player_id, duration_ms: int):
 	rpc_id(player_id, "vibrate_player", duration_ms)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func normal_coin_sound(player_id):
 	rpc_id(player_id, "normal_coin_sound")
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func normal_damage_sound(player_id):
 	rpc_id(player_id, "normal_damage_sound")
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func set_player_name(player_name: String):
 	var player_id = multiplayer.get_remote_sender_id()
 	
@@ -92,7 +92,7 @@ func set_player_name(player_name: String):
 		players[player_id].name_label.text = player_name
 		print("Player: ", player_id, " name: ", player_name)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func add_speed_powerup():
 	var player_id = multiplayer.get_remote_sender_id()
 	
@@ -101,7 +101,7 @@ func add_speed_powerup():
 		print("Player: ", player_id, " speed power up")
 
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func add_shield_powerup():
 	var player_id = multiplayer.get_remote_sender_id()
 	
@@ -109,14 +109,14 @@ func add_shield_powerup():
 		players[player_id].shield_powerup()
 		print("Player: ", player_id, " speed power up")
 		
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func perform_dash(direction: Vector2, force: float):
 	var player_id = multiplayer.get_remote_sender_id()
 	
 	if players.has(player_id):
 		players[player_id].apply_dash(direction, force)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func spike_powerup():
 	var player_id = multiplayer.get_remote_sender_id()
 	
@@ -141,7 +141,7 @@ func spawn_spike(position: Vector2, direction: Vector2):
 	spike.speed = 500.0
 	add_child(spike)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func nuclear_missile_powerup():
 	var player_id = multiplayer.get_remote_sender_id()
 	
@@ -168,7 +168,7 @@ func disable_player_direction(player_id: int, direction: String):
 		"core":
 			rpc_id(player_id, "set_core_enabled", false)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func update_systems_left():
 	var player_id = multiplayer.get_remote_sender_id()
 	
@@ -178,7 +178,7 @@ func update_systems_left():
 	
 	print("Player: ", player_id, " disabled left for all")
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func update_systems_right():
 	var player_id = multiplayer.get_remote_sender_id()
 	
@@ -188,7 +188,7 @@ func update_systems_right():
 	
 	print("Player: ", player_id, " disabled right for all")
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func update_systems_up():
 	var player_id = multiplayer.get_remote_sender_id()
 	
@@ -198,7 +198,7 @@ func update_systems_up():
 	
 	print("Player: ", player_id, " disabled up for all")
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func update_systems_down():
 	var player_id = multiplayer.get_remote_sender_id()
 	
@@ -208,7 +208,7 @@ func update_systems_down():
 	
 	print("Player: ", player_id, " disabled down for all")
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func update_systems_core():
 	var player_id = multiplayer.get_remote_sender_id()
 	
@@ -218,7 +218,7 @@ func update_systems_core():
 	
 	print("Player: ", player_id, " disabled core for all")
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func repair_systems_left():
 	var player_id = multiplayer.get_remote_sender_id()
 	
@@ -226,7 +226,7 @@ func repair_systems_left():
 		rpc_id(player_id, "set_left_enabled", true)
 		players[player_id].set_left_enabled(true)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func repair_systems_right():
 	var player_id = multiplayer.get_remote_sender_id()
 	
@@ -234,7 +234,7 @@ func repair_systems_right():
 		rpc_id(player_id, "set_right_enabled", true)
 		players[player_id].set_right_enabled(true)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func repair_systems_up():
 	var player_id = multiplayer.get_remote_sender_id()
 	
@@ -242,7 +242,7 @@ func repair_systems_up():
 		rpc_id(player_id, "set_up_enabled", true)
 		players[player_id].set_up_enabled(true)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func repair_systems_down():
 	var player_id = multiplayer.get_remote_sender_id()
 	
@@ -250,7 +250,7 @@ func repair_systems_down():
 		rpc_id(player_id, "set_down_enabled", true)
 		players[player_id].set_down_enabled(true)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func repair_systems_core():
 	var player_id = multiplayer.get_remote_sender_id()
 	
@@ -258,22 +258,22 @@ func repair_systems_core():
 		rpc_id(player_id, "set_core_enabled", true)
 		players[player_id].set_core_enabled(true)
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func set_left_enabled(enabled: bool):
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func set_right_enabled(enabled: bool):
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func set_up_enabled(enabled: bool):
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func set_down_enabled(enabled: bool):
 	pass
 
-@rpc("any_peer", "call_remote", "unreliable")
+@rpc("any_peer", "call_remote", "reliable")
 func set_core_enabled(enabled: bool):
 	pass
