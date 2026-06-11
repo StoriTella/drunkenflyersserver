@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bc1jy73lqnbk1"]
+
+[ext_resource type="Script" uid="uid://bt3n0ndlh1n2u" path="res://scripts/balls/ball_manager.gd" id="1_gougl"]
+
+[node name="BallManager" type="Node2D" unique_id=2018070719]
+script = ExtResource("1_gougl")

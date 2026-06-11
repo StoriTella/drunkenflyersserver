@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bjq2h2qtj8v58"]
+
+[ext_resource type="Script" uid="uid://c7hcoce5dk58q" path="res://scripts/balls/base_ball.gd" id="1_cskt0"]
+[ext_resource type="Texture2D" uid="uid://cgadytvonq35r" path="res://assets/normal_ball-removebg-preview.png" id="2_tkw1d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pmahu"]
+radius = 62.008064
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tkw1d"]
+radius = 66.0303
+
+[node name="BaseBall" type="RigidBody2D" unique_id=1647031859]
+collision_layer = 4
+collision_mask = 14
+gravity_scale = 0.0
+script = ExtResource("1_cskt0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=428874840]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_tkw1d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1984610187]
+shape = SubResource("CircleShape2D_pmahu")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1655491671]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=8839854]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2018948134]
+shape = SubResource("CircleShape2D_tkw1d")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

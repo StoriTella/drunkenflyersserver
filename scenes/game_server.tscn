@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bpm3rwue41oay"]
+
+[ext_resource type="Script" uid="uid://b6bpn3pdmde6f" path="res://scripts/server/game_server.gd" id="1_ecj2s"]
+[ext_resource type="PackedScene" uid="uid://c3hr7ytca5w21" path="res://scenes/powerups/powerup_manager.tscn" id="2_a02k1"]
+[ext_resource type="PackedScene" uid="uid://bc1jy73lqnbk1" path="res://scenes/balls/ball_manager.tscn" id="2_ie7th"]
+[ext_resource type="Script" uid="uid://q54mehq6sn54" path="res://scripts/utils/create_walls.gd" id="4_mspw3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_asl3v"]
+font_size = 72
+font_color = Color(1, 0.9764706, 0.4117647, 1)
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ClientRoot" type="Node2D" unique_id=753987486]
+script = ExtResource("1_ecj2s")
+
+[node name="PowerupManager" parent="." unique_id=1534946003 instance=ExtResource("2_a02k1")]
+
+[node name="BallManager" parent="." unique_id=2018070719 instance=ExtResource("2_ie7th")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=609027666]
+
+[node name="Walls" type="Node2D" parent="." unique_id=1275713577]
+script = ExtResource("4_mspw3")
+
+[node name="UiManager" type="Control" parent="." unique_id=2017735202]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+
+[node name="TimerLabel" type="Label" parent="UiManager" unique_id=173467746]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 83.0
+grow_horizontal = 2
+size_flags_vertical = 0
+text = "05:00"
+label_settings = SubResource("LabelSettings_asl3v")
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="UiManager/TimerLabel" unique_id=536981831]
+wait_time = 300.0
+one_shot = true
+
+[connection signal="timeout" from="UiManager/TimerLabel/Timer" to="." method="_on_timer_timeout"]

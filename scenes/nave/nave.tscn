@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dn77p5cetq3ms"]
+
+[ext_resource type="Script" uid="uid://d0d67m47ftqck" path="res://scripts/nave/nave.gd" id="1_8xiky"]
+[ext_resource type="Texture2D" uid="uid://d1i13f4sanfe1" path="res://icon.svg" id="2_olkoh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jqj6o"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8xiky"]
+font_size = 11
+
+[node name="Nave" type="CharacterBody2D" unique_id=1137107852 groups=["player"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_8xiky")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1028532905]
+scale = Vector2(0.526, 0.5)
+texture = ExtResource("2_olkoh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1471938425]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_jqj6o")
+
+[node name="NameLabel" type="Label" parent="." unique_id=1026757675]
+offset_left = -31.0
+offset_top = -49.0
+offset_right = 31.0
+offset_bottom = -32.0
+text = "Vinte"
+label_settings = SubResource("LabelSettings_8xiky")
+horizontal_alignment = 1
