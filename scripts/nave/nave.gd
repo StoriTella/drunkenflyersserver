@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var damage_color: Color = Color.RED
 @export var coin_color: Color = Color.GOLD
 @export var dents: int = 0
-@export var max_dents: int = 5
+@export var max_dents: int = 1
 
 @onready var speed_timer: Timer = $SpeedTimer
 @onready var shield_timer: Timer = $ShieldTimer
@@ -18,7 +18,7 @@ extends CharacterBody2D
 var left_enabled: bool = true
 var right_enabled: bool = true
 var up_enabled: bool = true
-var down_enabled: bool = false
+var down_enabled: bool = true
 var core_enabled: bool = true
 
 var initial_position: Vector2
@@ -187,6 +187,12 @@ func _on_shield_timer_timeout() -> void:
 	remove_from_group("player_shield")
 	modulate = original_modulate
 	current_modulate = original_modulate
+
+func apply_dash(direction: Vector2, force: float):
+	velocity = direction * force
+	move_and_slide()
+	await get_tree().create_timer(0.2).timeout
+	velocity = Vector2.ZERO
 
 #MOVEMENT AND CORE
 

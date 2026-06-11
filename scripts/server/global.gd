@@ -108,7 +108,14 @@ func add_shield_powerup():
 	if players.has(player_id):
 		players[player_id].shield_powerup()
 		print("Player: ", player_id, " speed power up")
-
+		
+@rpc("any_peer", "call_remote", "unreliable")
+func perform_dash(direction: Vector2, force: float):
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	if players.has(player_id):
+		players[player_id].apply_dash(direction, force)
+		
 @rpc("any_peer", "call_remote", "unreliable")
 func nuclear_missile_powerup():
 	var player_id = multiplayer.get_remote_sender_id()
