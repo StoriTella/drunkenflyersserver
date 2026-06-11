@@ -92,6 +92,22 @@ func set_player_name(player_name: String):
 		players[player_id].name_label.text = player_name
 		print("Player: ", player_id, " name: ", player_name)
 
+@rpc("any_peer", "call_remote", "unreliable")
+func add_speed_powerup():
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	if players.has(player_id):
+		players[player_id].speed_powerup()
+		print("Player: ", player_id, " speed power up")
+
+
+@rpc("any_peer", "call_remote", "unreliable")
+func add_shield_powerup():
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	if players.has(player_id):
+		players[player_id].shield_powerup()
+		print("Player: ", player_id, " speed power up")
 
 func vibrate_all_players(vibrate_time):
 	rpc("vibrate_player", vibrate_time)

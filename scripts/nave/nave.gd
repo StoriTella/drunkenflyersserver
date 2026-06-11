@@ -1,8 +1,14 @@
 extends CharacterBody2D
 
-@export var max_speed: float = 800.0
+@export var current_speed: float = 500 
+@export var default_speed: float = 500.0
+@export var speed_boost: float = 800.0
+
+@onready var speed_timer: Timer = $SpeedTimer
+@onready var shield_timer: Timer = $ShieldTimer
 @onready var sprite = $Sprite2D
 @onready var name_label = $NameLabel
+
 var initial_position: Vector2
 var initial_rotation: float
 var max_gyroscope: float = 10.0
@@ -34,7 +40,7 @@ func update_from_gravity(gravity: Vector3):
 	if input_dir.length() > 0:
 		input_dir = input_dir.normalized()
 	
-	velocity = input_dir * max_speed
+	velocity = input_dir * current_speed
 	move_and_slide()
 
 func reset_rotation():
@@ -104,3 +110,25 @@ func vibrate_player(player_id: int, vibrate_time):
 func update_name(new_name: String):
 	if name_label:
 		name_label.text = new_name
+
+func speed_powerup():
+	if !speed_timer.is_stopped():
+		speed_timer.stop()
+	speed_timer.start()
+	current_speed = speed_boost
+	modulate = Color(0.5, 0.8, 1.0)
+
+func _on_speed_timer_timeout() -> void:
+	current_speed = default_speed
+	modulate = original_modulate
+
+func shield_powerup():
+	if !shield_timer.is_stopped():
+		shield_timer.stop()
+	shield_timer.start()
+	collision_mask = 1
+	modulate = Color(0.5, 1.0, 0.5)
+
+func _on_shield_timer_timeout() -> void:
+	collision_mask = 1 | 3
+	modulate = original_modulate
