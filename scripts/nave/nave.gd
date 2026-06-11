@@ -14,7 +14,7 @@ var player_id
 func _ready():
 	initial_position = position
 	initial_rotation = rotation
-	name_label.text = "Vinte"#name
+	name_label.text = "John Doe"
 	original_modulate = modulate
 
 func update_from_gravity(gravity: Vector3):

@@ -84,5 +84,14 @@ func normal_coin_sound(player_id):
 func normal_damage_sound(player_id):
 	rpc_id(player_id, "normal_damage_sound")
 
+@rpc("any_peer", "call_remote", "unreliable")
+func set_player_name(player_name: String):
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	if players.has(player_id):
+		players[player_id].name_label.text = player_name
+		print("Player: ", player_id, " name: ", player_name)
+
+
 func vibrate_all_players(vibrate_time):
 	rpc("vibrate_player", vibrate_time)
