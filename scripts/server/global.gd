@@ -1,5 +1,21 @@
 extends Node2D
 
+enum CharacterType {
+	WARRIOR,
+	MAGE,
+	ARCHER,
+	PRIEST,
+	DRUID,
+	NANI,
+	VIBE,
+	INVENTOR,
+	BARBARIAN,
+	GUNSLINGUER,
+	WARLOCK,
+	BARD,
+	ARTIFICER
+}
+
 @export var player_scene = preload("res://scenes/nave/nave.tscn")
 @export var vibrate_time_end_game: int = 1000
 
@@ -84,6 +100,8 @@ func normal_coin_sound(player_id):
 func normal_damage_sound(player_id):
 	rpc_id(player_id, "normal_damage_sound")
 
+#SETTINGS
+
 @rpc("any_peer", "call_remote", "reliable")
 func set_player_name(player_name: String):
 	var player_id = multiplayer.get_remote_sender_id()
@@ -101,6 +119,16 @@ func set_player_color(player_color: Color):
 		players[player_id].original_modulate = player_color
 		players[player_id].current_modulate = player_color
 		print("Player: ", player_id, " color: ", player_color)
+
+@rpc("any_peer", "call_remote", "unreliable")
+func set_player_character(character_type: int):
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	if players.has(player_id):
+		players[player_id].set_character(character_type)
+		print("Player: ", player_id, " chose character: ", CharacterType.keys()[character_type])
+
+#POWER UPS
 
 @rpc("any_peer", "call_remote", "reliable")
 func add_speed_powerup():

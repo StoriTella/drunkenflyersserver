@@ -224,6 +224,7 @@ func speed_powerup():
 	current_modulate = speed_color
 
 func _on_speed_timer_timeout() -> void:
+	Global.vibrate_player(player_id, vibrate_time_hard)
 	current_speed = default_speed
 	modulate = original_modulate
 	current_modulate = original_modulate
@@ -237,6 +238,7 @@ func shield_powerup():
 	current_modulate = shield_color
 
 func _on_shield_timer_timeout() -> void:
+	Global.vibrate_player(player_id, vibrate_time_hard)
 	remove_from_group("player_shield")
 	modulate = original_modulate
 	current_modulate = original_modulate
@@ -270,3 +272,42 @@ func set_invert_controls(duration: float):
 
 func _on_invert_timeout():
 	invert_controls = false
+
+#Settings
+
+func set_character(character_type: int):
+	
+	match character_type:
+		Global.CharacterType.WARRIOR:
+			sprite.texture = preload("res://assets/player_characters/warrior.jpeg")
+		Global.CharacterType.MAGE:
+			sprite.texture = preload("res://assets/player_characters/mage.png")
+		Global.CharacterType.ARCHER:
+			sprite.texture = preload("res://assets/player_characters/archer.jpeg")
+		Global.CharacterType.PRIEST:
+			sprite.texture = preload("res://assets/player_characters/priest.jpg")
+		Global.CharacterType.DRUID:
+			sprite.texture = preload("res://assets/player_characters/druid.png")
+		Global.CharacterType.NANI:
+			sprite.texture = preload("res://assets/player_characters/nani.png")
+		Global.CharacterType.VIBE:
+			sprite.texture = preload("res://assets/player_characters/vibe.png")
+		Global.CharacterType.INVENTOR:
+			sprite.texture = preload("res://assets/player_characters/inventor.png")
+		Global.CharacterType.BARBARIAN:
+			sprite.texture = preload("res://assets/player_characters/barbarian.png")
+		Global.CharacterType.GUNSLINGUER:
+			sprite.texture = preload("res://assets/player_characters/gunslinguer.png")
+		Global.CharacterType.WARLOCK:
+			sprite.texture = preload("res://assets/player_characters/warlock.png")
+		Global.CharacterType.BARD:
+			sprite.texture = preload("res://assets/player_characters/bard.jpeg")
+		Global.CharacterType.ARTIFICER:
+			sprite.texture = preload("res://assets/player_characters/artificer.png")
+	
+	var target_size = Vector2(64, 64)
+	var texture_size = sprite.texture.get_size()
+	var scale_x = target_size.x / texture_size.x
+	var scale_y = target_size.y / texture_size.y
+	
+	sprite.scale = Vector2(scale_x, scale_y)
