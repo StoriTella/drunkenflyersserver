@@ -49,10 +49,15 @@ func _ready():
 
 func update_from_gravity(gravity: Vector3):
 	var horizontal = gravity.x
-	var vertical = gravity.z
-	
-	horizontal = clamp(horizontal / max_gyroscope, -1.0, 1.0)
-	vertical = clamp(vertical / max_gyroscope, -1.0, 1.0)
+	var vertical = -gravity.y
+
+	horizontal = clamp(horizontal / 5.0, -1.0, 1.0)
+	vertical = clamp(vertical / 5.0, -1.0, 1.0)
+
+	if abs(horizontal) < 0.1:
+		horizontal = 0.0
+	if abs(vertical) < 0.1:
+		vertical = 0.0
 	
 	if invert_controls:
 		horizontal = -horizontal
