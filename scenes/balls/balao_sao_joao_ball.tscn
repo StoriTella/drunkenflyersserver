@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://crii0ob3mr6cs"]
+
+[ext_resource type="Script" uid="uid://cwoexo6eil87s" path="res://scripts/balls/balao_sao_joao_ball.gd" id="1_t8r26"]
+[ext_resource type="Texture2D" uid="uid://duvr71jiqsgp7" path="res://assets/balaosaojoao.png" id="2_0f012"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pmahu"]
+radius = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tkw1d"]
+radius = 31.016125
+
+[node name="BalaoSaoJoaoBall" type="RigidBody2D" unique_id=1647031859]
+collision_layer = 4
+collision_mask = 2
+gravity_scale = 0.0
+script = ExtResource("1_t8r26")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=428874840]
+scale = Vector2(0.32850236, 0.27309236)
+texture = ExtResource("2_0f012")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1984610187]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_pmahu")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1655491671]
+position = Vector2(1, -1)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=8839854]
+position = Vector2(4, -1)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2018948134]
+position = Vector2(-4, 0)
+shape = SubResource("CircleShape2D_tkw1d")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

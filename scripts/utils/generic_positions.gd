@@ -73,3 +73,21 @@ func get_random_position_outside_screen_with_target(margin: float = 50.0) -> Dic
 		"spawn": spawn_pos,
 		"target": target_pos
 	}
+
+func get_position_above_screen(margin: float = 50.0) -> Vector2:
+	var viewport_size = get_viewport().get_visible_rect().size
+	var left = -viewport_size.x / 2 + margin
+	var right = viewport_size.x / 2 - margin
+	var top = -viewport_size.y / 2 - margin
+	
+	var random_x = randf_range(left, right)
+	return Vector2(random_x, top)
+
+func get_position_below_screen(margin: float = 50.0) -> Vector2:
+	var viewport_size = get_viewport().get_visible_rect().size
+	var left = -viewport_size.x / 2 + margin
+	var right = viewport_size.x / 2 - margin
+	var bottom = viewport_size.y / 2 + margin
+	
+	var random_x = randf_range(left, right)
+	return Vector2(random_x, bottom)

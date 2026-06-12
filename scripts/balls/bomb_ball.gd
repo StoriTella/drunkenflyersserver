@@ -4,11 +4,14 @@ class_name BombBall
 
 @onready var timer: Timer = $Timer
 
-@export var ball_min_vel = 200
-@export var ball_max_vel = 400
 @export var speed: float = 200.0
 
 @export var ball_timer: float = 0.0
+
+#GENERIC
+@export var type_ball: BallTypeEnum.BallType = BallTypeEnum.BallType.BOMB
+@export var ball_min_vel = 200
+@export var ball_max_vel = 400
 @export var ball_delay: float = 0.5
 
 @export var ball_damage = 15

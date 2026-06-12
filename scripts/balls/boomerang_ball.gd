@@ -10,6 +10,7 @@ class_name BoomerangBall
 @export var australia_duration: float = 2.0
 
 #GENERIC
+@export var type_ball: BallTypeEnum.BallType = BallTypeEnum.BallType.BOOMERANG
 @export var ball_min_vel = 500
 @export var ball_max_vel = 800
 @export var ball_delay: float = 1.0

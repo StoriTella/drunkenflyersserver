@@ -9,6 +9,7 @@ class_name BallManager
 	preload("res://scenes/balls/base_ball.tscn"),
 	preload("res://scenes/balls/bomb_ball.tscn"),
 	preload("res://scenes/balls/boomerang_ball.tscn"),
+	preload("res://scenes/balls/balao_sao_joao_ball.tscn"),
 ]
 
 var game_server: Node2D
@@ -50,21 +51,6 @@ func select_random_ball_type():
 	current_ball_scene = ball_scenes[current_ball_type]
 	print("Ball type changed to: ", current_ball_scene.resource_path)
 
-func spawn_ball():
-	if current_ball_scene == null:
-		return
-	
-	var pos_array = GenericPositions.get_random_position_outside_screen_with_target()
-	var spawn_pos = pos_array.spawn
-	var target_pos = pos_array.target
-	
-	var random_speed = randf_range(get_ball_min_vel(),get_ball_max_vel())
-	
-	var ball = current_ball_scene.instantiate()
-	ball.initialize(spawn_pos, target_pos, random_speed)
-	
-	add_child(ball)
-
 func get_ball_min_vel():
 	var instance = current_ball_scene.instantiate()
 	var ball_min_vel = instance.ball_min_vel
@@ -76,6 +62,12 @@ func get_ball_max_vel():
 	var ball_max_vel = instance.ball_max_vel
 	instance.queue_free()
 	return ball_max_vel
+
+func get_ball_type():
+	var instance = current_ball_scene.instantiate()
+	var ball_type = instance.type_ball
+	instance.queue_free()
+	return ball_type
 
 func start_spawning():
 	spawning = true
@@ -90,3 +82,48 @@ func remove_ball(ball):
 
 func _on_timer_timeout() -> void:
 	select_random_ball_type()
+
+
+#Spawn balls
+func spawn_ball():
+	if current_ball_scene == null:
+		return
+	
+	var ball_type = get_ball_type()
+	
+	match ball_type:
+		BallTypeEnum.BallType.NORMAL:
+			default_ball_trajectory()
+		BallTypeEnum.BallType.BOMB:
+			default_ball_trajectory()
+		BallTypeEnum.BallType.BOOMERANG:
+			default_ball_trajectory()
+		BallTypeEnum.BallType.BALAOSAOJOAO:
+			balao_sao_joao_trajectory()
+
+func default_ball_trajectory():
+	if current_ball_scene == null:
+		return
+	
+	var pos_array = GenericPositions.get_random_position_outside_screen_with_target()
+	var spawn_pos = pos_array.spawn
+	var target_pos = pos_array.target
+	
+	var random_speed = randf_range(get_ball_min_vel(), get_ball_max_vel())
+	
+	var ball = current_ball_scene.instantiate()
+	ball.initialize(spawn_pos, target_pos, random_speed)
+	
+	add_child(ball)
+
+func balao_sao_joao_trajectory():
+	if current_ball_scene == null:
+		return
+	
+	var spawn_pos = GenericPositions.get_position_below_screen(50)
+	var random_speed = randf_range(get_ball_min_vel(), get_ball_max_vel())
+	
+	var ball = current_ball_scene.instantiate()
+	ball.initialize(spawn_pos, random_speed)
+	
+	add_child(ball)
