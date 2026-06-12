@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dg7o0ype88p85"]
+
+[ext_resource type="Script" uid="uid://b5ukfmrm7ekny" path="res://scripts/scoreboard/scoreboard.gd" id="1_mhrxl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l1rbb"]
+font_size = 72
+
+[sub_resource type="Theme" id="Theme_jrmem"]
+default_font_size = 42
+
+[node name="Scoreboard" type="Control" unique_id=1960894081]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mhrxl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1557908591]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=2072069029]
+layout_mode = 2
+text = "Scoreboard"
+label_settings = SubResource("LabelSettings_l1rbb")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=251349060]
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="." unique_id=2146242926]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_jrmem")
+text = "Restart"
+
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]

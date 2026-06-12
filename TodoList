@@ -1,0 +1,27 @@
+TodoList
+Mudar:
+Moedas e coins aparecem sempre quem muda é as moedas especiais que spawnam de 5 em 5 segundos
+Alguns hazards dão trigger aos mini games
+Quando tiver muitos hazards adicionar dois de cada vez
+
+Hazards:
+Anvils a cair do ceu
+Bolas interligadas com um laser
+Linhas de rosas com espinhos que bloqueiam tipo paredes
+Polen a spawnar no meio do ecra e a flutuar random
+Tumbleweeds a aparecer dum dos lados do ecrã
+
+Moedas:
+1-moeda que rouba a pessoa mais rica
+2-moeda que da muitos pontos mas foge do player
+3.Uma cobra de moedas em fila
+4-Uma spawn que manda imensas moedas para essa zona
+6-Moeda que dá spawn e so vai ganahndo valor e nunca desaparece
+7-Moeda Virus que dá pontos negativos a ti mas mais aos outros todos
+8-Moeda Jackpot completamente gamba podes receber entre 5 a 1000
+9-Moeda Cursed que desativa o core a toda a gente excepto a ti /e dá um som tbm)
+10-Moeda explosiva que guando apanhas há um timer de explosão
+
+Client:
+Core dá um som de danger quando é ativado
+Super poder que adicionar um shield a tua volta que anula bolas stacakble

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://wycli0g2lbgv"]
+
+[ext_resource type="Script" uid="uid://dub8b6lkkakvx" path="res://scripts/balls/anvil_ball.gd" id="1_ujtqk"]
+[ext_resource type="Texture2D" uid="uid://g81hunmnee52" path="res://assets/anvil.png" id="2_ujtqk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgplr"]
+size = Vector2(150, 132)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3y7d"]
+size = Vector2(161, 142)
+
+[node name="AnvilBall" type="RigidBody2D" unique_id=1647031859]
+collision_layer = 4
+collision_mask = 14
+mass = 100.0
+script = ExtResource("1_ujtqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=428874840]
+scale = Vector2(0.8067633, 0.7738802)
+texture = ExtResource("2_ujtqk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1984610187]
+shape = SubResource("RectangleShape2D_jgplr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1655491671]
+position = Vector2(1, -1)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=8839854]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2018948134]
+shape = SubResource("RectangleShape2D_y3y7d")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
