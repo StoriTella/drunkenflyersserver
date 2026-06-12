@@ -3,9 +3,9 @@ extends RigidBody2D
 class_name Gold
 
 @export var coin_type: PointsTypeEnum.PointsType = PointsTypeEnum.PointsType.COIN
-@export var points: int = 10
-@export var expiration_date: float = 20.0
-@export var point_delay: float = 0.2
+@export var points: int = 1
+@export var expiration_date: float = 10.0
+@export var point_delay: float = 0.01
 
 var direction: Vector2 = Vector2.RIGHT
 var spawned_position: Vector2

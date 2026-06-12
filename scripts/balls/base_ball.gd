@@ -5,13 +5,13 @@ class_name BaseBall
 @export var ball_min_vel = 500
 @export var ball_max_vel = 800
 @export var speed: float = 200.0
-@export var normal_ball_damage = 5
+@export var base_ball_damage = 5
 
 @export var ball_timer: float = 0.0
 @export var ball_delay: float = 0.2
 
 @export var type_ball: BallTypeEnum.BallType = BallTypeEnum.BallType.NORMAL
-@export var expiration_date: float = 10.0
+@export var expiration_date: float = 30.0
 
 var direction: Vector2 = Vector2.RIGHT
 var spawned_position: Vector2
@@ -36,7 +36,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			on_hit_player(body)
 
 func on_hit_player(body):
-	match type_ball:
-		BallTypeEnum.BallType.NORMAL:
-			body.hit_by_norma_ball(normal_ball_damage)
+	body.hit_by_norma_ball(base_ball_damage)
 	queue_free()

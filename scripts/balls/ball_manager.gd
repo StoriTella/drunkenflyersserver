@@ -3,10 +3,12 @@ extends Node
 class_name BallManager
 
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
+@onready var timer: Timer = $Timer
 
 @export var ball_scenes: Array[PackedScene] = [
-	preload("res://scenes/balls/base_ball.tscn"),
-	preload("res://scenes/balls/bomb_ball.tscn")
+	#preload("res://scenes/balls/base_ball.tscn"),
+	#preload("res://scenes/balls/bomb_ball.tscn"),
+	preload("res://scenes/balls/boomerang_ball.tscn"),
 ]
 
 var game_server: Node2D
@@ -23,6 +25,9 @@ func _ready():
 func _process(delta):
 	if not spawning:
 		return
+		
+	if timer.is_stopped():
+		timer.start()
 	
 	spawn_timer += delta
 	var current_delay = get_ball_delay()

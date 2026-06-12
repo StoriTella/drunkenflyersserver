@@ -32,12 +32,20 @@ var vibrate_time_explosion: int = 1000
 var vibrate_time_hard: int  = 500
 var player_id
 
+#Invert Controls
+var invert_controls: bool = false
+var invert_timer: Timer
+
 func _ready():
 	initial_position = position
 	initial_rotation = rotation
 	name_label.text = "John Doe"
 	original_modulate = modulate
 	current_modulate = original_modulate
+	invert_timer = Timer.new()
+	invert_timer.one_shot = true
+	invert_timer.timeout.connect(_on_invert_timeout)
+	add_child(invert_timer)
 
 func update_from_gravity(gravity: Vector3):
 	var horizontal = gravity.x
@@ -45,6 +53,10 @@ func update_from_gravity(gravity: Vector3):
 	
 	horizontal = clamp(horizontal / max_gyroscope, -1.0, 1.0)
 	vertical = clamp(vertical / max_gyroscope, -1.0, 1.0)
+	
+	if invert_controls:
+		horizontal = -horizontal
+		vertical = -vertical
 	
 	if abs(horizontal) < 0.1:
 		horizontal = 0.0
@@ -103,7 +115,7 @@ func hit_by_spike(damage: int):
 	set_core_enabled(false)
 	Global.disable_player_direction(player_id, "core")
 
-func hit_by_norma_ball(damage: int = 10):
+func hit_by_norma_ball(damage):
 	points -= damage
 	dents += 1
 	flash_red()
@@ -112,7 +124,18 @@ func hit_by_norma_ball(damage: int = 10):
 	vibrate_player(player_id, vibrate_time)
 	check_ship_failure()
 
-func hit_by_explosion(damage: int = 10):
+func hit_by_boomerang_ball(damage, stun_duration):
+	points -= damage
+	dents += 0
+	flash_red()
+	show_damage_received(damage)
+	Global.normal_damage_sound(player_id)
+	vibrate_player(player_id, vibrate_time_hard)
+	check_ship_failure()
+	#TODO ADICIONAR SUPER SOM AO PLAYER AUSTRALIANO
+	set_invert_controls(stun_duration)
+
+func hit_by_explosion(damage):
 	points -= damage
 	dents += 3
 	flash_red()
@@ -235,3 +258,10 @@ func set_down_enabled(enabled: bool):
 
 func set_core_enabled(enabled: bool):
 	core_enabled = enabled
+
+func set_invert_controls(duration: float):
+	invert_controls = true
+	invert_timer.start(duration)
+
+func _on_invert_timeout():
+	invert_controls = false

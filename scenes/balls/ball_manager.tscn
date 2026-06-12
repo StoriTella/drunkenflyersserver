@@ -13,9 +13,9 @@ script = ExtResource("1_gougl")
 
 [node name="Timer" type="Timer" parent="." unique_id=1938878363]
 wait_time = 5.0
-autostart = true
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1023796663]
 stream = SubResource("AudioStreamPlaylist_m4sa7")
+volume_db = 10.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

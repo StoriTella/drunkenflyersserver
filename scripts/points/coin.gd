@@ -3,7 +3,7 @@ extends RigidBody2D
 class_name Coin
 
 @export var coin_type: PointsTypeEnum.PointsType = PointsTypeEnum.PointsType.COIN
-@export var points: int = 100
+@export var points: int = 10
 @export var expiration_date: float = 15.0
 @export var point_delay: float = 0.5
 
