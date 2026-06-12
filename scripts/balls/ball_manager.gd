@@ -3,7 +3,7 @@ extends Node
 class_name BallManager
 
 @export var ball_scenes: Array[PackedScene] = [
-	#preload("res://scenes/balls/base_ball.tscn"),
+	preload("res://scenes/balls/base_ball.tscn"),
 	preload("res://scenes/balls/bomb_ball.tscn")
 ]
 
