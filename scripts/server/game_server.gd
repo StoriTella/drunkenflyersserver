@@ -7,6 +7,7 @@ extends Node2D
 @onready var powerups_manager = $PowerupManager
 @onready var timer_label: Label = $UiManager/TimerLabel
 @onready var game_timer: Timer = $UiManager/TimerLabel/Timer
+@onready var music_player: AudioStreamPlayer = $MusicPlayer
 
 var players = {}
 var default_posiion = Vector2(0, 0)
@@ -43,7 +44,7 @@ func reset_game():
 	
 	game_timer.stop()
 	timer_label.text = "05:00"
-	print("RESET")
+	music_player.stop()
 
 func start_game():
 	game_timer.start()
@@ -53,3 +54,6 @@ func start_game():
 	
 	if powerups_manager:
 		powerups_manager.start_spawning()
+	
+	music_player.play()
+	music_player.autoplay = true

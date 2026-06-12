@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://bc1jy73lqnbk1"]
 
 [ext_resource type="Script" uid="uid://bt3n0ndlh1n2u" path="res://scripts/balls/ball_manager.gd" id="1_gougl"]
+[ext_resource type="AudioStream" uid="uid://dflhrbkb4trbv" path="res://assets/music/background/ole.mp3" id="2_gtfm2"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_m4sa7"]
+loop = false
+stream_count = 1
+stream_0 = ExtResource("2_gtfm2")
 
 [node name="BallManager" type="Node2D" unique_id=2018070719]
 script = ExtResource("1_gougl")
@@ -8,5 +14,8 @@ script = ExtResource("1_gougl")
 [node name="Timer" type="Timer" parent="." unique_id=1938878363]
 wait_time = 5.0
 autostart = true
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1023796663]
+stream = SubResource("AudioStreamPlaylist_m4sa7")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

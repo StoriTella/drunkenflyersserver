@@ -2,6 +2,8 @@ extends Node
 
 class_name BallManager
 
+@onready var music_player: AudioStreamPlayer = $MusicPlayer
+
 @export var ball_scenes: Array[PackedScene] = [
 	preload("res://scenes/balls/base_ball.tscn"),
 	preload("res://scenes/balls/bomb_ball.tscn")
@@ -38,6 +40,7 @@ func select_random_ball_type():
 	if ball_scenes.is_empty():
 		return
 	
+	music_player.play()
 	current_ball_type = randi() % ball_scenes.size()
 	current_ball_scene = ball_scenes[current_ball_type]
 	print("Ball type changed to: ", current_ball_scene.resource_path)
