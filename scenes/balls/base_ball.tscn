@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cgadytvonq35r" path="res://assets/normal_ball-removebg-preview.png" id="2_tkw1d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pmahu"]
-radius = 62.008064
+radius = 22.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkw1d"]
-radius = 66.0303
+radius = 24.083189
 
 [node name="BaseBall" type="RigidBody2D" unique_id=1647031859]
 collision_layer = 4
@@ -16,7 +16,7 @@ gravity_scale = 0.0
 script = ExtResource("1_cskt0")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=428874840]
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_tkw1d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1984610187]

@@ -1,0 +1,196 @@
+[gd_scene format=3 uid="uid://b5tpqlfxgqaag"]
+
+[ext_resource type="Script" uid="uid://dgepc0iwc8dwa" path="res://scripts/balls/special/explosion.gd" id="1_eh3ne"]
+[ext_resource type="Texture2D" uid="uid://lxmo3dcsme6t" path="res://scripts/balls/special/explosion1.png" id="2_n76bm"]
+[ext_resource type="Texture2D" uid="uid://cfv3gockhra1w" path="res://scripts/balls/special/explosion2.png" id="3_nd2ec"]
+[ext_resource type="Texture2D" uid="uid://xvxvyaudluwg" path="res://scripts/balls/special/explosion3.png" id="4_dcyba"]
+[ext_resource type="Texture2D" uid="uid://b8rkiqtd5f8fv" path="res://scripts/balls/special/explosion4.png" id="5_3whd5"]
+[ext_resource type="Texture2D" uid="uid://fvmkjdsry2rh" path="res://scripts/balls/special/explosion5.png" id="6_ce16o"]
+[ext_resource type="Texture2D" uid="uid://d2dfmr7mpw5sx" path="res://scripts/balls/special/explosion6.png" id="7_s8abh"]
+[ext_resource type="Texture2D" uid="uid://cjg7ppe7uy0ae" path="res://scripts/balls/special/explosion7.png" id="8_d6fh4"]
+[ext_resource type="Texture2D" uid="uid://1qwb1xfxgp00" path="res://scripts/balls/special/explosion8.png" id="9_0315u"]
+[ext_resource type="AudioStream" uid="uid://ds63c6f0yh6yh" path="res://assets/explosions/explosion.mp3" id="10_nd2ec"]
+
+[sub_resource type="Animation" id="Animation_6eebh"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(2, 2), Vector2(1.8, 1.8), Vector2(1.6, 1.6), Vector2(1.4, 1.4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_nd2ec")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
+
+[sub_resource type="Animation" id="Animation_eh3ne"]
+resource_name = "explode"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1, 1), Vector2(2, 2), Vector2(1.8, 1.8), Vector2(2, 2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.19999999, 0.39999998, 0.6, 0.79999995, 1, 1.2, 1.4000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Object(AnimatedSprite2D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"sprite_frames":null,"animation":&"default","autoplay":"","frame":0,"frame_progress":0.0,"speed_scale":1.0,"centered":true,"offset":Vector2(0, 0),"flip_h":false,"flip_v":false,"script":null)
+, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_nd2ec")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b3x6q"]
+_data = {
+&"RESET": SubResource("Animation_6eebh"),
+&"explode": SubResource("Animation_eh3ne")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eh3ne"]
+radius = 29.017237
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nc3vr"]
+animations = [{
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("2_n76bm")
+}, {
+"duration": 1.5,
+"texture": ExtResource("3_nd2ec")
+}, {
+"duration": 1.5,
+"texture": ExtResource("4_dcyba")
+}, {
+"duration": 1.5,
+"texture": ExtResource("5_3whd5")
+}, {
+"duration": 1.5,
+"texture": ExtResource("6_ce16o")
+}, {
+"duration": 0.5,
+"texture": ExtResource("7_s8abh")
+}, {
+"duration": 0.5,
+"texture": ExtResource("8_d6fh4")
+}, {
+"duration": 0.5,
+"texture": ExtResource("9_0315u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_nd2ec"]
+
+[node name="Explosion" type="Area2D" unique_id=1151467108]
+collision_layer = 4
+collision_mask = 14
+script = ExtResource("1_eh3ne")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=791347501]
+libraries/ = SubResource("AnimationLibrary_b3x6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=840408598]
+shape = SubResource("CircleShape2D_eh3ne")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1525965476]
+sprite_frames = SubResource("SpriteFrames_nc3vr")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1471704549]
+stream = SubResource("AudioStreamPolyphonic_nd2ec")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

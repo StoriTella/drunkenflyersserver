@@ -4,3 +4,9 @@
 
 [node name="BallManager" type="Node2D" unique_id=2018070719]
 script = ExtResource("1_gougl")
+
+[node name="Timer" type="Timer" parent="." unique_id=1938878363]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -34,6 +34,7 @@ window/stretch/mode="canvas_items"
 game_server=""
 player="player"
 player_shield=""
+bomb_ball=""
 
 [input]
 
@@ -60,6 +61,7 @@ sensors/enable_magnetometer=true
 3d_physics/layer_3="enemies"
 2d_physics/layer_4="coins"
 3d_physics/layer_4="coins"
+2d_physics/layer_5="bomb_balls"
 
 [physics]
 

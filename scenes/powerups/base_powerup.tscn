@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://fswkdt588y8v" path="res://assets/coin.png" id="2_krk5w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p63nc"]
-radius = 41.01219
+radius = 24.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_krk5w"]
-radius = 50.159744
+radius = 29.0
 
 [node name="BasePowerup" type="RigidBody2D" unique_id=1898899945 groups=["game_server"]]
 collision_layer = 8
@@ -16,7 +16,7 @@ gravity_scale = 0.0
 script = ExtResource("1_krk5w")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=143977237]
-scale = Vector2(0.3, 0.295)
+scale = Vector2(0.18, 0.18)
 texture = ExtResource("2_krk5w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1904329162]

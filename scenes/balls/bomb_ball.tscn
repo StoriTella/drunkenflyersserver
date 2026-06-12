@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dsajyekfrtdp8"]
+
+[ext_resource type="Script" uid="uid://c7wdxmtvwonok" path="res://scripts/balls/bomb_ball.gd" id="1_cmeo1"]
+[ext_resource type="Texture2D" uid="uid://b667jkslwuhsh" path="res://assets/bomb_ball.png" id="2_mq5po"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ym31k"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3sjpb"]
+radius = 37.01351
+
+[node name="BombBall" type="RigidBody2D" unique_id=378296222 groups=["bomb_ball"]]
+collision_layer = 4
+collision_mask = 14
+gravity_scale = 0.0
+script = ExtResource("1_cmeo1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1568038246]
+position = Vector2(0, -15.000002)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("2_mq5po")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=689710060]
+shape = SubResource("CircleShape2D_ym31k")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1705535530]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=745386909]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=687771190]
+shape = SubResource("CircleShape2D_3sjpb")
+
+[node name="Timer" type="Timer" parent="." unique_id=1182174921]
+wait_time = 30.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

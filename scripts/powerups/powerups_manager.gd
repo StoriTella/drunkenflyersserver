@@ -10,7 +10,7 @@ var spawning: bool = false
 
 # Timers
 var coin_timer: float = 0.0
-var coin_delay: float = 1.0
+var coin_delay: float = 0.2
 
 func _ready():
 	await get_tree().process_frame

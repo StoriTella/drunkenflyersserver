@@ -28,6 +28,7 @@ var points = 0
 var original_modulate: Color
 var current_modulate: Color
 var vibrate_time: int  = 100
+var vibrate_time_explosion: int = 1000
 var vibrate_time_hard: int  = 500
 var player_id
 
@@ -109,6 +110,15 @@ func hit_by_norma_ball(damage: int = 10):
 	show_damage_received(damage)
 	Global.normal_damage_sound(player_id)
 	vibrate_player(player_id, vibrate_time)
+	check_ship_failure()
+
+func hit_by_explosion(damage: int = 10):
+	points -= damage
+	dents += 3
+	flash_red()
+	show_damage_received(damage)
+	Global.normal_damage_sound(player_id)
+	vibrate_player(player_id, vibrate_time_explosion)
 	check_ship_failure()
 
 func check_ship_failure():

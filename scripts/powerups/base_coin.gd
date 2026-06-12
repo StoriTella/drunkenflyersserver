@@ -5,7 +5,7 @@ class_name BaseCoin
 @export var coin_type: PowerTypeEnum.PowerType
 @export var points: int = 10
 @export var speed: float = 0.0
-@export var expiration_date: float = 10.0
+@export var expiration_date: float = 15.0
 
 var direction: Vector2 = Vector2.RIGHT
 var spawned_position: Vector2
