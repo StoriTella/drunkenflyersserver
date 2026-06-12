@@ -107,14 +107,10 @@ func update_from_gyro(gyro: Vector3):
 	
 func collect_coin(coin_points):
 	points += coin_points
-	flash_golden_border()
-	show_points_received(points)
 	Global.normal_coin_sound(player_id)
 
 func hit_by_spike(damage: int):
 	points += damage
-	flash_red()
-	show_damage_received(damage)
 	Global.normal_damage_sound(player_id)
 	vibrate_player(player_id, vibrate_time_hard)
 	set_core_enabled(false)
@@ -122,8 +118,6 @@ func hit_by_spike(damage: int):
 
 func hit_by_anvil(damage: int):
 	points += damage
-	flash_red()
-	show_damage_received(damage)
 	Global.normal_damage_sound(player_id)
 	vibrate_player(player_id, vibrate_time_hard)
 	set_core_enabled(false)
@@ -133,8 +127,6 @@ func hit_by_anvil(damage: int):
 func hit_by_norma_ball(damage):
 	points -= damage
 	dents += 1
-	flash_red()
-	show_damage_received(damage)
 	Global.normal_damage_sound(player_id)
 	vibrate_player(player_id, vibrate_time)
 	check_ship_failure()
@@ -142,8 +134,6 @@ func hit_by_norma_ball(damage):
 func hit_by_boomerang_ball(damage, stun_duration):
 	points -= damage
 	dents += 0
-	flash_red()
-	show_damage_received(damage)
 	Global.normal_damage_sound(player_id)
 	vibrate_player(player_id, vibrate_time_hard)
 	check_ship_failure()
@@ -153,10 +143,15 @@ func hit_by_boomerang_ball(damage, stun_duration):
 func hit_by_explosion(damage):
 	points -= damage
 	dents += 3
-	flash_red()
-	show_damage_received(damage)
 	Global.normal_damage_sound(player_id)
 	vibrate_player(player_id, vibrate_time_explosion)
+	check_ship_failure()
+
+func hit_by_polen(damage):
+	points -= damage
+	dents += 0
+	Global.normal_damage_sound(player_id)
+	vibrate_player(player_id, vibrate_time)
 	check_ship_failure()
 
 func check_ship_failure():
@@ -177,44 +172,6 @@ func check_ship_failure():
 				Global.disable_player_direction(player_id, "down")
 		
 		dents = 0
-
-func flash_golden_border():
-	modulate = coin_color
-	await get_tree().create_timer(0.2).timeout
-	modulate = current_modulate
-
-# Método para mostrar pontos recebidos
-func show_points_received(amount: int):
-	# Cria uma label temporária
-	var points_label = Label.new()
-	points_label.text = "+" + str(amount)
-	points_label.position = Vector2(-20, -50)
-	points_label.add_theme_font_size_override("font_size", 20)
-	points_label.modulate = coin_color
-	add_child(points_label)
-	
-	var tween = create_tween()
-	tween.tween_property(points_label, "position", Vector2(-20, -80), 0.5)
-	tween.parallel().tween_property(points_label, "modulate", Color.TRANSPARENT, 0.5)
-	tween.tween_callback(points_label.queue_free)
-
-func flash_red():
-	modulate = damage_color
-	await get_tree().create_timer(0.2).timeout
-	modulate = current_modulate
-
-func show_damage_received(amount: int):
-	var damage_label = Label.new()
-	damage_label.text = "-" + str(amount)
-	damage_label.position = Vector2(-20, -50)
-	damage_label.add_theme_font_size_override("font_size", 20)
-	damage_label.modulate = damage_color
-	add_child(damage_label)
-	
-	var tween = create_tween()
-	tween.tween_property(damage_label, "position", Vector2(-20, -80), 0.5)
-	tween.parallel().tween_property(damage_label, "modulate", Color.TRANSPARENT, 0.5)
-	tween.tween_callback(damage_label.queue_free)
 
 func vibrate_player(player_id: int, vibrate_time):
 	Global.vibrate_player(player_id, vibrate_time)

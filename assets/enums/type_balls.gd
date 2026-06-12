@@ -7,7 +7,8 @@ enum BallType {
 	BOMB,
 	BOOMERANG,
 	BALAOSAOJOAO,
-	ANVIL
+	ANVIL,
+	POLEN
 }
 
 @export var ball_type: BallType = BallType.NORMAL

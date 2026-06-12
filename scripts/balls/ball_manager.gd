@@ -6,11 +6,12 @@ class_name BallManager
 @onready var timer: Timer = $Timer
 
 @export var ball_scenes: Array[PackedScene] = [
-	preload("res://scenes/balls/base_ball.tscn"),
-	preload("res://scenes/balls/bomb_ball.tscn"),
-	preload("res://scenes/balls/boomerang_ball.tscn"),
-	preload("res://scenes/balls/balao_sao_joao_ball.tscn"),
-	preload("res://scenes/balls/anvil_ball.tscn"),
+	#preload("res://scenes/balls/base_ball.tscn"),
+	#preload("res://scenes/balls/bomb_ball.tscn"),
+	#preload("res://scenes/balls/boomerang_ball.tscn"),
+	#preload("res://scenes/balls/balao_sao_joao_ball.tscn"),
+	#preload("res://scenes/balls/anvil_ball.tscn"),
+	preload("res://scenes/balls/polen_ball.tscn"),
 ]
 
 var game_server: Node2D
@@ -106,6 +107,8 @@ func spawn_balls(index: int):
 			balao_sao_joao_trajectory(ball_scene)
 		BallTypeEnum.BallType.ANVIL:
 			anvil_trajectory(ball_scene)
+		BallTypeEnum.BallType.POLEN:
+			polen_trajectory(ball_scene)
 
 func default_ball_trajectory(ball_scene):
 	
@@ -131,6 +134,15 @@ func anvil_trajectory(ball_scene):
 
 func balao_sao_joao_trajectory(ball_scene):
 	var spawn_pos = GenericPositions.get_position_below_screen(50)
+	var random_speed = randf_range(get_ball_min_vel(ball_scene), get_ball_max_vel(ball_scene))
+	
+	var ball = ball_scene.instantiate()
+	ball.initialize(spawn_pos, random_speed)
+	
+	add_child(ball)
+
+func polen_trajectory(ball_scene):
+	var spawn_pos = GenericPositions.get_random_position_in_screen(50)
 	var random_speed = randf_range(get_ball_min_vel(ball_scene), get_ball_max_vel(ball_scene))
 	
 	var ball = ball_scene.instantiate()
