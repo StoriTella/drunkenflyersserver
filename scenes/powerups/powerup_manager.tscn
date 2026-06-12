@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://c3hr7ytca5w21"]
-
-[ext_resource type="Script" uid="uid://ba20i4sjp5pcn" path="res://scripts/powerups/powerups_manager.gd" id="1_gn75f"]
-
-[node name="PowerupManager" type="Node2D" unique_id=1534946003]
-script = ExtResource("1_gn75f")

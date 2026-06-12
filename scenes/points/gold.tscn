@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://pixdwx7m6gwa"]
+
+[ext_resource type="Script" uid="uid://bcoooo7jexucy" path="res://scripts/points/gold.gd" id="1_k52bj"]
+[ext_resource type="Texture2D" uid="uid://dhk6v6inqkkf2" path="res://assets/points/gold/gold1.png" id="2_k52bj"]
+[ext_resource type="Texture2D" uid="uid://ppri4mma8xrn" path="res://assets/points/gold/gold2.png" id="3_pbtc4"]
+[ext_resource type="Texture2D" uid="uid://ckgspytknjfd5" path="res://assets/points/gold/gold3.png" id="4_75dpd"]
+[ext_resource type="Texture2D" uid="uid://cks6y4qqwielw" path="res://assets/points/gold/gold4.png" id="5_vkm7k"]
+[ext_resource type="Texture2D" uid="uid://drvopmqeukegb" path="res://assets/points/gold/gold5.png" id="6_t5t52"]
+[ext_resource type="Texture2D" uid="uid://cxoutm0v64xln" path="res://assets/points/gold/gold6.png" id="7_v66q2"]
+[ext_resource type="Texture2D" uid="uid://culn125cjtefj" path="res://assets/points/gold/gold7.png" id="8_yhys4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p63nc"]
+radius = 10.198039
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_krk5w"]
+radius = 12.0415945
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gavx4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k52bj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pbtc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_75dpd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vkm7k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_t5t52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_v66q2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_yhys4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="Gold" type="RigidBody2D" unique_id=1898899945 groups=["game_server"]]
+collision_layer = 0
+collision_mask = 2
+gravity_scale = 0.0
+script = ExtResource("1_k52bj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1904329162]
+shape = SubResource("CircleShape2D_p63nc")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=865011454]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1108638638]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=904347766]
+shape = SubResource("CircleShape2D_krk5w")
+
+[node name="ExpirationTimer" type="Timer" parent="." unique_id=1671921242]
+wait_time = 10.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1756516122]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_gavx4")
+autoplay = "default"
+frame_progress = 0.6155513
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="ExpirationTimer" to="." method="_on_expiration_timer_timeout"]

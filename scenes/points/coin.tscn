@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cxccxmkwl7ih1"]
 
-[ext_resource type="Script" uid="uid://dxk22dwcv3b6w" path="res://scripts/powerups/base_coin.gd" id="1_krk5w"]
-[ext_resource type="Texture2D" uid="uid://fswkdt588y8v" path="res://assets/coin.png" id="2_krk5w"]
+[ext_resource type="Script" uid="uid://dxk22dwcv3b6w" path="res://scripts/points/coin.gd" id="1_m4bes"]
+[ext_resource type="Texture2D" uid="uid://fswkdt588y8v" path="res://assets/coin.png" id="2_x40ne"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p63nc"]
 radius = 24.0
@@ -9,15 +9,15 @@ radius = 24.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_krk5w"]
 radius = 29.0
 
-[node name="BasePowerup" type="RigidBody2D" unique_id=1898899945 groups=["game_server"]]
+[node name="Coin" type="RigidBody2D" unique_id=1898899945 groups=["game_server"]]
 collision_layer = 8
 collision_mask = 14
 gravity_scale = 0.0
-script = ExtResource("1_krk5w")
+script = ExtResource("1_m4bes")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=143977237]
 scale = Vector2(0.18, 0.18)
-texture = ExtResource("2_krk5w")
+texture = ExtResource("2_x40ne")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1904329162]
 shape = SubResource("CircleShape2D_p63nc")
@@ -31,4 +31,8 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=904347766]
 shape = SubResource("CircleShape2D_krk5w")
 
+[node name="ExpirationTimer" type="Timer" parent="." unique_id=1671921242]
+wait_time = 10.0
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="ExpirationTimer" to="." method="_on_expiration_timer_timeout"]

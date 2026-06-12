@@ -1,17 +1,10 @@
 extends Node
 
-class_name PowerTypeEnum
+class_name PointsTypeEnum
 
-enum PowerType {
+enum PointsType {
 	COIN,
 	# HEALTH
 }
 
-@export var power_type: PowerType = PowerType.COIN
-
-func get_power_type_name() -> String:
-	match power_type:
-		PowerType.COIN:
-			return "Coin"
-		_:
-			return "Desconhecido"
+@export var points_type: PointsType = PointsType.COIN

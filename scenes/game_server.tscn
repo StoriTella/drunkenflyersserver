@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bpm3rwue41oay"]
 
 [ext_resource type="Script" uid="uid://b6bpn3pdmde6f" path="res://scripts/server/game_server.gd" id="1_ecj2s"]
-[ext_resource type="PackedScene" uid="uid://c3hr7ytca5w21" path="res://scenes/powerups/powerup_manager.tscn" id="2_a02k1"]
+[ext_resource type="PackedScene" uid="uid://c3hr7ytca5w21" path="res://scenes/points/points_manager.tscn" id="2_a02k1"]
 [ext_resource type="PackedScene" uid="uid://bc1jy73lqnbk1" path="res://scenes/balls/ball_manager.tscn" id="2_ie7th"]
 [ext_resource type="Script" uid="uid://q54mehq6sn54" path="res://scripts/utils/create_walls.gd" id="4_mspw3"]
 
