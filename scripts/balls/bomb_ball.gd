@@ -11,7 +11,6 @@ class_name BombBall
 @export var ball_timer: float = 0.0
 @export var ball_delay: float = 0.5
 
-@export var expiration_date: float = 10.0
 @export var ball_damage = 15
 @export var explosion_scene: PackedScene = preload("res://scenes/balls/special/explosion.tscn")
 

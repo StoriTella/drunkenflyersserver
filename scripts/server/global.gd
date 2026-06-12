@@ -98,6 +98,8 @@ func set_player_color(player_color: Color):
 	
 	if players.has(player_id):
 		players[player_id].modulate = player_color
+		players[player_id].original_modulate = player_color
+		players[player_id].current_modulate = player_color
 		print("Player: ", player_id, " color: ", player_color)
 
 @rpc("any_peer", "call_remote", "reliable")

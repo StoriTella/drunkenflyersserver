@@ -64,6 +64,7 @@ shape = SubResource("CircleShape2D_krk5w")
 
 [node name="ExpirationTimer" type="Timer" parent="." unique_id=1671921242]
 wait_time = 10.0
+autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1756516122]
 scale = Vector2(0.3, 0.3)

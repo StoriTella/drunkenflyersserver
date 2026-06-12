@@ -11,7 +11,7 @@ class_name BaseBall
 @export var ball_delay: float = 0.2
 
 @export var type_ball: BallTypeEnum.BallType = BallTypeEnum.BallType.NORMAL
-@export var expiration_date: float = 30.0
+@export var expiration_date: float = 10.0
 
 var direction: Vector2 = Vector2.RIGHT
 var spawned_position: Vector2
