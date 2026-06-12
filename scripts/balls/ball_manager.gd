@@ -6,11 +6,11 @@ class_name BallManager
 @onready var timer: Timer = $Timer
 
 @export var ball_scenes: Array[PackedScene] = [
-	#preload("res://scenes/balls/base_ball.tscn"),
-	#preload("res://scenes/balls/bomb_ball.tscn"),
-	#preload("res://scenes/balls/boomerang_ball.tscn"),
-	#preload("res://scenes/balls/balao_sao_joao_ball.tscn"),
-	#preload("res://scenes/balls/anvil_ball.tscn"),
+	preload("res://scenes/balls/base_ball.tscn"),
+	preload("res://scenes/balls/bomb_ball.tscn"),
+	preload("res://scenes/balls/boomerang_ball.tscn"),
+	preload("res://scenes/balls/balao_sao_joao_ball.tscn"),
+	preload("res://scenes/balls/anvil_ball.tscn"),
 	preload("res://scenes/balls/polen_ball.tscn"),
 ]
 
