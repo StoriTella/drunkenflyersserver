@@ -105,8 +105,8 @@ func can_be_damaged():
 func update_from_gyro(gyro: Vector3):
 	pass
 	
-func collect_coin(points):
-	points += points
+func collect_coin(coin_points):
+	points += coin_points
 	flash_golden_border()
 	show_points_received(points)
 	Global.normal_coin_sound(player_id)
@@ -119,6 +119,16 @@ func hit_by_spike(damage: int):
 	vibrate_player(player_id, vibrate_time_hard)
 	set_core_enabled(false)
 	Global.disable_player_direction(player_id, "core")
+
+func hit_by_anvil(damage: int):
+	points += damage
+	flash_red()
+	show_damage_received(damage)
+	Global.normal_damage_sound(player_id)
+	vibrate_player(player_id, vibrate_time_hard)
+	set_core_enabled(false)
+	Global.disable_player_direction(player_id, "core")
+
 
 func hit_by_norma_ball(damage):
 	points -= damage

@@ -12,6 +12,11 @@ extends Node2D
 var players = {}
 var default_posiion = Vector2(0, 0)
 
+func _ready():
+	var minutes = int(game_timer.wait_time) / 60
+	var seconds = int(game_timer.wait_time) % 60
+	timer_label.text = "%02d:%02d" % [minutes, seconds]
+
 func _input(event):
 	if event.is_pressed() && game_timer.is_stopped():
 		start_game()
@@ -23,9 +28,12 @@ func _process(delta):
 		update_timer_display()
 
 func update_timer_display():
+	timer_label.text = get_timer_display()
+
+func get_timer_display():
 	var minutes = int(game_timer.time_left) / 60
 	var seconds = int(game_timer.time_left) % 60
-	timer_label.text = "%02d:%02d" % [minutes, seconds]
+	return "%02d:%02d" % [minutes, seconds]
 
 func end_game():
 	print("END!")
@@ -35,6 +43,8 @@ func end_game():
 		ball_manager.stop_spawning()
 	if powerups_manager:
 		powerups_manager.stop_spawning()
+	
+	get_tree().change_scene_to_file("res://scenes/scoreboard/Scoreboard.tscn")
 
 func reset_game():
 	if ball_manager:
@@ -43,7 +53,7 @@ func reset_game():
 		powerups_manager.stop_spawning()
 	
 	game_timer.stop()
-	timer_label.text = "05:00"
+	timer_label.text = get_timer_display()
 	music_player.stop()
 
 func start_game():
@@ -57,3 +67,7 @@ func start_game():
 	
 	music_player.play()
 	music_player.autoplay = true
+
+
+func _on_timer_timeout() -> void:
+	end_game()
