@@ -2,6 +2,8 @@ extends RigidBody2D
 
 class_name BalaoSaoJoaoBall
 
+@onready var fire = $AnimatedSprite2D
+
 @export var speed: float = 200.0
 @export var base_ball_damage = 30
 @export var swing_amplitude: float = 50.0
@@ -43,6 +45,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			on_hit_player(body)
 
 func on_hit_player(body):
+	fire.visible = true
 	body.hit_by_norma_ball(base_ball_damage)
 	linear_velocity = Vector2.ZERO
 	gravity_scale = 0.3

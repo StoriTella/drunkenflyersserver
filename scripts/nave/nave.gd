@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var default_speed: float = 500.0
 @export var speed_boost: float = 800.0
 @export var dents: int = 0
-@export var max_dents: int = 2
+@export var max_dents: int = 5
 
 @onready var speed_timer: Timer = $SpeedTimer
 @onready var shield_timer: Timer = $ShieldTimer

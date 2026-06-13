@@ -2,12 +2,32 @@
 
 [ext_resource type="Script" uid="uid://cwoexo6eil87s" path="res://scripts/balls/balao_sao_joao_ball.gd" id="1_t8r26"]
 [ext_resource type="Texture2D" uid="uid://duvr71jiqsgp7" path="res://assets/balaosaojoao.png" id="2_0f012"]
+[ext_resource type="Texture2D" uid="uid://c7ypbayup78g5" path="res://assets/fire1.png" id="3_1wgik"]
+[ext_resource type="Texture2D" uid="uid://cegu4p8befyvw" path="res://assets/fire2.png" id="4_iikg8"]
+[ext_resource type="Texture2D" uid="uid://da1i5fiorbc63" path="res://assets/fire3.png" id="5_d0d5p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pmahu"]
 radius = 28.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tkw1d"]
 radius = 31.016125
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rd5nu"]
+animations = [{
+"frames": [{
+"duration": 0.4,
+"texture": ExtResource("3_1wgik")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_iikg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_d0d5p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [node name="BalaoSaoJoaoBall" type="RigidBody2D" unique_id=1647031859]
 collision_layer = 4
@@ -35,5 +55,13 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2018948134]
 position = Vector2(-4, 0)
 shape = SubResource("CircleShape2D_tkw1d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=241192857]
+visible = false
+modulate = Color(1, 1, 1, 0.5411765)
+position = Vector2(1.000001, -12)
+scale = Vector2(0.6753761, 0.45359865)
+sprite_frames = SubResource("SpriteFrames_rd5nu")
+autoplay = "default"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

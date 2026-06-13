@@ -4,7 +4,7 @@ class_name PolenBall
 
 @export var speed: float = 50.0
 @export var base_ball_damage = 5
-@export var stick_duration: float = 0.5
+@export var stick_duration: float = 1.5
 @export var float_amplitude: float = 30.0
 @export var float_frequency: float = 2.0
 @export var direction_change_interval: float = 2.0
