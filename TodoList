@@ -25,7 +25,21 @@ Moeda explosiva que guando apanhas há um timer de explosão
 Client:
 D-Core dá um som de danger quando é ativado
 Super poder que adicionar um shield a tua volta que anula bolas stacakble
-Melhorar muito a UI (geral)
+D-Melhorar UI jogo
+Melhorar UI minigames
+Melhorar Ui inicio
+Melhorar UI socreboard
+
+Minigames:
+Shield é beber cerveja cada click é um glu no final é um arroto
+Speed - rema sound e melhorar ui
+Mudar o som do cannon
+D-Tirar o dash
+Core mudar sprite para agua e por um background do navio a arder
+
+Server:
+Mudar sprite dos spikes para cannonballs
+tirar os vibrates e só vibrar quando um dos lados coordenais deixa de funcionar
 
 Extras:
 D-Sons das bolas
