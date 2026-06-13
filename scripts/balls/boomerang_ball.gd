@@ -11,9 +11,9 @@ class_name BoomerangBall
 
 #GENERIC
 @export var type_ball: BallTypeEnum.BallType = BallTypeEnum.BallType.BOOMERANG
-@export var ball_min_vel = 500
-@export var ball_max_vel = 800
-@export var ball_delay: float = 1.0
+@export var ball_min_vel = 300
+@export var ball_max_vel = 500
+@export var ball_delay: float = 1.3
 
 var total_distance: float = 0.0
 var traveled: float = 0.0

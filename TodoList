@@ -15,15 +15,11 @@ Web _ball que quando colide da trigger a um minigame de rodar o telemóvel nos e
 Bolas interligadas com um laser
 
 Moedas:
-1-moeda que rouba a pessoa mais rica
+1-Uma cobra de moedas em fila
 2-moeda que da muitos pontos mas foge do player
-3.Uma cobra de moedas em fila
-4-Uma spawn que manda imensas moedas para essa zona
-6-Moeda que dá spawn e so vai ganahndo valor e nunca desaparece
-7-Moeda Virus que dá pontos negativos a ti mas mais aos outros todos
-8-Moeda Jackpot completamente gamba podes receber entre 5 a 1000
-9-Moeda Cursed que desativa o core a toda a gente excepto a ti /e dá um som tbm)
-10-Moeda explosiva que guando apanhas há um timer de explosão
+3-Uma spawn que manda imensas moedas para essa zona
+4-Moeda Jackpot completamente gamba podes receber entre 5 a 1000
+5-Moeda explosiva que guando apanhas há um timer de explosão
 
 Client:
 Core dá um som de danger quando é ativado

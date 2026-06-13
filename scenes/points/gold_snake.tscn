@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://ds675rs2eaf0v"]
+
+[ext_resource type="Script" uid="uid://cx5f8msvi50yc" path="res://scripts/points/gold_snake.gd" id="1_rw3ck"]
+[ext_resource type="Texture2D" uid="uid://dhk6v6inqkkf2" path="res://assets/points/gold/gold1.png" id="2_e4jfh"]
+[ext_resource type="Texture2D" uid="uid://ppri4mma8xrn" path="res://assets/points/gold/gold2.png" id="3_sxevk"]
+[ext_resource type="Texture2D" uid="uid://ckgspytknjfd5" path="res://assets/points/gold/gold3.png" id="4_0fi8r"]
+[ext_resource type="Texture2D" uid="uid://cks6y4qqwielw" path="res://assets/points/gold/gold4.png" id="5_tphf7"]
+[ext_resource type="Texture2D" uid="uid://drvopmqeukegb" path="res://assets/points/gold/gold5.png" id="6_cpsx5"]
+[ext_resource type="Texture2D" uid="uid://cxoutm0v64xln" path="res://assets/points/gold/gold6.png" id="7_na76g"]
+[ext_resource type="Texture2D" uid="uid://culn125cjtefj" path="res://assets/points/gold/gold7.png" id="8_t0ctg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rw3ck"]
+size = Vector2(41, 74.5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gavx4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_e4jfh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sxevk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0fi8r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tphf7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cpsx5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_na76g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_t0ctg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="GoldSnake" type="RigidBody2D" unique_id=1898899945 groups=["game_server"]]
+collision_layer = 4
+collision_mask = 4
+gravity_scale = 0.0
+script = ExtResource("1_rw3ck")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1904329162]
+position = Vector2(0, -3.25)
+shape = SubResource("RectangleShape2D_rw3ck")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=865011454]
+
+[node name="ExpirationTimer" type="Timer" parent="." unique_id=1671921242]
+wait_time = 10.0
+autostart = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1756516122]
+scale = Vector2(1.3404762, 1.0402439)
+sprite_frames = SubResource("SpriteFrames_gavx4")
+autoplay = "default"
+frame_progress = 0.6155513
+
+[connection signal="timeout" from="ExpirationTimer" to="." method="_on_expiration_timer_timeout"]

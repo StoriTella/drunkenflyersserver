@@ -90,8 +90,6 @@ func remove_ball(ball):
 func _on_timer_timeout() -> void:
 	select_random_ball_type()
 
-
-#Spawn balls
 func spawn_balls(index: int):
 	var ball_scene = current_ball_scenes[index]
 	var ball_instance = ball_scene.instantiate()

@@ -4,23 +4,25 @@ extends Node
 
 @export var points_scenes: Array[PackedScene] = [
 	preload("res://scenes/points/coin.tscn"),
-	preload("res://scenes/points/gold.tscn")
+	preload("res://scenes/points/gold.tscn"),
+	preload("res://scenes/points/gold_snake.tscn"),
 ]
 @export var margin = 50
 
 var game_server: Node2D
 var screen_size: Vector2
-var power_up_speed: float = 0.0
 var spawning: bool = false
-var spawn_timer: float = 0.0
-var current_points_type: PointsTypeEnum.PointsType
-var current_points_scene: PackedScene = null
+var current_points_scenes: Array[PackedScene] = []
+var spawn_timers: Array[float] = []
 
 func _ready():
 	await get_tree().process_frame
 	game_server = get_parent()
 	screen_size = get_viewport().get_visible_rect().size
 	select_random_points()
+	spawn_timers.resize(current_points_scenes.size())
+	for i in range(spawn_timers.size()):
+		spawn_timers[i] = 0.0
 
 func _process(delta):
 	if not spawning:
@@ -29,11 +31,33 @@ func _process(delta):
 	if timer.is_stopped():
 		timer.start()
 	
-	spawn_timer += delta
-	var current_delay = get_points_delay()
-	if spawn_timer >= current_delay:
-		spawn_timer = 0.0
-		spawn_points()
+	for i in range(current_points_scenes.size()):
+		spawn_timers[i] += delta
+		var delay = get_points_delay(current_points_scenes[i])
+		
+		if spawn_timers[i] >= delay:
+			spawn_timers[i] = 0.0
+			spawn_points(i)
+
+func get_points_delay(points_scene: PackedScene) -> float:
+	var instance = points_scene.instantiate()
+	var delay = instance.point_delay
+	instance.queue_free()
+	return delay
+
+func select_random_points():
+	if points_scenes.is_empty():
+		return
+	
+	current_points_scenes.clear()
+	
+	var shuffled = points_scenes.duplicate()
+	shuffled.shuffle()
+	
+	for i in range(min(2, shuffled.size())):
+		current_points_scenes.append(shuffled[i])
+	
+	print("Points types: ", current_points_scenes.size())
 
 func start_spawning():
 	spawning = true
@@ -41,37 +65,44 @@ func start_spawning():
 func stop_spawning():
 	spawning = false
 
-func select_random_points():
-	if points_scenes.is_empty():
-		return null
-	
-	current_points_type = randi() % points_scenes.size()
-	current_points_scene = points_scenes[current_points_type]
+func spawn_points(index: int):
+	var points_scene = current_points_scenes[index]
+	var points_instance = points_scene.instantiate()
+	var points_type = points_instance.coin_type
+	points_instance.queue_free()
+	match points_type:
+		PointsTypeEnum.PointsType.COIN:
+			default_points(points_scene)
+		PointsTypeEnum.PointsType.GOLD:
+			default_points(points_scene)
+		PointsTypeEnum.PointsType.GOLD_SNAKE:
+			snake_points(points_scene)
 
-func spawn_points():
-	if current_points_scene == null:
-		return
-	
+func default_points(points_scene):
 	var spawn_pos = GenericPositions.get_random_position_in_screen(margin)
-	
-	var points = current_points_scene.instantiate()
-	points.position = spawn_pos
-	
-	if points.has_method("initialize"):
-		points.initialize(spawn_pos, spawn_pos)
-	
+	var points = points_scene.instantiate()
+	points.initialize(spawn_pos)
 	add_child(points)
 
-func remove_points(points):
-	if points and is_instance_valid(points):
-		points.queue_free()
+func snake_points(points_scene):
+	var spawn_pos = GenericPositions.get_random_position_in_screen(margin)
+	var points = points_scene.instantiate()
+	var random_speed = randf_range(get_points_min_vel(points_scene), get_points_max_vel(points_scene))
+	points.initialize(spawn_pos, random_speed)
+	add_child(points)
 
 
-func get_points_delay():
-	var instance = current_points_scene.instantiate()
-	var delay = instance.point_delay
+func get_points_min_vel(points_scene):
+	var instance = points_scene.instantiate()
+	var point_min_vel = instance.point_min_vel
 	instance.queue_free()
-	return delay
+	return point_min_vel
+
+func get_points_max_vel(points_scene):
+	var instance = points_scene.instantiate()
+	var point_max_vel = instance.point_max_vel
+	instance.queue_free()
+	return point_max_vel
 
 func _on_timer_timeout() -> void:
 	select_random_points()

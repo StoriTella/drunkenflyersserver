@@ -4,7 +4,8 @@ class_name PointsTypeEnum
 
 enum PointsType {
 	COIN,
-	# HEALTH
+	GOLD,
+	GOLD_SNAKE
 }
 
 @export var points_type: PointsType = PointsType.COIN
