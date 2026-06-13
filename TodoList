@@ -5,6 +5,7 @@ Alguns hazards dão trigger aos mini games
 D-Quando tiver muitos hazards adicionar dois de cada vez
 D-Fazer animações na nave quando ativa os power ups ou quando o core fica estragado
 D-Corrigir bug do tempo dos power ups ficar guardado entre jogos
+Canhão de bolas
 
 Hazards:
 D-Anvils a cair do ceu
@@ -16,10 +17,10 @@ Bolas interligadas com um laser
 
 Moedas:
 D-Uma cobra de moedas em fila
-2-moeda que da muitos pontos mas foge do player
-3-Uma spawn que manda imensas moedas para essa zona
-4-Moeda Jackpot completamente gamba podes receber entre 5 a 1000
-5-Moeda explosiva que guando apanhas há um timer de explosão
+D-Uma spawn que manda imensas moedas para essa zona
+moeda que da muitos pontos mas foge do player
+Moeda raspadinha completamente gamba podes receber entre 5 a 1000 e da trigger a um minigame de raspadinha
+Moeda explosiva que guando apanhas há um timer de explosão
 
 Client:
 Core dá um som de danger quando é ativado
@@ -27,4 +28,5 @@ Super poder que adicionar um shield a tua volta que anula bolas stacakble
 Melhorar muito a UI (geral)
 
 Extras:
-Som no AnvilsSound no polen
+Som no AnvilsSound
+Som no polen

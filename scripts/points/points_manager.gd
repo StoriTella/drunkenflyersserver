@@ -1,6 +1,7 @@
 extends Node
 
 @onready var timer: Timer = $Timer
+@onready var timer_difficulty: Timer = $DifficultyTimer
 
 @export var points_scenes: Array[PackedScene] = [
 	preload("res://scenes/points/coin.tscn"),
@@ -10,6 +11,7 @@ extends Node
 ]
 @export var margin = 50
 
+@export var n_spawns_points: int = 1
 var game_server: Node2D
 var screen_size: Vector2
 var spawning: bool = false
@@ -32,7 +34,10 @@ func _process(delta):
 	if timer.is_stopped():
 		timer.start()
 	
-	for i in range(current_points_scenes.size()):
+	if timer_difficulty.is_stopped():
+		timer_difficulty.start()
+	
+	for i in range(spawn_timers.size()):
 		spawn_timers[i] += delta
 		var delay = get_points_delay(current_points_scenes[i])
 		
@@ -50,12 +55,16 @@ func select_random_points():
 	if points_scenes.is_empty():
 		return
 	
+	spawn_timers.resize(current_points_scenes.size())
+	for i in range(spawn_timers.size()):
+		spawn_timers[i] = 0.0
+	
 	current_points_scenes.clear()
 	
 	var shuffled = points_scenes.duplicate()
 	shuffled.shuffle()
 	
-	for i in range(min(2, shuffled.size())):
+	for i in range(min(n_spawns_points, shuffled.size())):
 		current_points_scenes.append(shuffled[i])
 	
 	print("Points types: ", current_points_scenes.size())
@@ -108,4 +117,8 @@ func get_points_max_vel(points_scene):
 	return point_max_vel
 
 func _on_timer_timeout() -> void:
+	select_random_points()
+
+func _on_difficulty_timer_timeout() -> void:
+	n_spawns_points += 1
 	select_random_points()

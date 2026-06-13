@@ -4,6 +4,7 @@ class_name BallManager
 
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 @onready var timer: Timer = $Timer
+@onready var timer_difficulty: Timer = $DifficultyTimer
 
 @export var ball_scenes: Array[PackedScene] = [
 	preload("res://scenes/balls/base_ball.tscn"),
@@ -15,6 +16,7 @@ class_name BallManager
 	preload("res://scenes/balls/tumbleweed_ball.tscn"),
 	preload("res://scenes/balls/rubber_ball.tscn"),
 ]
+@export var n_spawns_balls: int = 1
 
 var game_server: Node2D
 var spawning: bool = false
@@ -36,7 +38,10 @@ func _process(delta):
 	if timer.is_stopped():
 		timer.start()
 	
-	for i in range(current_ball_scenes.size()):
+	if timer_difficulty.is_stopped():
+		timer_difficulty.start()
+	
+	for i in range(spawn_timers.size()):
 		spawn_timers[i] += delta
 		var delay = get_ball_delay(current_ball_scenes[i])
 		
@@ -54,13 +59,17 @@ func select_random_ball_type():
 	if ball_scenes.is_empty():
 		return
 	
+	spawn_timers.resize(current_ball_scenes.size())
+	for i in range(spawn_timers.size()):
+		spawn_timers[i] = 0.0
+	
 	music_player.play()
 	current_ball_scenes.clear()
 	
 	var shuffled = ball_scenes.duplicate()
 	shuffled.shuffle()
 	
-	for i in range(min(2, shuffled.size())):
+	for i in range(min(n_spawns_balls, shuffled.size())):
 		current_ball_scenes.append(shuffled[i])
 	
 	print("Ball types: ", current_ball_scenes.size())
@@ -172,3 +181,8 @@ func rubber_ball_trajectory(ball_scene: PackedScene):
 	var ball = ball_scene.instantiate()
 	ball.initialize(spawn_pos, random_speed)
 	add_child(ball)
+
+
+func _on_difficulty_timer_timeout() -> void:
+	n_spawns_balls += 1
+	select_random_ball_type()

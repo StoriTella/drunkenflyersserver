@@ -7,7 +7,7 @@ class_name BoomerangBall
 @export var speed: float = 0.0
 @export var damage: int = 10
 @export var expiration_date: float = 40.0
-@export var australia_duration: float = 2.0
+@export var australia_duration: float = 0.5
 
 #GENERIC
 @export var type_ball: BallTypeEnum.BallType = BallTypeEnum.BallType.BOOMERANG
