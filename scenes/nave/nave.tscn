@@ -29,6 +29,7 @@ animations = [{
 }]
 
 [node name="Nave" type="CharacterBody2D" unique_id=1137107852 groups=["player"]]
+z_index = 5
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_8xiky")

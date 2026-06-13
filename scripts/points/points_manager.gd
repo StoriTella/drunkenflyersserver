@@ -6,6 +6,7 @@ extends Node
 	preload("res://scenes/points/coin.tscn"),
 	preload("res://scenes/points/gold.tscn"),
 	preload("res://scenes/points/gold_snake.tscn"),
+	preload("res://scenes/points/gold_spawner.tscn"),
 ]
 @export var margin = 50
 
@@ -77,6 +78,8 @@ func spawn_points(index: int):
 			default_points(points_scene)
 		PointsTypeEnum.PointsType.GOLD_SNAKE:
 			snake_points(points_scene)
+		PointsTypeEnum.PointsType.GOLD_SPAWNER:
+			default_points(points_scene)
 
 func default_points(points_scene):
 	var spawn_pos = GenericPositions.get_random_position_in_screen(margin)

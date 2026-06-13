@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c0vkveegte78k"]
+
+[ext_resource type="Script" uid="uid://d3vl10gh1uxn8" path="res://scripts/points/gold_spawner.gd" id="1_56q0l"]
+[ext_resource type="Texture2D" uid="uid://dqdmunsxbotu0" path="res://assets/chest.png" id="2_ey7pv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rw3ck"]
+size = Vector2(116, 110)
+
+[node name="GoldSpawner" type="RigidBody2D" unique_id=1898899945 groups=["game_server"]]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_56q0l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1904329162]
+position = Vector2(3, 1)
+shape = SubResource("RectangleShape2D_rw3ck")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=865011454]
+
+[node name="ExpirationTimer" type="Timer" parent="." unique_id=1671921242]
+wait_time = 10.0
+autostart = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2023864342]
+position = Vector2(1, 0)
+scale = Vector2(0.46289065, 0.42028984)
+texture = ExtResource("2_ey7pv")
+
+[connection signal="timeout" from="ExpirationTimer" to="." method="_on_expiration_timer_timeout"]
