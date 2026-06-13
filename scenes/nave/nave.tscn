@@ -2,17 +2,36 @@
 
 [ext_resource type="Script" uid="uid://d0d67m47ftqck" path="res://scripts/nave/nave.gd" id="1_8xiky"]
 [ext_resource type="Texture2D" uid="uid://d1i13f4sanfe1" path="res://icon.svg" id="2_olkoh"]
+[ext_resource type="Texture2D" uid="uid://c7ypbayup78g5" path="res://assets/fire1.png" id="3_iu351"]
+[ext_resource type="Texture2D" uid="uid://cegu4p8befyvw" path="res://assets/fire2.png" id="4_k7ih5"]
+[ext_resource type="Texture2D" uid="uid://da1i5fiorbc63" path="res://assets/fire3.png" id="5_vflh6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jqj6o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8xiky"]
 font_size = 11
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_o1dt7"]
+animations = [{
+"frames": [{
+"duration": 0.4,
+"texture": ExtResource("3_iu351")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_k7ih5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vflh6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
 [node name="Nave" type="CharacterBody2D" unique_id=1137107852 groups=["player"]]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_8xiky")
-speed_color = Color(0.8666667, 0, 0.5372549, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1028532905]
 scale = Vector2(0.526, 0.5)
@@ -38,6 +57,15 @@ one_shot = true
 [node name="ShieldTimer" type="Timer" parent="." unique_id=542238578]
 wait_time = 20.0
 one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=558309071]
+visible = false
+modulate = Color(1, 1, 1, 0.5411765)
+position = Vector2(0.361696, -11.240643)
+scale = Vector2(0.81317395, 0.5461346)
+sprite_frames = SubResource("SpriteFrames_o1dt7")
+autoplay = "default"
+frame_progress = 0.49320102
 
 [connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
 [connection signal="timeout" from="ShieldTimer" to="." method="_on_shield_timer_timeout"]

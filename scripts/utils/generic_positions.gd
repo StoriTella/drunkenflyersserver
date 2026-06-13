@@ -91,3 +91,25 @@ func get_position_below_screen(margin: float = 50.0) -> Vector2:
 	
 	var random_x = randf_range(left, right)
 	return Vector2(random_x, bottom)
+
+func get_position_side_to_side(margin: float = 50.0) -> Dictionary:
+	var viewport_size = get_viewport().get_visible_rect().size
+	var top = -viewport_size.y / 2 + margin
+	var bottom = viewport_size.y / 2 - margin
+	
+	var start_side = randi() % 2
+	var spawn_pos = Vector2.ZERO
+	var target_pos = Vector2.ZERO
+	var random_y = randf_range(top, bottom)
+	
+	if start_side == 0:
+		spawn_pos = Vector2(-viewport_size.x / 2 - margin, random_y)
+		target_pos = Vector2(viewport_size.x / 2 + margin, random_y)
+	else:
+		spawn_pos = Vector2(viewport_size.x / 2 + margin, random_y)
+		target_pos = Vector2(-viewport_size.x / 2 - margin, random_y)
+	
+	return {
+		"spawn": spawn_pos,
+		"target": target_pos
+	}

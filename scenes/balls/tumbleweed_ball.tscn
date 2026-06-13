@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dcpb4hekmegcr"]
+
+[ext_resource type="Script" uid="uid://j4r660otes8f" path="res://scripts/balls/tumbleweed_ball.gd" id="1_607us"]
+[ext_resource type="Texture2D" uid="uid://c5bypui6fc8a4" path="res://assets/tumbleweed.png" id="2_607us"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p73km"]
+radius = 23.135471
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0til5"]
+radius = 26.076809
+
+[node name="TumbleweedBall" type="RigidBody2D" unique_id=1647031859]
+collision_layer = 4
+collision_mask = 14
+mass = 5.0
+gravity_scale = 0.0
+script = ExtResource("1_607us")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=428874840]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_607us")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1984610187]
+position = Vector2(0, -0.5)
+shape = SubResource("CircleShape2D_p73km")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1655491671]
+position = Vector2(1, -1)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=8839854]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2018948134]
+shape = SubResource("CircleShape2D_0til5")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

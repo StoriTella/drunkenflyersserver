@@ -13,7 +13,7 @@ class_name AnvilBall
 @export var ball_max_vel = 0
 @export var ball_delay: float = 1.5
 
-@export var expiration_date: float = 30.0
+@export var expiration_date: float = 8.0
 
 var spawned_position: Vector2
 
