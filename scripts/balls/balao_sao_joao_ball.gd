@@ -17,7 +17,7 @@ var time: float = 0.0
 #GENERIC
 @export var type_ball: BallTypeEnum.BallType = BallTypeEnum.BallType.BALAOSAOJOAO
 @export var ball_min_vel = 200
-@export var ball_max_vel = 800
+@export var ball_max_vel = 300
 @export var ball_delay: float = 0.5
 
 @export var expiration_date: float = 30.0
@@ -46,6 +46,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func on_hit_player(body):
 	fire.visible = true
-	body.hit_by_norma_ball(base_ball_damage)
+	body.hit_by_balao_sao_joao_ball(base_ball_damage)
 	linear_velocity = Vector2.ZERO
 	gravity_scale = 0.3

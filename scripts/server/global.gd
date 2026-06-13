@@ -96,12 +96,44 @@ func vibrate_player(player_id, duration_ms: int):
 func normal_coin_sound(player_id):
 	rpc_id(player_id, "normal_coin_sound")
 
+#Damage Sounds
 @rpc("any_peer", "call_remote", "reliable")
-func normal_damage_sound(player_id):
-	rpc_id(player_id, "normal_damage_sound")
+func hit_by_base_ball_sound():
+	pass
+
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_anvil_ball_sound():
+	pass
+
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_balao_sao_joao_ball_sound():
+	pass
+
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_boomerang_ball_sound():
+	pass
+
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_explosion_sound():
+	pass
+
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_polen_ball_sound():
+	pass
+
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_tumbleweed_ball_sound():
+	pass
+
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_spike_sound():
+	pass
+
+@rpc("any_peer", "call_remote", "reliable")
+func core_disabled_sound(player_id):
+	pass
 
 #SETTINGS
-
 @rpc("any_peer", "call_remote", "reliable")
 func set_player_name(player_name: String):
 	var player_id = multiplayer.get_remote_sender_id()
@@ -127,7 +159,6 @@ func set_player_character(character_type: int):
 		print("Player: ", player_id, " chose character: ", CharacterType.keys()[character_type])
 
 #POWER UPS
-
 @rpc("any_peer", "call_remote", "reliable")
 func add_speed_powerup():
 	var player_id = multiplayer.get_remote_sender_id()
@@ -202,6 +233,7 @@ func disable_player_direction(player_id: int, direction: String):
 		"down":
 			rpc_id(player_id, "set_down_enabled", false)
 		"core":
+			rpc_id(player_id, "core_disabled_sound")
 			rpc_id(player_id, "set_core_enabled", false)
 
 @rpc("any_peer", "call_remote", "reliable")

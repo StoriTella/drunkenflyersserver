@@ -6,7 +6,7 @@
 script = ExtResource("1_gn75f")
 
 [node name="Timer" type="Timer" parent="." unique_id=1140089713]
-wait_time = 5.0
+wait_time = 10.0
 
 [node name="DifficultyTimer" type="Timer" parent="." unique_id=269903754]
 wait_time = 60.0

@@ -32,4 +32,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			on_hit_player(body)
 
 func on_hit_player(body):
-	body.hit_by_anvil(base_ball_damage)
+	body.hit_by_anvil_ball(base_ball_damage)

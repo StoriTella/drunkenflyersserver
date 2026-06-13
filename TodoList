@@ -18,15 +18,20 @@ Bolas interligadas com um laser
 Moedas:
 D-Uma cobra de moedas em fila
 D-Uma spawn que manda imensas moedas para essa zona
-moeda que da muitos pontos mas foge do player
+D-Diamond - oeda que da muitos pontos mas foge do player
 Moeda raspadinha completamente gamba podes receber entre 5 a 1000 e da trigger a um minigame de raspadinha
 Moeda explosiva que guando apanhas há um timer de explosão
 
 Client:
-Core dá um som de danger quando é ativado
+D-Core dá um som de danger quando é ativado
 Super poder que adicionar um shield a tua volta que anula bolas stacakble
 Melhorar muito a UI (geral)
 
 Extras:
-Som no AnvilsSound
-Som no polen
+D-Sons das bolas
+
+BugFix:
+D-Menos moedas
+D-Mudado para ser dificulty --- Fazer rondas intermedias?
+D-Som das moedas
+D-Fix sound minigames/add specific sounds minigames

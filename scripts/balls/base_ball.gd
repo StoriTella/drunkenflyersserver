@@ -38,5 +38,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			on_hit_player(body)
 
 func on_hit_player(body):
-	body.hit_by_norma_ball(base_ball_damage)
+	body.hit_by_base_ball(base_ball_damage)
 	queue_free()

@@ -214,60 +214,67 @@ func collect_coin(coin_points):
 	points += coin_points
 	Global.normal_coin_sound(player_id)
 
-func hit_by_spike(damage: int):
-	points += damage
-	Global.normal_damage_sound(player_id)
-	vibrate_player(player_id, vibrate_time_hard)
-	set_core_enabled(false)
-	core_damaged.visible = true
-	Global.disable_player_direction(player_id, "core")
+#HIT
 
-func hit_by_anvil(damage: int):
-	points += damage
-	Global.normal_damage_sound(player_id)
-	vibrate_player(player_id, vibrate_time_hard)
-	set_core_enabled(false)
-	core_damaged.visible = true
-	Global.disable_player_direction(player_id, "core")
-
-
-func hit_by_norma_ball(damage):
+func hit_by_base_ball(damage):
 	points -= damage
 	dents += 1
-	Global.normal_damage_sound(player_id)
+	Global.rpc_id(player_id, "hit_by_base_ball_sound")
+	vibrate_player(player_id, vibrate_time)
+	check_ship_failure()
+
+func hit_by_anvil_ball(damage: int):
+	points += damage
+	Global.rpc_id(player_id, "hit_by_anvil_ball_sound")
+	vibrate_player(player_id, vibrate_time_hard)
+	set_core_enabled(false)
+	core_damaged.visible = true
+	Global.disable_player_direction(player_id, "core")
+
+func hit_by_balao_sao_joao_ball(damage):
+	points -= damage
+	dents += 1
+	Global.rpc_id(player_id, "hit_by_balao_sao_joao_ball_sound")
 	vibrate_player(player_id, vibrate_time)
 	check_ship_failure()
 
 func hit_by_boomerang_ball(damage, stun_duration):
 	points -= damage
 	dents += 0
-	Global.normal_damage_sound(player_id)
+	Global.rpc_id(player_id, "hit_by_boomerang_ball_sound")
 	vibrate_player(player_id, vibrate_time_hard)
 	check_ship_failure()
-	#TODO ADICIONAR SUPER SOM AO PLAYER AUSTRALIANO
 	set_invert_controls(stun_duration)
 
 func hit_by_explosion(damage):
 	points -= damage
 	dents += 3
-	Global.normal_damage_sound(player_id)
+	Global.rpc_id(player_id, "hit_by_explosion_sound")
 	vibrate_player(player_id, vibrate_time_explosion)
 	check_ship_failure()
 
-func hit_by_polen(damage):
+func hit_by_polen_ball(damage):
 	points -= damage
 	dents += 0
-	Global.normal_damage_sound(player_id)
+	Global.rpc_id(player_id, "hit_by_polen_ball_sound")
 	vibrate_player(player_id, vibrate_time)
 	check_ship_failure()
 
-func hit_by_tumbleweed(damage, margin_teleport):
+func hit_by_tumbleweed_ball(damage, margin_teleport):
 	points -= damage
 	dents += 0
-	Global.normal_damage_sound(player_id)
+	Global.rpc_id(player_id, "hit_by_tumbleweed_ball_sound")
 	vibrate_player(player_id, vibrate_time)
 	check_ship_failure()
 	random_teleport(margin_teleport)
+
+func hit_by_spike(damage: int):
+	points += damage
+	Global.rpc_id(player_id, "hit_by_spike_sound")
+	vibrate_player(player_id, vibrate_time_hard)
+	set_core_enabled(false)
+	core_damaged.visible = true
+	Global.disable_player_direction(player_id, "core")
 
 func random_teleport(margin: float = 100.0):
 	var viewport = get_viewport().get_visible_rect().size

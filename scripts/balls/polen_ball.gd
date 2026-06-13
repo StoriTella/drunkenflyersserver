@@ -68,6 +68,6 @@ func on_hit_player(body):
 	attached_to = body
 	linear_velocity = Vector2.ZERO
 	gravity_scale = 0
-	body.hit_by_polen(base_ball_damage)
+	body.hit_by_polen_ball(base_ball_damage)
 	await get_tree().create_timer(stick_duration).timeout
 	queue_free()

@@ -40,5 +40,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			on_hit_player(body)
 
 func on_hit_player(body):
-	body.hit_by_tumbleweed(base_ball_damage, margin_teleport)
+	body.hit_by_tumbleweed_ball(base_ball_damage, margin_teleport)
 	queue_free()
