@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://conns3j2o33m4"]
+
+[ext_resource type="Script" uid="uid://fjkym7u4gw4k" path="res://scripts/balls/rubber_ball.gd" id="1_re4k2"]
+[ext_resource type="Texture2D" uid="uid://xkwguh570uhj" path="res://assets/rubber.png" id="2_re4k2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drg8w"]
+size = Vector2(21, 50)
+
+[node name="RubberBall" type="RigidBody2D" unique_id=1647031859]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_re4k2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=428874840]
+position = Vector2(2, -7)
+rotation = -0.87266463
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_re4k2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1984610187]
+position = Vector2(2, -9)
+shape = SubResource("RectangleShape2D_drg8w")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1655491671]
+position = Vector2(3, -5)
