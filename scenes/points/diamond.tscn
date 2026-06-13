@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://eqjjk707hd5h"]
+
+[ext_resource type="Script" uid="uid://bg0qe3887e3dx" path="res://scripts/points/diamond.gd" id="1_pphbd"]
+[ext_resource type="Texture2D" uid="uid://c08t5fhp85bl4" path="res://assets/diamond.png" id="2_m5eeg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p63nc"]
+radius = 22.561028
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_krk5w"]
+radius = 25.70992
+
+[node name="Diamond" type="RigidBody2D" unique_id=1898899945 groups=["game_server"]]
+collision_layer = 8
+collision_mask = 15
+gravity_scale = 0.0
+script = ExtResource("1_pphbd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1793935931]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_m5eeg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1904329162]
+shape = SubResource("CircleShape2D_p63nc")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=865011454]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1108638638]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=904347766]
+shape = SubResource("CircleShape2D_krk5w")
+
+[node name="ExpirationTimer" type="Timer" parent="." unique_id=1671921242]
+wait_time = 10.0
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="ExpirationTimer" to="." method="_on_expiration_timer_timeout"]

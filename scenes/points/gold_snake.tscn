@@ -43,7 +43,7 @@ animations = [{
 
 [node name="GoldSnake" type="RigidBody2D" unique_id=1898899945 groups=["game_server"]]
 collision_layer = 0
-collision_mask = 4
+collision_mask = 5
 gravity_scale = 0.0
 script = ExtResource("1_rw3ck")
 

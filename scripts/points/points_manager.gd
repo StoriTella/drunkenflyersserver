@@ -8,6 +8,7 @@ extends Node
 	preload("res://scenes/points/gold.tscn"),
 	preload("res://scenes/points/gold_snake.tscn"),
 	preload("res://scenes/points/gold_spawner.tscn"),
+	preload("res://scenes/points/diamond.tscn"),
 ]
 @export var margin = 50
 
@@ -75,21 +76,6 @@ func start_spawning():
 func stop_spawning():
 	spawning = false
 
-func spawn_points(index: int):
-	var points_scene = current_points_scenes[index]
-	var points_instance = points_scene.instantiate()
-	var points_type = points_instance.coin_type
-	points_instance.queue_free()
-	match points_type:
-		PointsTypeEnum.PointsType.COIN:
-			default_points(points_scene)
-		PointsTypeEnum.PointsType.GOLD:
-			default_points(points_scene)
-		PointsTypeEnum.PointsType.GOLD_SNAKE:
-			snake_points(points_scene)
-		PointsTypeEnum.PointsType.GOLD_SPAWNER:
-			default_points(points_scene)
-
 func default_points(points_scene):
 	var spawn_pos = GenericPositions.get_random_position_in_screen(margin)
 	var points = points_scene.instantiate()
@@ -102,7 +88,6 @@ func snake_points(points_scene):
 	var random_speed = randf_range(get_points_min_vel(points_scene), get_points_max_vel(points_scene))
 	points.initialize(spawn_pos, random_speed)
 	add_child(points)
-
 
 func get_points_min_vel(points_scene):
 	var instance = points_scene.instantiate()
@@ -122,3 +107,20 @@ func _on_timer_timeout() -> void:
 func _on_difficulty_timer_timeout() -> void:
 	n_spawns_points += 1
 	select_random_points()
+
+func spawn_points(index: int):
+	var points_scene = current_points_scenes[index]
+	var points_instance = points_scene.instantiate()
+	var points_type = points_instance.coin_type
+	points_instance.queue_free()
+	match points_type:
+		PointsTypeEnum.PointsType.COIN:
+			default_points(points_scene)
+		PointsTypeEnum.PointsType.GOLD:
+			default_points(points_scene)
+		PointsTypeEnum.PointsType.GOLD_SNAKE:
+			snake_points(points_scene)
+		PointsTypeEnum.PointsType.GOLD_SPAWNER:
+			default_points(points_scene)
+		PointsTypeEnum.PointsType.DIAMOND:
+			default_points(points_scene)
