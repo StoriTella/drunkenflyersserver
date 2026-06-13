@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var current_speed: float = 500 
+@export var current_speed: float = 500.0
 @export var default_speed: float = 500.0
 @export var speed_boost: float = 800.0
 @export var dents: int = 0

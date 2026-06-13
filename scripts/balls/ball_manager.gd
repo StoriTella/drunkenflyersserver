@@ -13,6 +13,7 @@ class_name BallManager
 	preload("res://scenes/balls/anvil_ball.tscn"),
 	preload("res://scenes/balls/polen_ball.tscn"),
 	preload("res://scenes/balls/tumbleweed_ball.tscn"),
+	preload("res://scenes/balls/rubber_ball.tscn"),
 ]
 
 var game_server: Node2D
@@ -112,6 +113,8 @@ func spawn_balls(index: int):
 			polen_trajectory(ball_scene)
 		BallTypeEnum.BallType.TUMBLEWEED:
 			tumbleweed_trajectory(ball_scene)
+		BallTypeEnum.BallType.RUBBER:
+			rubber_ball_trajectory(ball_scene)
 
 func default_ball_trajectory(ball_scene):
 	
@@ -163,4 +166,11 @@ func tumbleweed_trajectory(ball_scene):
 	var ball = ball_scene.instantiate()
 	ball.initialize(spawn_pos, target_pos, random_speed)
 	
+	add_child(ball)
+
+func rubber_ball_trajectory(ball_scene: PackedScene):
+	var spawn_pos = GenericPositions.get_random_position_in_screen(50)
+	var random_speed = randf_range(get_ball_min_vel(ball_scene), get_ball_max_vel(ball_scene))
+	var ball = ball_scene.instantiate()
+	ball.initialize(spawn_pos, random_speed)
 	add_child(ball)

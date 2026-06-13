@@ -3,7 +3,8 @@ Mudar:
 Moedas e coins aparecem sempre quem muda é as moedas especiais que spawnam de 5 em 5 segundos
 Alguns hazards dão trigger aos mini games
 D-Quando tiver muitos hazards adicionar dois de cada vez
-Fazer animações na nave quando ativa os power ups ou quando o core fica estragado
+D-Fazer animações na nave quando ativa os power ups ou quando o core fica estragado
+D-Corrigir bug do tempo dos power ups ficar guardado entre jogos
 
 Hazards:
 D-Anvils a cair do ceu
@@ -26,3 +27,4 @@ Moedas:
 Client:
 Core dá um som de danger quando é ativado
 Super poder que adicionar um shield a tua volta que anula bolas stacakble
+Melhorar muito a UI (geral)
