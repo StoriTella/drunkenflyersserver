@@ -10,8 +10,9 @@ Hazards:
 D-Anvils a cair do ceu
 D-Polen a spawnar no meio do ecra e a flutuar random
 D-Tumbleweeds a aparecer dum dos lados do ecrã
+D-Rubber ball que bloqueia tipo paredes
+Web _ball que quando colide da trigger a um minigame de rodar o telemóvel nos eixos dos x lara positivo e negativo
 Bolas interligadas com um laser
-Linhas de rosas com espinhos que bloqueiam tipo paredes
 
 Moedas:
 1-moeda que rouba a pessoa mais rica
@@ -28,3 +29,6 @@ Client:
 Core dá um som de danger quando é ativado
 Super poder que adicionar um shield a tua volta que anula bolas stacakble
 Melhorar muito a UI (geral)
+
+Extras:
+Som no AnvilsSound no polen
