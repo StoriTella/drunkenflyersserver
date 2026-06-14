@@ -34,7 +34,10 @@ collision_layer = 4
 collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource("1_t8r26")
-ball_delay = 1.0
+base_ball_damage = 20
+ball_min_vel = 100
+ball_max_vel = 200
+ball_delay = 0.8
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=428874840]
 scale = Vector2(0.32850236, 0.27309236)

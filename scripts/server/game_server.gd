@@ -2,7 +2,14 @@ extends Node2D
 
 @export var player_scene = preload("res://scenes/nave/nave.tscn")
 @export var vibrate_time_end_game: int = 2000
-
+@export var music_paths: Array[String] = [
+	"res://assets/music/background/drunken_sailors.mp3",
+	"res://assets/music/background/drunken_sailors_irish.mp3",
+	"res://assets/music/background/horse_race.mp3",
+	"res://assets/music/background/pirata_das_caraibas.mp3",
+	"res://assets/music/background/theme_benny_hill_show.mp3",
+    "res://assets/music/background/tourada.mp3"
+]
 @onready var ball_manager = $BallManager
 @onready var powerups_manager = $PowerupManager
 @onready var timer_label: Label = $UiManager/TimerLabel
@@ -57,8 +64,23 @@ func start_game():
 	if powerups_manager:
 		powerups_manager.start_spawning()
 	
+	play_random_music()
+
+func play_random_music():
+	if music_paths.is_empty():
+		return
+	
+	var random_index = randi() % music_paths.size()
+	var path = music_paths[random_index]
+	
+	var new_stream = load(path)
+	if new_stream == null:
+		print("❌ Falha ao carregar: ", path)
+		return
+	
+	new_stream.loop = true
+	music_player.stream = new_stream
 	music_player.play()
-	music_player.autoplay = true
 
 func _on_timer_timeout() -> void:
 	end_game()

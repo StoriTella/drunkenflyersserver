@@ -15,10 +15,10 @@ collision_mask = 14
 gravity_scale = 0.0
 script = ExtResource("1_cskt0")
 speed = 100.0
-expiration_date = 20.0
+expiration_date = 30.0
 ball_min_vel = 50
 ball_max_vel = 100
-ball_delay = 0.5
+ball_delay = 0.3
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=428874840]
 scale = Vector2(1.02, 1.0583942)
