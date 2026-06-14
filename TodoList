@@ -11,10 +11,10 @@ D-Anvils a cair do ceu
 D-Polen a spawnar no meio do ecra e a flutuar random
 D-Tumbleweeds a aparecer dum dos lados do ecrã
 D-Rubber ball que bloqueia tipo paredes
+D-Icebergs substituir base_balls
 Web _ball que quando colide da trigger a um minigame de rodar o telemóvel nos eixos dos x lara positivo e negativo
 Bolas interligadas com um laser
 Canhão de bolas
-Icebergs
 Ondas
 
 Moedas:
@@ -43,7 +43,7 @@ Server:
 D-Mudar sprite dos spikes para cannonballs
 D-Mudar sprite base_balls para icebergs
 D-tirar os vibrates e só vibrar quando um dos lados coordenais deixa de funcionar
-Melhorar UI socreboard
+Melhorar UI scoreboard
 
 Extras:
 D-Sons das bolas
@@ -60,5 +60,4 @@ D-Som das moedas
 D-Mudar nome do jogos
 D-Fix sound minigames/add specific sounds minigames
 D-Fix fire sound
-Fix player spawn on scoreboard (dão spawn no canto superior esquerdo)
-Fix rema rema rema som não acabar quando o minigame acabar
+D-Fix player spawn on scoreboard (dão spawn no canto superior esquerdo)

@@ -46,14 +46,7 @@ func end_game():
 	get_tree().change_scene_to_file("res://scenes/scoreboard/Scoreboard.tscn")
 
 func reset_game():
-	if ball_manager:
-		ball_manager.stop_spawning()
-	if powerups_manager:
-		powerups_manager.stop_spawning()
-	
-	game_timer.stop()
-	timer_label.text = get_timer_display()
-	music_player.stop()
+	get_tree().reload_current_scene()
 
 func start_game():
 	game_timer.start()
