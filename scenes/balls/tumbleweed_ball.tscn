@@ -12,13 +12,8 @@ radius = 26.076809
 [node name="TumbleweedBall" type="RigidBody2D" unique_id=1647031859]
 collision_layer = 4
 collision_mask = 14
-mass = 5.0
 gravity_scale = 0.0
 script = ExtResource("1_607us")
-expiration_date = 40.0
-margin_teleport = 100.0
-ball_min_vel = 300
-ball_delay = 0.3
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=428874840]
 scale = Vector2(0.15, 0.15)

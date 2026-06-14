@@ -10,11 +10,11 @@ class_name TumbleweedBall
 
 var direction: Vector2 = Vector2.RIGHT
 
-@export var margin_teleport: float = 200.0
+@export var margin_teleport: float = 50.0
 #GENERIC
 @export var type_ball: BallTypeEnum.BallType = BallTypeEnum.BallType.TUMBLEWEED
 @export var ball_min_vel = 200
-@export var ball_max_vel = 400
+@export var ball_max_vel = 300
 @export var ball_delay: float = 1.0
 
 func _ready():

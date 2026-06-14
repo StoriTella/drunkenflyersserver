@@ -17,7 +17,7 @@ class_name CoinSpawner
 @export var points: int = 0
 @export var point_delay: float = 1.5
 @export var expiration_date: float = 10.0
-@export var spawn_interval: float = 0.1
+@export var spawn_interval: float = 0.3
 
 var spawn_timer: float = 0.0
 
