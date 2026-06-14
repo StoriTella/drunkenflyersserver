@@ -51,7 +51,7 @@ label_settings = SubResource("LabelSettings_asl3v")
 horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="UiManager/TimerLabel" unique_id=536981831]
-wait_time = 180.0
+wait_time = 300.0
 one_shot = true
 
 [node name="TextureRect" type="TextureRect" parent="UiManager" unique_id=1000937452]

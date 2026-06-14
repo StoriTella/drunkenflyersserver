@@ -14,6 +14,7 @@ D-Rubber ball que bloqueia tipo paredes
 Web _ball que quando colide da trigger a um minigame de rodar o telemóvel nos eixos dos x lara positivo e negativo
 Bolas interligadas com um laser
 Canhão de bolas
+Icebergs
 Ondas
 
 Moedas:
@@ -26,10 +27,8 @@ Moeda explosiva que guando apanhas há um timer de explosão
 Client:
 D-Core dá um som de danger quando é ativado
 D-Melhorar UI jogo
-Super poder que adicionar um shield a tua volta que anula bolas stacakble
-Melhorar UI minigames
-Melhorar Ui inicio
-Melhorar UI socreboard
+D-Melhorar UI minigames
+D-Melhorar Ui inicio
 
 Minigames:
 D-Shield é beber cerveja cada click é um glu no final é um arroto
@@ -38,12 +37,13 @@ D-Tirar o dash
 D-Core mudar sprite para agua e por um background do navio a arder
 D-Mudar minigame do cannon (tipo slide mas uma bola de canhão no meio e envia com a velocidade doa bola do telemovel)
 D-Mudar o som do cannon
--Ajustar bola de canhão e po-la no meio do ecra
+D-Ajustar bola de canhão e po-la no meio do ecra
 
 Server:
 D-Mudar sprite dos spikes para cannonballs
-Mudar sprite base_balls para icebergs
-tirar os vibrates e só vibrar quando um dos lados coordenais deixa de funcionar
+D-Mudar sprite base_balls para icebergs
+D-tirar os vibrates e só vibrar quando um dos lados coordenais deixa de funcionar
+Melhorar UI socreboard
 
 Extras:
 D-Sons das bolas
@@ -59,6 +59,6 @@ D-Mudado para ser dificulty --- Fazer rondas intermedias?
 D-Som das moedas
 D-Mudar nome do jogos
 D-Fix sound minigames/add specific sounds minigames
-Fix fire sound
+D-Fix fire sound
 Fix player spawn on scoreboard (dão spawn no canto superior esquerdo)
 Fix rema rema rema som não acabar quando o minigame acabar

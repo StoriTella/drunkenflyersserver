@@ -1,23 +1,30 @@
-[gd_scene format=3 uid="uid://dg7o0ype88p85"]
+[gd_scene format=3 uid="uid://d08veeu2gxrls"]
 
 [ext_resource type="Script" uid="uid://b5ukfmrm7ekny" path="res://scripts/scoreboard/scoreboard.gd" id="1_mhrxl"]
+[ext_resource type="Script" uid="uid://q54mehq6sn54" path="res://scripts/utils/create_walls.gd" id="2_jrmem"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_l1rbb"]
+[sub_resource type="LabelSettings" id="LabelSettings_ulhy5"]
 font_size = 72
 
-[sub_resource type="Theme" id="Theme_jrmem"]
+[sub_resource type="Theme" id="Theme_6c6lc"]
 default_font_size = 42
 
-[node name="Scoreboard" type="Control" unique_id=1960894081]
+[node name="Scoreboard" type="Node2D" unique_id=85420805]
+script = ExtResource("1_mhrxl")
+
+[node name="Walls" type="Node2D" parent="." unique_id=791911738]
+script = ExtResource("2_jrmem")
+
+[node name="Control" type="Control" parent="." unique_id=518275271]
+custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mhrxl")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1557908591]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1246691987]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,27 +32,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=2072069029]
+[node name="Label" type="Label" parent="Control/VBoxContainer" unique_id=799784661]
 layout_mode = 2
 text = "Scoreboard"
-label_settings = SubResource("LabelSettings_l1rbb")
+label_settings = SubResource("LabelSettings_ulhy5")
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=251349060]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer" unique_id=1269909851]
 layout_mode = 2
 
-[node name="RestartButton" type="Button" parent="." unique_id=2146242926]
+[node name="RestartButton" type="Button" parent="Control" unique_id=2129937646]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -150.0
-offset_top = -31.0
+offset_left = -155.0
+offset_top = -66.0
 grow_horizontal = 0
 grow_vertical = 0
-theme = SubResource("Theme_jrmem")
+theme = SubResource("Theme_6c6lc")
 text = "Restart"
 
-[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=930680932]
+
+[connection signal="pressed" from="Control/RestartButton" to="." method="_on_restart_button_pressed"]

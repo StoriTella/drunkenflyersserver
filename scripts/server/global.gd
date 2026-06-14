@@ -21,7 +21,7 @@ enum CharacterType {
 @export var vibrate_time_end_game: int = 1000
 
 var players = {}
-var default_posiion = Vector2(0, 0)
+var default_position = Vector2(0, 0)
 
 func _ready():
 	setup_server()
@@ -46,7 +46,7 @@ func _on_player_connected(player_id):
 	new_player.name = str(player_id)
 	new_player.set_multiplayer_authority(player_id)
 
-	new_player.position = default_posiion
+	new_player.position = default_position
 	new_player.player_id = player_id
 	add_child(new_player)
 	players[player_id] = new_player

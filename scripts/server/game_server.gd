@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var player_scene = preload("res://scenes/nave/nave.tscn")
-@export var vibrate_time_end_game: int = 1000
+@export var vibrate_time_end_game: int = 2000
 
 @onready var ball_manager = $BallManager
 @onready var powerups_manager = $PowerupManager
@@ -10,7 +10,6 @@ extends Node2D
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 
 var players = {}
-var default_posiion = Vector2(0, 0)
 
 func _ready():
 	var minutes = int(game_timer.wait_time) / 60

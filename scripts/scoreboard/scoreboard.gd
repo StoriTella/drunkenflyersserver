@@ -1,7 +1,7 @@
-extends Control
+extends Node2D
 
-@onready var players_container = $VBoxContainer/VBoxContainer
-@onready var restart_button = $RestartButton
+@onready var players_container = $Control/VBoxContainer/VBoxContainer
+@onready var restart_button = $Control/RestartButton
 
 func _ready():
 	display_scoreboard()

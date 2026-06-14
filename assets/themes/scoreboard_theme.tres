@@ -1,0 +1,63 @@
+[gd_resource type="Theme" format=3 uid="uid://dega6q6aoywnb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dn2r3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wdqdr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_es56c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18qmp"]
+bg_color = Color(1.649966, 0.11627296, 0.06808194, 0.42352942)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tmngq"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lru3c"]
+bg_color = Color(0.7318466, 0.0033035022, 0.9964965, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hahhc"]
+bg_color = Color(0.73333335, 0.003921569, 0.99607843, 0.45882353)
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_disabled_color = Color(0.84313726, 0.2509804, 0.53333336, 0)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.8745098, 0.078431375, 0, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 72
+Button/fonts/font = null
+Button/styles/disabled = SubResource("StyleBoxEmpty_dn2r3")
+Button/styles/focus = SubResource("StyleBoxEmpty_wdqdr")
+Button/styles/hover = SubResource("StyleBoxEmpty_es56c")
+Button/styles/normal = SubResource("StyleBoxFlat_18qmp")
+Button/styles/pressed = SubResource("StyleBoxFlat_tmngq")
+ColorPickerButton/font_sizes/font_size = 16
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/font_sizes/font_size = 72
+Label/fonts/font = null
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/fonts/font = null
+LineEdit/styles/focus = SubResource("StyleBoxFlat_lru3c")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_hahhc")
