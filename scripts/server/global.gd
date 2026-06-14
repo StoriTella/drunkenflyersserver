@@ -177,37 +177,13 @@ func add_shield_powerup():
 		print("Player: ", player_id, " speed power up")
 		
 @rpc("any_peer", "call_remote", "reliable")
-func perform_dash(direction: Vector2, force: float):
+func cannonball_powerup(direction: Vector2, force: float):
 	var player_id = multiplayer.get_remote_sender_id()
 	
 	if players.has(player_id):
-		players[player_id].apply_dash(direction, force)
+		players[player_id].cannonball_powerup(direction, force)
 
-@rpc("any_peer", "call_remote", "reliable")
-func spike_powerup():
-	var player_id = multiplayer.get_remote_sender_id()
-	
-	if players.has(player_id):
-		var player_pos = players[player_id].global_position
-		var spike_count = 8
-		var radius = 100.0
-		
-		for i in range(spike_count):
-			var angle = (2.0 * PI / spike_count) * i
-			var direction = Vector2(cos(angle), sin(angle))
-			var spawn_pos = player_pos + direction * radius
-			
-			spawn_spike(spawn_pos, direction)
-		
-		print("Player: ", player_id, " used spike powerup")
-
-func spawn_spike(position: Vector2, direction: Vector2):
-	var spike = preload("res://scenes/balls/spike.tscn").instantiate()
-	spike.global_position = position
-	spike.direction = direction
-	spike.speed = 500.0
-	add_child(spike)
-
+#TODO
 @rpc("any_peer", "call_remote", "reliable")
 func nuclear_missile_powerup():
 	var player_id = multiplayer.get_remote_sender_id()

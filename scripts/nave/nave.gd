@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var speed_boost: float = 800.0
 @export var dents: int = 0
 @export var max_dents: int = 5
+@export var cannonball_scene: PackedScene = preload("res://scenes/nave/cannon_ball.tscn")
 
 @onready var speed_timer: Timer = $SpeedTimer
 @onready var shield_timer: Timer = $ShieldTimer
@@ -268,7 +269,7 @@ func hit_by_tumbleweed_ball(damage, margin_teleport):
 	check_ship_failure()
 	random_teleport(margin_teleport)
 
-func hit_by_spike(damage: int):
+func hit_by_cannonball(damage: int):
 	points += damage
 	Global.rpc_id(player_id, "hit_by_spike_sound")
 	vibrate_player(player_id, vibrate_time_hard)
@@ -350,14 +351,14 @@ func _on_shield_timer_timeout() -> void:
 	remove_from_group("player_shield")
 	remove_shield_circle()
 
-func apply_dash(direction: Vector2, force: float):
-	velocity = direction * force
-	move_and_slide()
-	await get_tree().create_timer(0.2).timeout
-	velocity = Vector2.ZERO
+func cannonball_powerup(direction: Vector2, force: float):
+	var cannonball = cannonball_scene.instantiate()
+	cannonball.global_position = global_position
+	cannonball.linear_velocity = direction * (force/10)
+	cannonball.shooter_id = player_id
+	get_parent().add_child(cannonball)
 
 #MOVEMENT AND CORE
-
 func set_left_enabled(enabled: bool):
 	left_enabled = enabled
 

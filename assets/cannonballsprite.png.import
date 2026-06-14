@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3velu4yqpqs6"
-path="res://.godot/imported/spike.png-6088412b46cc15d96e4d9aa266d475a2.ctex"
+uid="uid://ctpui8d4eax0q"
+path="res://.godot/imported/cannonballsprite.png-7e83e131f28fb5910b57c4d75d672814.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/spike.png"
-dest_files=["res://.godot/imported/spike.png-6088412b46cc15d96e4d9aa266d475a2.ctex"]
+source_file="res://assets/cannonballsprite.png"
+dest_files=["res://.godot/imported/cannonballsprite.png-7e83e131f28fb5910b57c4d75d672814.ctex"]
 
 [params]
 

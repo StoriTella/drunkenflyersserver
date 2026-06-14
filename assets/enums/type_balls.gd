@@ -10,7 +10,8 @@ enum BallType {
 	ANVIL,
 	POLEN,
 	TUMBLEWEED,
-	RUBBER
+	RUBBER,
+	CANNONBALL
 }
 
 @export var ball_type: BallType = BallType.NORMAL
