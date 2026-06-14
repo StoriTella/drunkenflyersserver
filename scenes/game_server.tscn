@@ -19,6 +19,44 @@ data = PackedByteArray("SUQzBABAAAABTgAAAAwBIAULczxiCVRDT04AAAAGAAAATXVzaWNUWUVS
 stream_count = 1
 stream_0 = SubResource("AudioStreamMP3_asl3v")
 
+[sub_resource type="Animation" id="Animation_3su1c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UiManager/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-208, -209)]
+}
+
+[sub_resource type="Animation" id="Animation_mspw3"]
+resource_name = "background_sea"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UiManager/TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-258, -209), Vector2(-258, -259), Vector2(-208, -259), Vector2(-208, -209)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xvd37"]
+_data = {
+&"RESET": SubResource("Animation_3su1c"),
+&"background_sea": SubResource("Animation_mspw3")
+}
+
 [node name="ClientRoot" type="Node2D" unique_id=753987486]
 script = ExtResource("1_ecj2s")
 
@@ -57,9 +95,15 @@ one_shot = true
 [node name="TextureRect" type="TextureRect" parent="UiManager" unique_id=1000937452]
 z_index = -10
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1168.0
+offset_top = -749.0
+offset_right = 1185.0
+offset_bottom = 789.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_3su1c")
@@ -67,5 +111,8 @@ texture = ExtResource("5_3su1c")
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=449909199]
 stream = SubResource("AudioStreamPlaylist_3su1c")
 volume_db = -10.0
+
+[node name="Background" type="AnimationPlayer" parent="." unique_id=809070862]
+libraries/ = SubResource("AnimationLibrary_xvd37")
 
 [connection signal="timeout" from="UiManager/TimerLabel/Timer" to="." method="_on_timer_timeout"]

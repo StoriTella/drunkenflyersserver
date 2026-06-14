@@ -8,6 +8,7 @@ extends Node2D
 @onready var timer_label: Label = $UiManager/TimerLabel
 @onready var game_timer: Timer = $UiManager/TimerLabel/Timer
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
+@onready var background: AnimationPlayer = $Background
 
 
 func _ready():
@@ -15,6 +16,7 @@ func _ready():
 	var minutes = int(game_timer.wait_time) / 60
 	var seconds = int(game_timer.wait_time) % 60
 	timer_label.text = "%02d:%02d" % [minutes, seconds]
+	background.play("background_sea")
 
 func _input(event):
 	if event.is_pressed() && game_timer.is_stopped():
