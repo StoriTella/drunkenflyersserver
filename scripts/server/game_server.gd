@@ -9,9 +9,9 @@ extends Node2D
 @onready var game_timer: Timer = $UiManager/TimerLabel/Timer
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 
-var players = {}
 
 func _ready():
+	Global.enable_players_physics()
 	var minutes = int(game_timer.wait_time) / 60
 	var seconds = int(game_timer.wait_time) % 60
 	timer_label.text = "%02d:%02d" % [minutes, seconds]
@@ -35,14 +35,12 @@ func get_timer_display():
 	return "%02d:%02d" % [minutes, seconds]
 
 func end_game():
-	print("END!")
 	Global.vibrate_all_players(vibrate_time_end_game)
 	
 	if ball_manager:
 		ball_manager.stop_spawning()
 	if powerups_manager:
 		powerups_manager.stop_spawning()
-	
 	get_tree().change_scene_to_file("res://scenes/scoreboard/Scoreboard.tscn")
 
 func reset_game():
@@ -59,7 +57,6 @@ func start_game():
 	
 	music_player.play()
 	music_player.autoplay = true
-
 
 func _on_timer_timeout() -> void:
 	end_game()

@@ -43,4 +43,5 @@ func clear_container():
 		child.queue_free()
 
 func _on_restart_button_pressed() -> void:
+	Global.disable_players_physics()
 	get_tree().change_scene_to_file("res://scenes/game_server.tscn")

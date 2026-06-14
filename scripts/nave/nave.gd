@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var speed_boost: float = 800.0
 @export var dents: int = 0
 @export var max_dents: int = 5
+@export var can_move: bool = true
 
 @onready var cannonball_scene: PackedScene = preload("res://scenes/nave/cannon_ball.tscn")
 @onready var speed_timer: Timer = $SpeedTimer
@@ -12,6 +13,7 @@ extends CharacterBody2D
 @onready var sprite = $Sprite2D
 @onready var name_label = $NameLabel
 @onready var core_damaged = $AnimatedSprite2D
+
 
 var left_enabled: bool = true
 var right_enabled: bool = true
@@ -77,6 +79,9 @@ func _process(delta):
 			shield_circle.add_point(Vector2(x, y))
 
 func update_from_gravity(gravity: Vector3):
+	if !can_move:
+		return
+	
 	var horizontal = gravity.x
 	var vertical = -gravity.y
 

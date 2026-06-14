@@ -327,3 +327,12 @@ func set_down_enabled(enabled: bool):
 @rpc("any_peer", "call_remote", "reliable")
 func set_core_enabled(enabled: bool):
 	pass
+
+func disable_players_physics():
+	for player in players.values():
+		player.can_move = false
+		player.velocity = Vector2.ZERO
+
+func enable_players_physics():
+	for player in players.values():
+		player.can_move = true
