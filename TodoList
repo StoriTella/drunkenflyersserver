@@ -36,28 +36,29 @@ D-Shield é beber cerveja cada click é um glu no final é um arroto
 D-Speed - rema sound e melhorar ui
 D-Tirar o dash
 D-Core mudar sprite para agua e por um background do navio a arder
-Mudar minigame do cannon (tipo slide mas uma bola de canhão no meio e envia com a velocidade doa bola do telemovel)
-Mudar o som do cannon
+D-Mudar minigame do cannon (tipo slide mas uma bola de canhão no meio e envia com a velocidade doa bola do telemovel)
+D-Mudar o som do cannon
+-Ajustar bola de canhão e po-la no meio do ecra
 
 Server:
+D-Mudar sprite dos spikes para cannonballs
 Mudar sprite base_balls para icebergs
-Mudar sprite dos spikes para cannonballs
 tirar os vibrates e só vibrar quando um dos lados coordenais deixa de funcionar
 
 Extras:
 D-Sons das bolas
 D-Sons no client
+D-Ajustar tipos de nave
+D-Mudar o sprite para a nave e mexer o angulo do barco
 Musica no fim do servidor
 Background da agua a merxer ligeiramente
-Ajustar ipos de nave
-Mudar o sprite para a nave e mexer o angulo do barco
 
 BugFix:
 D-Menos moedas
 D-Mudado para ser dificulty --- Fazer rondas intermedias?
 D-Som das moedas
+D-Mudar nome do jogos
 D-Fix sound minigames/add specific sounds minigames
 Fix fire sound
-Fix player spawn on scoreboard
+Fix player spawn on scoreboard (dão spawn no canto superior esquerdo)
 Fix rema rema rema som não acabar quando o minigame acabar
-Mudar nome do jogos

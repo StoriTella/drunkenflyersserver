@@ -16,6 +16,7 @@ enum CharacterType {
 	ARTIFICER
 }
 
+@export var vibrate_time: int  = 500
 @export var player_scene = preload("res://scenes/nave/nave.tscn")
 @export var vibrate_time_end_game: int = 1000
 
@@ -201,14 +202,19 @@ func vibrate_all_players(vibrate_time):
 func disable_player_direction(player_id: int, direction: String):
 	match direction:
 		"left":
+			vibrate_player(player_id, vibrate_time)
 			rpc_id(player_id, "set_left_enabled", false)
 		"right":
+			vibrate_player(player_id, vibrate_time)
 			rpc_id(player_id, "set_right_enabled", false)
 		"up":
+			vibrate_player(player_id, vibrate_time)
 			rpc_id(player_id, "set_up_enabled", false)
 		"down":
+			vibrate_player(player_id, vibrate_time)
 			rpc_id(player_id, "set_down_enabled", false)
 		"core":
+			vibrate_player(player_id, vibrate_time)
 			rpc_id(player_id, "core_disabled_sound")
 			rpc_id(player_id, "set_core_enabled", false)
 

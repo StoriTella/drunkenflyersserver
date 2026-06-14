@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bjq2h2qtj8v58"]
 
 [ext_resource type="Script" uid="uid://c7hcoce5dk58q" path="res://scripts/balls/base_ball.gd" id="1_cskt0"]
-[ext_resource type="Texture2D" uid="uid://cgadytvonq35r" path="res://assets/normal_ball-removebg-preview.png" id="2_tkw1d"]
+[ext_resource type="Texture2D" uid="uid://br6euvtp4tgma" path="res://assets/iceberg.png" id="2_tkw1d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pmahu"]
 radius = 22.0
@@ -16,7 +16,8 @@ gravity_scale = 0.0
 script = ExtResource("1_cskt0")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=428874840]
-scale = Vector2(0.1, 0.1)
+position = Vector2(-1.0000002, -0.5000012)
+scale = Vector2(0.3733333, 0.38686132)
 texture = ExtResource("2_tkw1d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1984610187]

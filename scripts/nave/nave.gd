@@ -5,8 +5,8 @@ extends CharacterBody2D
 @export var speed_boost: float = 800.0
 @export var dents: int = 0
 @export var max_dents: int = 5
-@export var cannonball_scene: PackedScene = preload("res://scenes/nave/cannon_ball.tscn")
 
+@onready var cannonball_scene: PackedScene = preload("res://scenes/nave/cannon_ball.tscn")
 @onready var speed_timer: Timer = $SpeedTimer
 @onready var shield_timer: Timer = $ShieldTimer
 @onready var sprite = $Sprite2D
@@ -23,9 +23,6 @@ var initial_position: Vector2
 var initial_rotation: float
 var max_gyroscope: float = 10.0
 var points = 0
-var vibrate_time: int  = 100
-var vibrate_time_explosion: int = 1000
-var vibrate_time_hard: int  = 500
 var player_id
 
 #Invert Controls
@@ -121,6 +118,7 @@ func update_from_gravity(gravity: Vector3):
 		input_dir = input_dir.normalized()
 	
 	velocity = input_dir * current_speed
+	sprite.rotation = velocity.angle()
 	
 	if current_speed > default_speed:
 		speed_line_timer += get_process_delta_time()
@@ -221,13 +219,11 @@ func hit_by_base_ball(damage):
 	points -= damage
 	dents += 1
 	Global.rpc_id(player_id, "hit_by_base_ball_sound")
-	vibrate_player(player_id, vibrate_time)
 	check_ship_failure()
 
 func hit_by_anvil_ball(damage: int):
 	points += damage
 	Global.rpc_id(player_id, "hit_by_anvil_ball_sound")
-	vibrate_player(player_id, vibrate_time_hard)
 	set_core_enabled(false)
 	core_damaged.visible = true
 	Global.disable_player_direction(player_id, "core")
@@ -236,14 +232,12 @@ func hit_by_balao_sao_joao_ball(damage):
 	points -= damage
 	dents += 1
 	Global.rpc_id(player_id, "hit_by_balao_sao_joao_ball_sound")
-	vibrate_player(player_id, vibrate_time)
 	check_ship_failure()
 
 func hit_by_boomerang_ball(damage, stun_duration):
 	points -= damage
 	dents += 0
 	Global.rpc_id(player_id, "hit_by_boomerang_ball_sound")
-	vibrate_player(player_id, vibrate_time_hard)
 	check_ship_failure()
 	set_invert_controls(stun_duration)
 
@@ -251,28 +245,24 @@ func hit_by_explosion(damage):
 	points -= damage
 	dents += 3
 	Global.rpc_id(player_id, "hit_by_explosion_sound")
-	vibrate_player(player_id, vibrate_time_explosion)
 	check_ship_failure()
 
 func hit_by_polen_ball(damage):
 	points -= damage
 	dents += 0
 	Global.rpc_id(player_id, "hit_by_polen_ball_sound")
-	vibrate_player(player_id, vibrate_time)
 	check_ship_failure()
 
 func hit_by_tumbleweed_ball(damage, margin_teleport):
 	points -= damage
 	dents += 0
 	Global.rpc_id(player_id, "hit_by_tumbleweed_ball_sound")
-	vibrate_player(player_id, vibrate_time)
 	check_ship_failure()
 	random_teleport(margin_teleport)
 
 func hit_by_cannonball(damage: int):
 	points += damage
 	Global.rpc_id(player_id, "hit_by_spike_sound")
-	vibrate_player(player_id, vibrate_time_hard)
 	set_core_enabled(false)
 	core_damaged.visible = true
 	Global.disable_player_direction(player_id, "core")
@@ -336,7 +326,6 @@ func speed_powerup():
 	current_speed = speed_boost
 
 func _on_speed_timer_timeout() -> void:
-	Global.vibrate_player(player_id, vibrate_time_hard)
 	current_speed = default_speed
 
 func shield_powerup():
@@ -347,7 +336,6 @@ func shield_powerup():
 	create_shield_circle()
 
 func _on_shield_timer_timeout() -> void:
-	Global.vibrate_player(player_id, vibrate_time_hard)
 	remove_from_group("player_shield")
 	remove_shield_circle()
 
@@ -385,7 +373,7 @@ func _on_invert_timeout():
 #Settings
 
 func set_character(character_type: int):
-	
+	return
 	match character_type:
 		Global.CharacterType.WARRIOR:
 			sprite.texture = preload("res://assets/player_characters/warrior.jpeg")
