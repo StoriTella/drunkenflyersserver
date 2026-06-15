@@ -2,7 +2,6 @@ extends Node
 
 class_name BallManager
 
-@onready var music_player: AudioStreamPlayer = $MusicPlayer
 @onready var timer: Timer = $Timer
 @onready var timer_difficulty: Timer = $DifficultyTimer
 
@@ -63,7 +62,6 @@ func select_random_ball_type():
 	for i in range(spawn_timers.size()):
 		spawn_timers[i] = 0.0
 	
-	music_player.play()
 	current_ball_scenes.clear()
 	
 	var shuffled = ball_scenes.duplicate()

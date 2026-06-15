@@ -40,6 +40,11 @@ func _physics_process(delta):
 	var offset = sin(time * swing_frequency) * swing_amplitude
 	position.x = start_x + offset
 
+func falling():
+	fire.visible = true
+	linear_velocity = Vector2.ZERO
+	gravity_scale = 0.3
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		if body.can_be_damaged():
@@ -47,11 +52,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func on_hit_player(body):
 	body.hit_by_balao_sao_joao_ball(base_ball_damage)
-
-func falling():
-	fire.visible = true
-	linear_velocity = Vector2.ZERO
-	gravity_scale = 0.3
+	falling()
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	await get_tree().create_timer(expiration_date_off_screen).timeout

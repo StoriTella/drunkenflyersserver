@@ -17,11 +17,11 @@ func _ready():
 
 func enable_collision():
 	area2d_collision.disabled = false
-	#rigidbody_collision.disabled = false
+	rigidbody_collision.disabled = false
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player") and body.get_multiplayer_authority() != shooter_id:
-		if !body.is_in_group("player_shield"):
+		if body.can_be_damaged():
 			body.hit_by_cannonball(damage)
 			queue_free()
 

@@ -11,11 +11,12 @@ class_name GoldSnake
 @export var point_max_vel = 300
 @export var coin_type: PointsTypeEnum.PointsType = PointsTypeEnum.PointsType.GOLD_SNAKE
 @export var points: int = 0
-@export var spawn_interval: float = 0.1
+@export var spawn_interval: float = 0.5
+@export var point_delay: float = 1.0
 
 @export var expiration_date: float = 15.0
 @export var expiration_date_off_screen: float = 0.1
-@export var expiration_date_coin: float = 2.0
+@export var expiration_date_coin: float = 6.1
 
 var direction: Vector2 = Vector2.RIGHT
 var change_dir_timer: float = 0.0

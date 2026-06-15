@@ -13,6 +13,7 @@ config_version=5
 config/name="DrunkenFlyersServer"
 run/main_scene="uid://bpm3rwue41oay"
 config/features=PackedStringArray("4.6", "GL Compatibility")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
@@ -21,6 +22,10 @@ TypeBalls="*uid://usxc03u78uht"
 TypePowerups="*uid://dqd610jlf5653"
 GenericPositions="*uid://bqbuxljagcl3u"
 Global="*uid://egh1i24tix47"
+
+[debug]
+
+settings/stdout/print_fps=true
 
 [display]
 

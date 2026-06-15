@@ -10,8 +10,8 @@ class_name RubberBall
 @export var type_ball: BallTypeEnum.BallType = BallTypeEnum.BallType.RUBBER
 @export var ball_min_vel = 100
 @export var ball_max_vel = 200
-@export var ball_delay: float = 1.5
-@export var expiration_date: float = 12.0
+@export var ball_delay: float = 1.0
+@export var expiration_date: float = 15.0
 @export var expiration_date_off_screen: float = 0.5
 
 var direction: Vector2 = Vector2.RIGHT
@@ -41,8 +41,8 @@ func _physics_process(delta):
 func change_direction():
 	segment_start = global_position
 	create_wall_segment()
-	# Muda a direção
-	direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+	var target_position = GenericPositions.get_random_position_in_screen()
+	direction = (target_position - position).normalized()
 	linear_velocity = direction * speed
 
 func create_wall_segment():
@@ -99,5 +99,4 @@ func update_current_wall():
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	await get_tree().create_timer(expiration_date_off_screen).timeout
-	queue_free()
+	change_direction()

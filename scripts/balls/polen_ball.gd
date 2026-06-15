@@ -9,14 +9,14 @@ class_name PolenBall
 @export var float_frequency: float = 2.0
 @export var direction_change_interval: float = 2.0
 
-@export var expiration_date: float = 15.0
+@export var expiration_date: float = 5.0
 @export var expiration_date_off_screen: float = 0.5
 
 #GENERIC
 @export var type_ball: BallTypeEnum.BallType = BallTypeEnum.BallType.POLEN
 @export var ball_min_vel = 50.0
 @export var ball_max_vel = 200.0
-@export var ball_delay: float = 0.5
+@export var ball_delay: float = 0.1
 
 var start_pos: Vector2
 var direction: Vector2

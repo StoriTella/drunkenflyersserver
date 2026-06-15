@@ -20,7 +20,7 @@ var timer: float = 0.0
 
 #GENERIC
 @export var coin_type: PointsTypeEnum.PointsType = PointsTypeEnum.PointsType.DIAMOND
-@export var point_delay: float = 1.0
+@export var point_delay: float = 0.5
 
 @export var make_sound: bool = true
 

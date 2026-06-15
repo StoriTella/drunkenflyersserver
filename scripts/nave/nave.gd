@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-@export var current_speed: float = 500.0
-@export var default_speed: float = 500.0
-@export var speed_boost: float = 800.0
+@export var current_speed: float = 200.0
+@export var default_speed: float = 200.0
+@export var speed_boost: float = 300.0
 @export var dents: int = 0
 @export var max_dents: int = 5
 @export var can_move: bool = true
@@ -55,6 +55,8 @@ var speed_lines: Array = []
 var shield_circle: Line2D = null
 var shield_pulse_time: float = 0.0
 
+var input_dir: Vector2 = Vector2.ZERO
+
 func _ready():
 	initial_position = position
 	initial_rotation = rotation
@@ -64,6 +66,18 @@ func _ready():
 	invert_timer.timeout.connect(_on_invert_timeout)
 	add_child(invert_timer)
 
+
+func _physics_process(delta):
+	velocity = input_dir * current_speed
+	sprite.rotation = velocity.angle()
+	
+	if current_speed > default_speed:
+		speed_line_timer += get_process_delta_time()
+		if speed_line_timer >= speed_line_interval:
+			speed_line_timer = 0.0
+			create_speed_line()
+	
+	move_and_slide()
 
 func _process(delta):
 	if shield_circle:
@@ -122,16 +136,7 @@ func update_from_gravity(gravity: Vector3):
 	if input_dir.length() > 0:
 		input_dir = input_dir.normalized()
 	
-	velocity = input_dir * current_speed
-	sprite.rotation = velocity.angle()
-	
-	if current_speed > default_speed:
-		speed_line_timer += get_process_delta_time()
-		if speed_line_timer >= speed_line_interval:
-			speed_line_timer = 0.0
-			create_speed_line()
-	
-	move_and_slide()
+	self.input_dir = input_dir
 
 
 func create_speed_line():

@@ -8,7 +8,7 @@ class_name Gold
 
 @export var expiration_date: float = 30.0
 @export var expiration_date_off_screen: float = 0.1
-@export var make_sound: bool = false
+@export var make_sound: bool = true
 
 var direction: Vector2 = Vector2.RIGHT
 
