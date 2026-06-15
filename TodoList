@@ -1,12 +1,15 @@
 TodoList
 
 Next:
-Tipos de naves diferentes (esperar pela minha irmã pelos sprites)
-Linked cima-tirar a cor porque com sprites fica melhor
+Disconnect tira o som do fire
 Scoreboard melhor ui
 Melhorar Ui inicio
-Disconnect tira o som do fire
+Os butões não ficam direitos talvez trocar por imagens nos botões para ser mais intuitivo
+Por o som da moeda mais baixo
 
+Cosmeticos:o
+Tipos de naves diferentes (esperar pela minha irmã pelos sprites)
+Linked cima-tirar a cor porque com sprites fica melhor
 
 Mudar:
 D-Moedas e coins aparecem sempre quem muda é as moedas especiais que spawnam de 5 em 5 segundos
@@ -76,4 +79,5 @@ D.Ajustar o spawn dos icebergs para muito menos
 D-Ajustar spawner para aparecer maximo 2 tipos de bolas?
 D-Bugfix das cenas darem despawn fora do ecrã
 D-Cannonball empura players quando dá spawn
-Os butões não ficam direitos talvez trocar por imagens nos botões para ser mais intuitivo
+D-Nava não fica parada nos minigames
+D-Cannon ball não dá despawn

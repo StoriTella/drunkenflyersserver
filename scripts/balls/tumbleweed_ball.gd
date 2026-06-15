@@ -6,7 +6,7 @@ class_name TumbleweedBall
 @export var base_ball_damage = 10
 @export var rotation_speed: float = 5.0
 
-@export var expiration_date: float = 20.0
+@export var expiration_date: float = 40.0
 @export var expiration_date_off_screen: float = 0.5
 
 var direction: Vector2 = Vector2.RIGHT

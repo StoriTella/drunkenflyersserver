@@ -4,15 +4,14 @@ class_name GoldSnake
 @export var speed: float = 80.0
 @export var direction_change_interval: float = 3.0
 @export var gold_coin_scene: PackedScene = preload("res://scenes/points/gold.tscn")
-@export var lifetime: float = 15.0
 
 # Genéricos
 @export var point_min_vel = 200
 @export var point_max_vel = 300
 @export var coin_type: PointsTypeEnum.PointsType = PointsTypeEnum.PointsType.GOLD_SNAKE
 @export var points: int = 0
-@export var spawn_interval: float = 0.5
-@export var point_delay: float = 1.0
+@export var spawn_interval: float = 0.2
+@export var point_delay: float = 2.0
 
 @export var expiration_date: float = 15.0
 @export var expiration_date_off_screen: float = 0.1

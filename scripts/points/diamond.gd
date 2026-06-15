@@ -5,17 +5,14 @@ class_name Diamond
 
 @export var points: int = 50
 @export var speed: float = 400.0
-@export var lifetime: float = 5.0
 var start_pos: Vector2
 var direction: Vector2
 
-@export var launch_interval: float = 5.0
-@export var launch_speed: float = 500.0
-@export var launch_angle_min: float = 0.0
-@export var launch_angle_max: float = 360.0
+@export var launch_interval: float = 2.0
+@export var launch_speed: float = 200.0
 var timer: float = 0.0
 
-@export var expiration_date: float = 30.0
+@export var expiration_date: float = 15.0
 @export var expiration_date_off_screen: float = 0.1
 
 #GENERIC
@@ -33,11 +30,9 @@ func initialize(start_pos: Vector2):
 	launch()
 
 func launch():
-	
-	var angle = deg_to_rad(randf_range(launch_angle_min, launch_angle_max))
-	var velocity = Vector2(cos(angle), sin(angle)) * launch_speed
-	
-	linear_velocity = velocity
+	var target_position = GenericPositions.get_random_position_in_screen()
+	var direction = (target_position - position).normalized()
+	linear_velocity = direction * launch_speed
 
 func _process(delta):
 	timer += delta

@@ -4,6 +4,7 @@ class_name BallManager
 
 @onready var timer: Timer = $Timer
 @onready var timer_difficulty: Timer = $DifficultyTimer
+@onready var timer_difficulty2: Timer = $DifficultyTimer2
 
 @export var ball_scenes: Array[PackedScene] = [
 	preload("res://scenes/balls/base_ball.tscn"),
@@ -39,6 +40,9 @@ func _process(delta):
 	
 	if timer_difficulty.is_stopped():
 		timer_difficulty.start()
+	
+	if timer_difficulty2.is_stopped():
+		timer_difficulty2.start()
 	
 	for i in range(spawn_timers.size()):
 		spawn_timers[i] += delta
@@ -183,4 +187,7 @@ func rubber_ball_trajectory(ball_scene: PackedScene):
 
 func _on_difficulty_timer_timeout() -> void:
 	n_spawns_balls += 1
-	select_random_ball_type()
+
+
+func _on_difficulty_timer_2_timeout() -> void:
+	n_spawns_balls += 1

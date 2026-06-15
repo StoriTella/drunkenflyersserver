@@ -18,7 +18,7 @@ var time: float = 0.0
 @export var type_ball: BallTypeEnum.BallType = BallTypeEnum.BallType.BALAOSAOJOAO
 @export var ball_min_vel = 200
 @export var ball_max_vel = 300
-@export var ball_delay: float = 0.5
+@export var ball_delay: float = 1.0
 
 @export var expiration_date: float = 40.0
 @export var expiration_date_off_screen: float = 0.5

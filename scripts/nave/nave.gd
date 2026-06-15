@@ -14,6 +14,8 @@ extends CharacterBody2D
 @onready var name_label = $NameLabel
 @onready var core_damaged = $AnimatedSprite2D
 
+var last_update_time: int = 0
+var update_timeout_ms: int = 100
 
 var left_enabled: bool = true
 var right_enabled: bool = true
@@ -65,9 +67,16 @@ func _ready():
 	invert_timer.one_shot = true
 	invert_timer.timeout.connect(_on_invert_timeout)
 	add_child(invert_timer)
-
+	last_update_time = Time.get_ticks_msec()
 
 func _physics_process(delta):
+	var now = Time.get_ticks_msec()
+	if now - last_update_time > update_timeout_ms:
+		input_dir = Vector2.ZERO
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
+	
 	velocity = input_dir * current_speed
 	sprite.rotation = velocity.angle()
 	
@@ -137,6 +146,7 @@ func update_from_gravity(gravity: Vector3):
 		input_dir = input_dir.normalized()
 	
 	self.input_dir = input_dir
+	last_update_time = Time.get_ticks_msec() 
 
 
 func create_speed_line():

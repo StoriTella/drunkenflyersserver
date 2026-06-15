@@ -6,7 +6,7 @@ class_name Coin
 @export var points: int = 10
 @export var point_delay: float = 0.2
 @export var expiration_date_off_screen: float = 0.1
-@export var expiration_date: float = 15.0
+@export var expiration_date: float = 13.0
 @export var make_sound: bool = true
 
 var direction: Vector2 = Vector2.RIGHT

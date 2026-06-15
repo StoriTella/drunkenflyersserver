@@ -7,7 +7,7 @@ class_name BaseBall
 
 @export var ball_timer: float = 0.0
 
-@export var expiration_date: float = 30.0
+@export var expiration_date: float = 15.0
 @export var expiration_date_off_screen: float = 0.5
 
 #GENERIC

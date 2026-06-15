@@ -2,6 +2,7 @@ extends Node
 
 @onready var timer: Timer = $Timer
 @onready var timer_difficulty: Timer = $DifficultyTimer
+@onready var timer_difficulty2: Timer = $DifficultyTimer2
 
 @export var points_scenes: Array[PackedScene] = [
 	preload("res://scenes/points/coin.tscn"),
@@ -37,6 +38,9 @@ func _process(delta):
 	
 	if timer_difficulty.is_stopped():
 		timer_difficulty.start()
+	
+	if timer_difficulty2.is_stopped():
+		timer_difficulty2.start()
 	
 	for i in range(spawn_timers.size()):
 		spawn_timers[i] += delta
@@ -104,10 +108,6 @@ func get_points_max_vel(points_scene):
 func _on_timer_timeout() -> void:
 	select_random_points()
 
-func _on_difficulty_timer_timeout() -> void:
-	n_spawns_points += 1
-	select_random_points()
-
 func spawn_points(index: int):
 	var points_scene = current_points_scenes[index]
 	var points_instance = points_scene.instantiate()
@@ -124,3 +124,9 @@ func spawn_points(index: int):
 			default_points(points_scene)
 		PointsTypeEnum.PointsType.DIAMOND:
 			default_points(points_scene)
+
+func _on_difficulty_timer_timeout() -> void:
+	n_spawns_points += 1
+
+func _on_difficulty_timer_2_timeout() -> void:
+	n_spawns_points += 1

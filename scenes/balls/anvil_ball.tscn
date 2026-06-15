@@ -11,7 +11,7 @@ size = Vector2(161, 142)
 
 [node name="AnvilBall" type="RigidBody2D" unique_id=1647031859]
 collision_layer = 4
-collision_mask = 14
+collision_mask = 2
 mass = 100.0
 script = ExtResource("1_ujtqk")
 ball_delay = 1.2
