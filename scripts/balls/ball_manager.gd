@@ -66,10 +66,6 @@ func select_random_ball_type():
 	if ball_scenes.is_empty():
 		return
 	
-	spawn_timers.resize(current_ball_scenes.size())
-	for i in range(spawn_timers.size()):
-		spawn_timers[i] = 0.0
-	
 	current_ball_scenes.clear()
 	
 	var shuffled = ball_scenes.duplicate()
@@ -77,6 +73,10 @@ func select_random_ball_type():
 	
 	for i in range(min(n_spawns_balls, shuffled.size())):
 		current_ball_scenes.append(shuffled[i])
+	
+	spawn_timers.resize(current_ball_scenes.size())
+	for i in range(spawn_timers.size()):
+		spawn_timers[i] = 0.0
 	
 	print("N Ball types: ", current_ball_scenes.size())
 	for ball_scene in current_ball_scenes:

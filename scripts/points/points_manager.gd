@@ -63,10 +63,6 @@ func select_random_points():
 	if points_scenes.is_empty():
 		return
 	
-	spawn_timers.resize(current_points_scenes.size())
-	for i in range(spawn_timers.size()):
-		spawn_timers[i] = 0.0
-	
 	current_points_scenes.clear()
 	
 	var shuffled = points_scenes.duplicate()
@@ -74,6 +70,11 @@ func select_random_points():
 	
 	for i in range(min(n_spawns_points, shuffled.size())):
 		current_points_scenes.append(shuffled[i])
+	
+	spawn_timers.resize(current_points_scenes.size())
+	for i in range(spawn_timers.size()):
+		spawn_timers[i] = 0.0
+	
 	
 	print("N Points types: ", current_points_scenes.size())
 	for point_scene in current_points_scenes:

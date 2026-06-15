@@ -10,7 +10,7 @@ class_name RubberBall
 @export var type_ball: BallTypeEnum.BallType = BallTypeEnum.BallType.RUBBER
 @export var ball_min_vel = 100
 @export var ball_max_vel = 200
-@export var ball_delay: float = 1.0
+@export var ball_delay: float = 1.5
 @export var expiration_date: float = 15.0
 @export var expiration_date_off_screen: float = 0.5
 
