@@ -55,9 +55,9 @@ func create_wall_segment():
 	var timer = Timer.new()
 	timer.wait_time = wall_duration
 	timer.one_shot = true
+	timer.autostart = true
 	timer.timeout.connect(func(): if is_instance_valid(current_wall): current_wall.queue_free())
 	current_wall.add_child(timer)
-	timer.start()
 	
 	update_current_wall()
 

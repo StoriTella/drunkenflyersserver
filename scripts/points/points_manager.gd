@@ -53,6 +53,12 @@ func get_points_delay(points_scene: PackedScene) -> float:
 	instance.queue_free()
 	return delay
 
+func get_coin_type(points_scene: PackedScene) -> float:
+	var instance = points_scene.instantiate()
+	var coin_type = instance.coin_type
+	instance.queue_free()
+	return coin_type
+
 func select_random_points():
 	if points_scenes.is_empty():
 		return
@@ -69,7 +75,9 @@ func select_random_points():
 	for i in range(min(n_spawns_points, shuffled.size())):
 		current_points_scenes.append(shuffled[i])
 	
-	print("Points types: ", current_points_scenes.size())
+	print("N Points types: ", current_points_scenes.size())
+	for point_scene in current_points_scenes:
+		print("Ball types: ", get_coin_type(point_scene))
 
 func start_spawning():
 	spawning = true

@@ -2,8 +2,6 @@ extends RigidBody2D
 
 class_name BombBall
 
-@onready var timer: Timer = $Timer
-
 @export var speed: float = 200.0
 
 @export var ball_timer: float = 0.0
@@ -44,7 +42,7 @@ func explode():
 	var explosion = explosion_scene.instantiate()
 	explosion.global_position = global_position
 	get_parent().add_child(explosion)
-	queue_free()
+	call_deferred("queue_free")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body == self:

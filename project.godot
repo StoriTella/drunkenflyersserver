@@ -23,10 +23,6 @@ TypePowerups="*uid://dqd610jlf5653"
 GenericPositions="*uid://bqbuxljagcl3u"
 Global="*uid://egh1i24tix47"
 
-[debug]
-
-settings/stdout/print_fps=true
-
 [display]
 
 window/size/viewport_width=1920

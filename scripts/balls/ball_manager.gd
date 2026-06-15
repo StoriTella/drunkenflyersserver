@@ -56,6 +56,12 @@ func get_ball_delay(ball_scene):
 	instance.queue_free()
 	return delay
 
+func get_type_ball(ball_scene: PackedScene) -> float:
+	var instance = ball_scene.instantiate()
+	var type_ball = instance.type_ball
+	instance.queue_free()
+	return type_ball
+
 func select_random_ball_type():
 	if ball_scenes.is_empty():
 		return
@@ -72,7 +78,9 @@ func select_random_ball_type():
 	for i in range(min(n_spawns_balls, shuffled.size())):
 		current_ball_scenes.append(shuffled[i])
 	
-	print("Ball types: ", current_ball_scenes.size())
+	print("N Ball types: ", current_ball_scenes.size())
+	for ball_scene in current_ball_scenes:
+		print("Ball types: ", get_type_ball(ball_scene))
 
 func get_ball_min_vel(ball_scene):
 	var instance = ball_scene.instantiate()
