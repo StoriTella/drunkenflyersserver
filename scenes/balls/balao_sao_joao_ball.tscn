@@ -35,9 +35,6 @@ collision_mask = 2
 gravity_scale = 0.0
 script = ExtResource("1_t8r26")
 base_ball_damage = 20
-ball_min_vel = 100
-ball_max_vel = 200
-ball_delay = 0.8
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=428874840]
 scale = Vector2(0.32850236, 0.27309236)
@@ -48,7 +45,8 @@ position = Vector2(0, -3)
 shape = SubResource("CircleShape2D_pmahu")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1655491671]
-position = Vector2(1, -1)
+position = Vector2(0, 14)
+rect = Rect2(-10, -55, 20, 8)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=8839854]
 position = Vector2(4, -1)
@@ -67,4 +65,5 @@ scale = Vector2(0.6753761, 0.45359865)
 sprite_frames = SubResource("SpriteFrames_rd5nu")
 autoplay = "default"
 
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

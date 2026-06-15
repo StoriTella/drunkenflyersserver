@@ -15,9 +15,6 @@ collision_mask = 14
 mass = 0.1
 gravity_scale = 0.0
 script = ExtResource("1_n0i04")
-stick_duration = 1.0
-expiration_date = 60.0
-ball_delay = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=428874840]
 scale = Vector2(0.18909594, 0.20807832)
@@ -29,6 +26,7 @@ shape = SubResource("CircleShape2D_p73km")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1655491671]
 position = Vector2(1, -1)
+rect = Rect2(-11, -9, 20, 20)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=8839854]
 collision_layer = 0
@@ -37,4 +35,5 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2018948134]
 shape = SubResource("CircleShape2D_0til5")
 
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

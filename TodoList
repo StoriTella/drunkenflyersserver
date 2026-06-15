@@ -1,4 +1,8 @@
 TodoList
+
+Next:
+Scoreboard melhor ui
+
 Mudar:
 D-Moedas e coins aparecem sempre quem muda é as moedas especiais que spawnam de 5 em 5 segundos
 D-Quando tiver muitos hazards adicionar dois de cada vez
@@ -28,7 +32,8 @@ Client:
 D-Core dá um som de danger quando é ativado
 D-Melhorar UI jogo
 D-Melhorar UI minigames
-D-Melhorar Ui inicio
+D-Melhorar Ui inicioi
+Ajustar ligeriamente UI
 
 Minigames:
 D-Shield é beber cerveja cada click é um glu no final é um arroto
@@ -51,7 +56,7 @@ D-Sons no client
 D-Ajustar tipos de nave
 D-Mudar o sprite para a nave e mexer o angulo do barco
 Musica no fim do servidor
-Background da agua a merxer ligeiramente
+D-Background da agua a merxer ligeiramente
 
 BugFix:
 D-Menos moedas
@@ -61,3 +66,10 @@ D-Mudar nome do jogos
 D-Fix sound minigames/add specific sounds minigames
 D-Fix fire sound
 D-Fix player spawn on scoreboard (dão spawn no canto superior esquerdo)
+Fica lento passado bue tempo (dar despawn as coisas quando saem da scene com o notifier)
+D.Ajustar o spawn dos icebergs para muito menos
+D-Ajustar spawner para aparecer maximo 2 tipos de bolas?
+D-Bugfix das cenas darem despawn fora do ecrã
+D-Cannonball empura players quando dá spawn
+Disconnect tira o som do fire
+Os butões não ficam direitos talvez trocar por imagens nos botões para ser mais intuitivo

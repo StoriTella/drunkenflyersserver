@@ -11,9 +11,11 @@ class_name GoldSnake
 @export var point_max_vel = 300
 @export var coin_type: PointsTypeEnum.PointsType = PointsTypeEnum.PointsType.GOLD_SNAKE
 @export var points: int = 0
-@export var point_delay: float = 1.0
+@export var spawn_interval: float = 0.1
+
 @export var expiration_date: float = 15.0
-@export var spawn_interval: float = 0.3
+@export var expiration_date_off_screen: float = 0.1
+@export var expiration_date_coin: float = 2.0
 
 var direction: Vector2 = Vector2.RIGHT
 var change_dir_timer: float = 0.0
@@ -71,4 +73,10 @@ func create_gold():
 		return
 	var gold = gold_coin_scene.instantiate()
 	gold.position = global_position
+	gold.expiration_date = expiration_date_coin
 	get_parent().add_child(gold)
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	await get_tree().create_timer(expiration_date_off_screen).timeout
+	queue_free()

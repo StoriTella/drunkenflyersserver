@@ -12,6 +12,7 @@ class_name RubberBall
 @export var ball_max_vel = 200
 @export var ball_delay: float = 1.5
 @export var expiration_date: float = 12.0
+@export var expiration_date_off_screen: float = 0.5
 
 var direction: Vector2 = Vector2.RIGHT
 var change_dir_timer: float = 0.0
@@ -95,3 +96,8 @@ func update_current_wall():
 	
 	current_wall.global_position = center
 	current_wall.rotation = angle
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	await get_tree().create_timer(expiration_date_off_screen).timeout
+	queue_free()

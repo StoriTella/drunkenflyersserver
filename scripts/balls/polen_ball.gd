@@ -4,12 +4,13 @@ class_name PolenBall
 
 @export var speed: float = 50.0
 @export var base_ball_damage = 5
-@export var stick_duration: float = 1.5
+@export var stick_duration: float = 1.0
 @export var float_amplitude: float = 30.0
 @export var float_frequency: float = 2.0
 @export var direction_change_interval: float = 2.0
 
 @export var expiration_date: float = 15.0
+@export var expiration_date_off_screen: float = 0.5
 
 #GENERIC
 @export var type_ball: BallTypeEnum.BallType = BallTypeEnum.BallType.POLEN
@@ -70,4 +71,9 @@ func on_hit_player(body):
 	gravity_scale = 0
 	body.hit_by_polen_ball(base_ball_damage)
 	await get_tree().create_timer(stick_duration).timeout
+	queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	await get_tree().create_timer(expiration_date_off_screen).timeout
 	queue_free()

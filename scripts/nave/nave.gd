@@ -214,9 +214,10 @@ func can_be_damaged():
 func update_from_gyro(gyro: Vector3):
 	pass
 	
-func collect_coin(coin_points):
+func collect_coin(coin_points, make_sound: bool):
 	points += coin_points
-	Global.normal_coin_sound(player_id)
+	if make_sound:
+		Global.normal_coin_sound(player_id)
 
 #HIT
 

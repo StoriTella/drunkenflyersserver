@@ -7,6 +7,7 @@ class_name TumbleweedBall
 @export var rotation_speed: float = 5.0
 
 @export var expiration_date: float = 20.0
+@export var expiration_date_off_screen: float = 0.5
 
 var direction: Vector2 = Vector2.RIGHT
 
@@ -41,4 +42,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func on_hit_player(body):
 	body.hit_by_tumbleweed_ball(base_ball_damage, margin_teleport)
+	queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	await get_tree().create_timer(expiration_date_off_screen).timeout
 	queue_free()

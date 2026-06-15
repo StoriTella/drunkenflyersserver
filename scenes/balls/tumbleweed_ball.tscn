@@ -25,6 +25,7 @@ shape = SubResource("CircleShape2D_p73km")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1655491671]
 position = Vector2(1, -1)
+rect = Rect2(-12, -10, 22, 22)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=8839854]
 collision_layer = 0
@@ -33,4 +34,5 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2018948134]
 shape = SubResource("CircleShape2D_0til5")
 
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

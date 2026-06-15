@@ -53,14 +53,10 @@ shape = SubResource("RectangleShape2D_rw3ck")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=865011454]
 
-[node name="ExpirationTimer" type="Timer" parent="." unique_id=1671921242]
-wait_time = 10.0
-autostart = true
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1756516122]
 scale = Vector2(1.3404762, 1.0402439)
 sprite_frames = SubResource("SpriteFrames_gavx4")
 autoplay = "default"
 frame_progress = 0.6155513
 
-[connection signal="timeout" from="ExpirationTimer" to="." method="_on_expiration_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

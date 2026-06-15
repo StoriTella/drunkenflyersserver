@@ -2,18 +2,19 @@ extends RigidBody2D
 
 class_name BaseBall
 
-@export var speed: float = 200.0
+@export var speed: float = 100.0
 @export var base_ball_damage = 5
 
 @export var ball_timer: float = 0.0
 
-@export var expiration_date: float = 10.0
+@export var expiration_date: float = 30.0
+@export var expiration_date_off_screen: float = 0.5
 
 #GENERIC
 @export var type_ball: BallTypeEnum.BallType = BallTypeEnum.BallType.NORMAL
-@export var ball_min_vel = 500
-@export var ball_max_vel = 800
-@export var ball_delay: float = 0.2
+@export var ball_min_vel = 50
+@export var ball_max_vel = 100
+@export var ball_delay: float = 1
 
 var direction: Vector2 = Vector2.RIGHT
 var spawned_position: Vector2
@@ -39,4 +40,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func on_hit_player(body):
 	body.hit_by_base_ball(base_ball_damage)
+	queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	await get_tree().create_timer(expiration_date_off_screen).timeout
 	queue_free()

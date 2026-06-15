@@ -17,6 +17,7 @@ class_name BoomerangBall
 
 var total_distance: float = 0.0
 var traveled: float = 0.0
+@export var expiration_date_off_screen: float = 0.5
 
 var start_pos: Vector2
 var end_pos: Vector2
@@ -66,4 +67,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func on_hit_player(body):
 	body.hit_by_boomerang_ball(damage, australia_duration)
+	queue_free()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	await get_tree().create_timer(expiration_date_off_screen).timeout
 	queue_free()

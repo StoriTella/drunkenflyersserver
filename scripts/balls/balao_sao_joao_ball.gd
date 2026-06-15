@@ -20,7 +20,8 @@ var time: float = 0.0
 @export var ball_max_vel = 300
 @export var ball_delay: float = 0.5
 
-@export var expiration_date: float = 30.0
+@export var expiration_date: float = 40.0
+@export var expiration_date_off_screen: float = 0.5
 
 var spawned_position: Vector2
 
@@ -45,7 +46,13 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 			on_hit_player(body)
 
 func on_hit_player(body):
-	fire.visible = true
 	body.hit_by_balao_sao_joao_ball(base_ball_damage)
+
+func falling():
+	fire.visible = true
 	linear_velocity = Vector2.ZERO
 	gravity_scale = 0.3
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	await get_tree().create_timer(expiration_date_off_screen).timeout
+	falling()
