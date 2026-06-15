@@ -4,7 +4,6 @@ class_name BallManager
 
 @onready var timer: Timer = $Timer
 @onready var timer_difficulty: Timer = $DifficultyTimer
-@onready var timer_difficulty2: Timer = $DifficultyTimer2
 
 @export var ball_scenes: Array[PackedScene] = [
 	preload("res://scenes/balls/base_ball.tscn"),
@@ -16,7 +15,9 @@ class_name BallManager
 	preload("res://scenes/balls/tumbleweed_ball.tscn"),
 	preload("res://scenes/balls/rubber_ball.tscn"),
 ]
-@export var n_spawns_balls: int = 1
+@export var n_spawns_balls: int = 2
+
+@onready var margin = 50.0
 
 var game_server: Node2D
 var spawning: bool = false
@@ -40,9 +41,6 @@ func _process(delta):
 	
 	if timer_difficulty.is_stopped():
 		timer_difficulty.start()
-	
-	if timer_difficulty2.is_stopped():
-		timer_difficulty2.start()
 	
 	for i in range(spawn_timers.size()):
 		spawn_timers[i] += delta

@@ -2,18 +2,18 @@ extends Node
 
 @onready var timer: Timer = $Timer
 @onready var timer_difficulty: Timer = $DifficultyTimer
-@onready var timer_difficulty2: Timer = $DifficultyTimer2
 
 @export var points_scenes: Array[PackedScene] = [
-	preload("res://scenes/points/coin.tscn"),
+	#preload("res://scenes/points/coin.tscn"),
 	preload("res://scenes/points/gold.tscn"),
 	preload("res://scenes/points/gold_snake.tscn"),
 	preload("res://scenes/points/gold_spawner.tscn"),
 	preload("res://scenes/points/diamond.tscn"),
 ]
-@export var margin = 50
 
-@export var n_spawns_points: int = 1
+@onready var margin = 50.0
+
+@export var n_spawns_points: int = 2
 var game_server: Node2D
 var screen_size: Vector2
 var spawning: bool = false
@@ -38,9 +38,6 @@ func _process(delta):
 	
 	if timer_difficulty.is_stopped():
 		timer_difficulty.start()
-	
-	if timer_difficulty2.is_stopped():
-		timer_difficulty2.start()
 	
 	for i in range(spawn_timers.size()):
 		spawn_timers[i] += delta
@@ -126,7 +123,4 @@ func spawn_points(index: int):
 			default_points(points_scene)
 
 func _on_difficulty_timer_timeout() -> void:
-	n_spawns_points += 1
-
-func _on_difficulty_timer_2_timeout() -> void:
 	n_spawns_points += 1
