@@ -18,6 +18,7 @@ class_name BombBall
 @export var expiration_date: float = 15.0
 @export var expiration_date_off_screen: float = 0.5
 
+var exploded: bool = false
 var direction: Vector2 = Vector2.RIGHT
 var spawned_position: Vector2
 var target_position: Vector2
@@ -39,9 +40,16 @@ func on_hit_player(body):
 	explode()
 
 func explode():
+	if exploded:
+		return
+	exploded = true
+
+	await get_tree().process_frame
+
 	var explosion = explosion_scene.instantiate()
 	explosion.global_position = global_position
 	get_parent().add_child(explosion)
+	
 	call_deferred("queue_free")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
