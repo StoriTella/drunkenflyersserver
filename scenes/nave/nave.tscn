@@ -73,5 +73,10 @@ sprite_frames = SubResource("SpriteFrames_o1dt7")
 autoplay = "default"
 frame_progress = 0.49320102
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=438038834]
+position = Vector2(0, 7)
+rect = Rect2(-14, -21, 30, 41)
+
 [connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
 [connection signal="timeout" from="ShieldTimer" to="." method="_on_shield_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

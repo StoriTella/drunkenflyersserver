@@ -14,6 +14,7 @@ class_name AnvilBall
 @export var ball_delay: float = 1.0
 
 @export var expiration_date: float = 8.0
+@export var expiration_date_after_hit: float = 0.1
 @export var expiration_date_off_screen: float = 0.5
 
 var spawned_position: Vector2
@@ -34,7 +35,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func on_hit_player(body):
 	body.hit_by_anvil_ball(base_ball_damage)
-	await get_tree().create_timer(expiration_date_off_screen).timeout
+	await get_tree().create_timer(expiration_date_after_hit).timeout
 	queue_free()
 
 

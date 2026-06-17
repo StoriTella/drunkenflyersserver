@@ -4,7 +4,7 @@ extends Node
 @onready var timer_difficulty: Timer = $DifficultyTimer
 
 @export var points_scenes: Array[PackedScene] = [
-	#preload("res://scenes/points/coin.tscn"),
+	preload("res://scenes/points/coin.tscn"),
 	preload("res://scenes/points/gold.tscn"),
 	preload("res://scenes/points/gold_snake.tscn"),
 	preload("res://scenes/points/gold_spawner.tscn"),

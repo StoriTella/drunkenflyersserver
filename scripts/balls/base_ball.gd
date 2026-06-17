@@ -7,14 +7,14 @@ class_name BaseBall
 
 @export var ball_timer: float = 0.0
 
-@export var expiration_date: float = 15.0
+@export var expiration_date: float = 30.0
 @export var expiration_date_off_screen: float = 0.5
 
 #GENERIC
 @export var type_ball: BallTypeEnum.BallType = BallTypeEnum.BallType.NORMAL
 @export var ball_min_vel = 50
 @export var ball_max_vel = 100
-@export var ball_delay: float = 1
+@export var ball_delay: float = 2.0
 
 var direction: Vector2 = Vector2.RIGHT
 var spawned_position: Vector2
@@ -40,7 +40,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func on_hit_player(body):
 	body.hit_by_base_ball(base_ball_damage)
-	queue_free()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

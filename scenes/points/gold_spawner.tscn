@@ -23,6 +23,7 @@ wait_time = 10.0
 autostart = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2023864342]
+z_index = -1
 position = Vector2(1, 0)
 scale = Vector2(0.46289065, 0.42028984)
 texture = ExtResource("2_ey7pv")

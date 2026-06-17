@@ -5,9 +5,15 @@ D-Disconnect tira o som do fire
 D-Melhorar Ui inicio
 D-Os butões não ficam direitos talvez trocar por imagens nos botões para ser mais intuitivo
 D-Por o som da moeda mais baixo
-
+D-Reset points after restart
+D-Mudar tumbleweeed para teleporte
+D-Ajustar direção do diamond
+D-Criar failsafe se o player sair do mapa (linked com o ping (com a cor obviamente))
+D-Criar menos icebergs mas durarem imenso tempo
+D-Aumentar o som do bonk
+D-Mudar sprite moeda grande
 Scoreboard melhor ui
-Mudar tumbleweeed para teleporte
+Criar ping power up ( linkar ao failsafe)
 
 Cosmeticos:o
 Tipos de naves diferentes (esperar pela minha irmã pelos sprites)

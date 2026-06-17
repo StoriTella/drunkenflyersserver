@@ -336,3 +336,8 @@ func disable_players_physics():
 func enable_players_physics():
 	for player in players.values():
 		player.can_move = true
+
+func reset_points():
+	for player in players.values():
+		player.points = 0
+	

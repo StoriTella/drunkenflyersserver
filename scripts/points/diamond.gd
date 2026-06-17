@@ -33,6 +33,7 @@ func launch():
 	var target_position = GenericPositions.get_random_position_in_screen()
 	var direction = (target_position - position).normalized()
 	linear_velocity = direction * launch_speed
+	rotation = direction.rotated(deg_to_rad(90)).angle()
 
 func _process(delta):
 	timer += delta

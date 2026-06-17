@@ -59,7 +59,6 @@ var shield_pulse_time: float = 0.0
 
 var input_dir: Vector2 = Vector2.ZERO
 
-@export var line_color: Color = Color.YELLOW
 @export var line_width: float = 3.0
 @export var duration: float = 1.0
 @export var teleport_min_times: int = 5
@@ -307,7 +306,7 @@ func portal_teleport():
 	
 	var line = Line2D.new()
 	line.width = line_width
-	line.default_color = line_color
+	line.default_color = modulate
 	line.add_point(start)
 	line.add_point(end)
 	get_parent().add_child(line)
@@ -459,3 +458,8 @@ func set_character(character_type: int):
 	var scale_y = target_size.y / texture_size.y
 	
 	sprite.scale = Vector2(scale_x, scale_y)
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	#TODO add sound
+	position = GenericPositions.get_random_position_in_screen()

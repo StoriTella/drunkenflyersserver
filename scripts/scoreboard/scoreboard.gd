@@ -2,9 +2,11 @@ extends Node2D
 
 @onready var players_container = $Control/VBoxContainer/VBoxContainer
 @onready var restart_button = $Control/RestartButton
+@onready var background: AnimationPlayer = $Control/Background
 
 func _ready():
 	display_scoreboard()
+	background.play("background_sea")
 
 func display_scoreboard():
 	clear_container()

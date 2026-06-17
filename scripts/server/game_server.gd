@@ -24,6 +24,7 @@ func _ready():
 	var seconds = int(game_timer.wait_time) % 60
 	timer_label.text = "%02d:%02d" % [minutes, seconds]
 	background.play("background_sea")
+	Global.reset_points()
 
 func _input(event):
 	if event.is_pressed() && game_timer.is_stopped():
