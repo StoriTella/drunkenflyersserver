@@ -59,6 +59,15 @@ var shield_pulse_time: float = 0.0
 
 var input_dir: Vector2 = Vector2.ZERO
 
+@export var line_color: Color = Color.YELLOW
+@export var line_width: float = 3.0
+@export var duration: float = 1.0
+@export var teleport_min_times: int = 5
+@export var teleport_max_times: int = 10
+@export var min_distance_teleport: int = 50
+@export var max_distance_teleport: int = 200
+
+
 func _ready():
 	initial_position = position
 	initial_rotation = rotation
@@ -279,7 +288,10 @@ func hit_by_tumbleweed_ball(damage, margin_teleport):
 	dents += 0
 	Global.rpc_id(player_id, "hit_by_tumbleweed_ball_sound")
 	check_ship_failure()
-	random_teleport(margin_teleport)
+	var n_teleports = randi_range(teleport_min_times, teleport_max_times)
+	for i in range(n_teleports):
+		portal_teleport()
+	#random_teleport(margin_teleport)
 
 func hit_by_cannonball(damage: int):
 	points += damage
@@ -287,6 +299,24 @@ func hit_by_cannonball(damage: int):
 	set_core_enabled(false)
 	core_damaged.visible = true
 	Global.disable_player_direction(player_id, "core")
+
+func portal_teleport():
+	var start = position
+	var distance_teleport = randi_range(min_distance_teleport, max_distance_teleport)
+	var end = GenericPositions.get_random_position_near(start,distance_teleport , 50.0)
+	
+	var line = Line2D.new()
+	line.width = line_width
+	line.default_color = line_color
+	line.add_point(start)
+	line.add_point(end)
+	get_parent().add_child(line)
+	position = end
+
+	if duration > 0:
+		await get_tree().create_timer(duration).timeout
+		if is_instance_valid(line):
+			line.queue_free()
 
 func random_teleport(margin: float = 100.0):
 	var viewport = get_viewport().get_visible_rect().size

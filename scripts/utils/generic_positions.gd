@@ -20,6 +20,22 @@ func get_random_position_in_screen(margin: float = 50.0) -> Vector2:
 	
 	return Vector2(random_x, random_y)
 
+func get_random_position_near(global_pos: Vector2, max_distance: float, margin: float = 50.0) -> Vector2:
+	var viewport_size = get_viewport().get_visible_rect().size
+	var left = -viewport_size.x / 2 + margin
+	var right = viewport_size.x / 2 - margin
+	var top = -viewport_size.y / 2 + margin
+	var bottom = viewport_size.y / 2 - margin
+
+	for attempt in range(10):
+		var angle = randf_range(0, TAU)
+		var dist = randf_range(0, max_distance)
+		var pos = global_pos + Vector2(cos(angle), sin(angle)) * dist
+		if pos.x >= left and pos.x <= right and pos.y >= top and pos.y <= bottom:
+			return pos
+	
+	return get_random_position_in_screen(margin)
+
 func get_random_position_outside_screen(margin: float = 50.0) -> Vector2:
 	var viewport_size = get_viewport().get_visible_rect().size
 	

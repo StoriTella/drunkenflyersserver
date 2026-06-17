@@ -3,7 +3,7 @@ extends RigidBody2D
 class_name Diamond
 
 
-@export var points: int = 50
+@export var points: int = 10
 @export var speed: float = 400.0
 var start_pos: Vector2
 var direction: Vector2

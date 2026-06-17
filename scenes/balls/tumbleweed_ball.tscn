@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dcpb4hekmegcr"]
 
 [ext_resource type="Script" uid="uid://j4r660otes8f" path="res://scripts/balls/tumbleweed_ball.gd" id="1_607us"]
-[ext_resource type="Texture2D" uid="uid://c5bypui6fc8a4" path="res://assets/tumbleweed.png" id="2_607us"]
+[ext_resource type="Texture2D" uid="uid://hvq2bgpvkqph" path="res://assets/portal.png" id="2_607us"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p73km"]
 radius = 23.135471
@@ -16,7 +16,8 @@ gravity_scale = 0.0
 script = ExtResource("1_607us")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=428874840]
-scale = Vector2(0.15, 0.15)
+position = Vector2(2.3841858e-06, 2.861023e-06)
+scale = Vector2(0.24472572, 0.15189874)
 texture = ExtResource("2_607us")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1984610187]
