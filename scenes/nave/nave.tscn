@@ -36,11 +36,43 @@ z_index = 5
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_8xiky")
+current_speed = null
+default_speed = null
+speed_boost = null
+dents = null
+max_dents = null
+can_move = null
+speed_line_timer = null
+speed_line_interval = null
+speed_line_width = null
+speed_line_length = null
+speed_line_color = null
+speed_line_side_width = null
+speed_line_side_length_factor = null
+speed_line_side_color = null
+speed_line_offset_x = null
+speed_line_offset_y = null
+speed_line_duration = null
+shield_radius = null
+shield_line_width = null
+shield_color = null
+shield_segment_count = null
+shield_pulse_speed = null
+line_width = null
+duration = null
+teleport_min_times = null
+teleport_max_times = null
+min_distance_teleport = null
+max_distance_teleport = null
+core_damaged_animated_sprite_rotation_speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1028532905]
 rotation = -1.5707964
 scale = Vector2(0.36088502, 0.45689708)
 texture = ExtResource("2_iu351")
+
+[node name="BananaPlace" type="Node2D" parent="Sprite2D" unique_id=1429508979]
+position = Vector2(-119.15153, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1471938425]
 position = Vector2(1, 6)

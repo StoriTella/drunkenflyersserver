@@ -139,6 +139,10 @@ func hit_by_spike_sound():
 	pass
 
 @rpc("any_peer", "call_remote", "reliable")
+func hit_by_banana_sound():
+	pass
+
+@rpc("any_peer", "call_remote", "reliable")
 func core_disabled_sound(player_id):
 	pass
 
@@ -191,6 +195,14 @@ func cannonball_powerup(direction: Vector2, force: float):
 	
 	if players.has(player_id):
 		players[player_id].cannonball_powerup(direction, force)
+
+@rpc("any_peer", "call_remote", "reliable")
+func add_banana_powerup():
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	if players.has(player_id):
+		players[player_id].add_banana_powerup()
+		print("Player: ", player_id, " banana power up")
 
 #TODO
 @rpc("any_peer", "call_remote", "reliable")

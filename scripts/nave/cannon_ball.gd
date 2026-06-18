@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-class_name CannonBall
+class_name BananaBall
 
 var shooter_id: int = -1
 var damage: int = 100

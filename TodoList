@@ -15,6 +15,10 @@ D-Mudar sprite moeda grande
 D-Fix background se mexer
 
 Next:
+Criar poder na nave que deixa uma banana peel o minigame é clicar numa banana e come lá até ficar só casca.
+Quando alguém bate na nave criar script que para de mexer e que comece a rodar durante prai 2s
+Criar um node com o sprite como pai 100px debaixo da nave para quando for criar a banana peel dar spawn na posição do node no sprite para
+
 Fazer tipo roleta das cannonballs com efeitos diferentes:
 -Normal
 -Que dá track

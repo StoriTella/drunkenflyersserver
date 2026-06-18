@@ -8,11 +8,14 @@ extends CharacterBody2D
 @export var can_move: bool = true
 
 @onready var cannonball_scene: PackedScene = preload("res://scenes/nave/cannon_ball.tscn")
+@onready var banana_scene: PackedScene = preload("res://scenes/nave/banana_ball.tscn")
 @onready var speed_timer: Timer = $SpeedTimer
 @onready var shield_timer: Timer = $ShieldTimer
 @onready var sprite = $Sprite2D
 @onready var name_label = $NameLabel
 @onready var core_damaged_animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var banana_powerup_place: Node2D = $Sprite2D/BananaPlace
+
 
 var last_update_time: int = 0
 var update_timeout_ms: int = 100
@@ -299,8 +302,15 @@ func hit_by_tumbleweed_ball(damage, margin_teleport):
 	#random_teleport(margin_teleport)
 
 func hit_by_cannonball(damage: int):
-	points += damage
+	points -= damage
 	Global.rpc_id(player_id, "hit_by_spike_sound")
+	set_core_enabled(false)
+	core_damaged_animated_sprite.visible = true
+	Global.disable_player_direction(player_id, "core")
+
+func hit_by_banana_ball(damage: int):
+	points -= damage
+	Global.rpc_id(player_id, "hit_by_banana_sound")
 	set_core_enabled(false)
 	core_damaged_animated_sprite.visible = true
 	Global.disable_player_direction(player_id, "core")
@@ -369,11 +379,11 @@ func check_ship_failure():
 func vibrate_player(player_id: int, vibrate_time):
 	Global.vibrate_player(player_id, vibrate_time)
 
-#POWER UPS
-
 func update_name(new_name: String):
 	if name_label:
 		name_label.text = new_name
+
+#POWER UPS
 
 func speed_powerup():
 	if !speed_timer.is_stopped():
@@ -401,6 +411,13 @@ func cannonball_powerup(direction: Vector2, force: float):
 	cannonball.linear_velocity = direction * (force/10)
 	cannonball.shooter_id = player_id
 	get_parent().add_child(cannonball)
+
+func add_banana_powerup():
+	var banana_ball = banana_scene.instantiate()
+	banana_ball.global_position = banana_powerup_place.global_position
+	banana_ball.shooter_id = player_id
+	banana_ball.modulate = modulate
+	get_parent().add_child(banana_ball)
 
 #MOVEMENT AND CORE
 func set_left_enabled(enabled: bool):
