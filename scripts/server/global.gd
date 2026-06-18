@@ -97,6 +97,14 @@ func vibrate_player(player_id, duration_ms: int):
 func normal_coin_sound(player_id):
 	rpc_id(player_id, "normal_coin_sound")
 
+@rpc("any_peer", "call_remote", "reliable")
+func win_round_sound(player_id):
+	rpc_id(player_id, "win_round_sound")
+
+@rpc("any_peer", "call_remote", "reliable")
+func lose_round_sound(player_id):
+	rpc_id(player_id, "win_round_sound")
+
 #Damage Sounds
 @rpc("any_peer", "call_remote", "reliable")
 func hit_by_base_ball_sound():

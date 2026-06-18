@@ -9,6 +9,8 @@ extends Node2D
 	"res://assets/music/scoreboard/Victory Sound Effect.mp3",
 	"res://assets/music/scoreboard/【CS2】Counter Strike 2 Soundtrack - Won Round.mp3",
 ]
+@export var winners: int = 3
+var players_array = []
 
 func _ready():
 	background.play("background_sea")
@@ -35,34 +37,38 @@ func play_random_music():
 func display_scoreboard():
 	clear_container()
 	
-	var players_array = []
 	for player_id in Global.players:
 		var player = Global.players[player_id]
 		players_array.append({
+			"player_id": player.player_id,
 			"name": player.name_label.text if player.has_node("NameLabel") else "Player " + str(player_id),
 			"points": player.points
 		})
 	
 	players_array.sort_custom(func(a, b): return a.points > b.points)
 	
+	var i = 0
 	for player_data in players_array:
 		var player_entry = HBoxContainer.new()
 		
 		var name_label = Label.new()
 		name_label.text = player_data.name
 		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		name_label.add_theme_font_size_override("font_size", 72)
 		
 		var points_label = Label.new()
 		points_label.text = str(player_data.points)
 		points_label.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		points_label.add_theme_font_size_override("font_size", 72)
 		
 		player_entry.add_child(name_label)
 		player_entry.add_child(points_label)
 		players_container.add_child(player_entry)
 		
 		print("Added player: ", player_data.name, " - ", player_data.points)
+		i = i + 1
+		if winners >= i:
+			Global.win_round_sound(player_data.player_id)
+		else:
+			Global.lose_round_sound(player_data.player_id)
 
 func clear_container():
 	for child in players_container.get_children():
