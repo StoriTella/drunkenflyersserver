@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://bgy47eeicl35w" path="res://assets/boomerang.png" id="2_oqgu5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oqgu5"]
-radius = 33.0
-height = 92.0
+radius = 17.0
+height = 62.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s4mas"]
-radius = 42.0
-height = 106.0
+radius = 20.0
+height = 70.0
 
 [node name="BoomerangBall" type="RigidBody2D" unique_id=1647031859]
 collision_layer = 4
@@ -20,15 +20,16 @@ ball_min_vel = 400
 ball_delay = 0.8
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=428874840]
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.15617089, 0.19572785)
 texture = ExtResource("2_oqgu5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1984610187]
-position = Vector2(-12, 1)
+position = Vector2(-6, 0)
 shape = SubResource("CapsuleShape2D_oqgu5")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1655491671]
-position = Vector2(-11, 1)
+position = Vector2(2, 4)
+rect = Rect2(-6, -9, 8, 9)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=8839854]
 position = Vector2(38, 4)
@@ -36,7 +37,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2018948134]
-position = Vector2(-49, -4)
+position = Vector2(-44, -4)
 shape = SubResource("CapsuleShape2D_s4mas")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,5 +1,8 @@
 [gd_resource type="Theme" format=3 uid="uid://dega6q6aoywnb"]
 
+[ext_resource type="FontFile" uid="uid://c1in8m8dlijv3" path="res://assets/fonts/oh-whale-font/OhWhale-oYZq.ttf" id="1_qx4ag"]
+[ext_resource type="FontFile" uid="uid://kkifsidkncfn" path="res://assets/fonts/oh-whale-font/Ohwhale-6Ozo.otf" id="2_vxmdh"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dn2r3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wdqdr"]
@@ -46,7 +49,7 @@ Button/constants/h_separation = 4
 Button/constants/icon_max_width = 0
 Button/constants/outline_size = 0
 Button/font_sizes/font_size = 72
-Button/fonts/font = null
+Button/fonts/font = ExtResource("1_qx4ag")
 Button/styles/disabled = SubResource("StyleBoxEmpty_dn2r3")
 Button/styles/focus = SubResource("StyleBoxEmpty_wdqdr")
 Button/styles/hover = SubResource("StyleBoxEmpty_es56c")
@@ -56,7 +59,7 @@ ColorPickerButton/font_sizes/font_size = 16
 Label/colors/font_color = Color(0, 0, 0, 1)
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/font_sizes/font_size = 72
-Label/fonts/font = null
+Label/fonts/font = ExtResource("2_vxmdh")
 LineEdit/colors/font_color = Color(0, 0, 0, 1)
 LineEdit/fonts/font = null
 LineEdit/styles/focus = SubResource("StyleBoxFlat_lru3c")

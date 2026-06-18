@@ -3,10 +3,34 @@ extends Node2D
 @onready var players_container = $Control/VBoxContainer/VBoxContainer
 @onready var restart_button = $Control/RestartButton
 @onready var background: AnimationPlayer = $Control/Background
+@onready var music_player: AudioStreamPlayer = $MusicPlayer
+@export var music_paths: Array[String] = [
+	"res://assets/music/scoreboard/Epic Win Song _ (Meme) [Audio].mp3",
+	"res://assets/music/scoreboard/Victory Sound Effect.mp3",
+	"res://assets/music/scoreboard/【CS2】Counter Strike 2 Soundtrack - Won Round.mp3",
+]
 
 func _ready():
-	display_scoreboard()
 	background.play("background_sea")
+	play_random_music()
+	display_scoreboard()
+
+
+func play_random_music():
+	if music_paths.is_empty():
+		return
+	
+	var random_index = randi() % music_paths.size()
+	var path = music_paths[random_index]
+	
+	var new_stream = load(path)
+	if new_stream == null:
+		print("❌ Falha ao carregar: ", path)
+		return
+	
+	new_stream.loop = false
+	music_player.stream = new_stream
+	music_player.play()
 
 func display_scoreboard():
 	clear_container()
