@@ -1,6 +1,6 @@
 TodoList
 
-Next:
+Done TODO Place:
 D-Disconnect tira o som do fire
 D-Melhorar Ui inicio
 D-Os butões não ficam direitos talvez trocar por imagens nos botões para ser mais intuitivo
@@ -13,19 +13,20 @@ D-Criar menos icebergs mas durarem imenso tempo
 D-Aumentar o som do bonk
 D-Mudar sprite moeda grande
 D-Fix background se mexer
-Fazer tipo roleta das cannonballs com efeitos diferentes:
-Normal
-Que dá track
-Que explode muito
-Mandam 3
-manda uma gigante
-manda um pequenina
-manda uma mais rapida
-etc
-Scoreboard melhor ui
-?Criar ping power up ( linkar ao failsafe)
 
-Cosmeticos:o
+Next:
+Fazer tipo roleta das cannonballs com efeitos diferentes:
+-Normal
+-Que dá track
+-Que explode muito
+-Mandam 3
+-manda uma gigante
+-manda um pequenina
+-manda uma mais rapida
+-etc
+D-Scoreboard melhor ui
+
+Cosmeticos:
 Tipos de naves diferentes (esperar pela minha irmã pelos sprites)
 Linked cima-tirar a cor porque com sprites fica melhor
 
@@ -83,7 +84,7 @@ D-Sons no client
 D-Ajustar tipos de nave
 D-Mudar o sprite para a nave e mexer o angulo do barco
 D-Background da agua a merxer ligeiramente
-Musica no fim do servidor
+D-Musica no fim do servidor
 
 BugFix:
 D-Menos moedas
@@ -93,7 +94,7 @@ D-Mudar nome do jogos
 D-Fix sound minigames/add specific sounds minigames
 D-Fix fire sound
 D-Fix player spawn on scoreboard (dão spawn no canto superior esquerdo)
-Fica lento passado bue tempo (dar despawn as coisas quando saem da scene com o notifier)
+D-Fica lento passado bue tempo (dar despawn as coisas quando saem da scene com o notifier)
 D.Ajustar o spawn dos icebergs para muito menos
 D-Ajustar spawner para aparecer maximo 2 tipos de bolas?
 D-Bugfix das cenas darem despawn fora do ecrã

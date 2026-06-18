@@ -12,7 +12,7 @@ extends CharacterBody2D
 @onready var shield_timer: Timer = $ShieldTimer
 @onready var sprite = $Sprite2D
 @onready var name_label = $NameLabel
-@onready var core_damaged = $AnimatedSprite2D
+@onready var core_damaged_animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var last_update_time: int = 0
 var update_timeout_ms: int = 100
@@ -65,7 +65,7 @@ var input_dir: Vector2 = Vector2.ZERO
 @export var teleport_max_times: int = 10
 @export var min_distance_teleport: int = 50
 @export var max_distance_teleport: int = 200
-
+@export var core_damaged_animated_sprite_rotation_speed: float = 2.5
 
 func _ready():
 	initial_position = position
@@ -108,9 +108,15 @@ func _process(delta):
 			var x = cos(angle) * current_radius
 			var y = sin(angle) * current_radius
 			shield_circle.add_point(Vector2(x, y))
+	if !core_enabled:
+		rotation += core_damaged_animated_sprite_rotation_speed * delta
+		#core_damaged_animated_sprite.rotation -= core_damaged_animated_sprite_rotation_speed * delta
+	else:
+		#core_damaged_animated_sprite.rotation = 0
+		rotation = 0
 
 func update_from_gravity(gravity: Vector3):
-	if !can_move:
+	if !can_move && !core_enabled:
 		return
 	
 	var horizontal = gravity.x
@@ -254,7 +260,7 @@ func hit_by_anvil_ball(damage: int):
 	points += damage
 	Global.rpc_id(player_id, "hit_by_anvil_ball_sound")
 	set_core_enabled(false)
-	core_damaged.visible = true
+	core_damaged_animated_sprite.visible = true
 	Global.disable_player_direction(player_id, "core")
 
 func hit_by_balao_sao_joao_ball(damage):
@@ -296,7 +302,7 @@ func hit_by_cannonball(damage: int):
 	points += damage
 	Global.rpc_id(player_id, "hit_by_spike_sound")
 	set_core_enabled(false)
-	core_damaged.visible = true
+	core_damaged_animated_sprite.visible = true
 	Global.disable_player_direction(player_id, "core")
 
 func portal_teleport():
@@ -410,7 +416,7 @@ func set_down_enabled(enabled: bool):
 	down_enabled = enabled
 
 func set_core_enabled(enabled: bool):
-	core_damaged.visible = false
+	core_damaged_animated_sprite.visible = false
 	core_enabled = enabled
 
 func set_invert_controls(duration: float):
