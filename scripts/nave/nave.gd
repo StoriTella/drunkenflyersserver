@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var banana_scene: PackedScene = preload("res://scenes/nave/banana_ball.tscn")
 @onready var speed_timer: Timer = $SpeedTimer
 @onready var shield_timer: Timer = $ShieldTimer
+@onready var iman_timer: Timer = $ImanTimer
 @onready var sprite = $Sprite2D
 @onready var name_label = $NameLabel
 @onready var core_damaged_animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -70,7 +71,21 @@ var input_dir: Vector2 = Vector2.ZERO
 @export var max_distance_teleport: int = 200
 @export var core_damaged_animated_sprite_rotation_speed: float = 2.5
 
+@onready var iman: Sprite2D = $Iman
+@onready var iman_area: Area2D = $Iman/Area2D
+
+#iman power up
+var iman_players_theft = []
+@export var iman_steal_rate: int = 1
+@export var iman_line_color: Color = Color.PURPLE
+@export var iman_line_width: float = 2.0
+
+var active_lines: Dictionary = {} 
+
 func _ready():
+	iman.visible = false
+	iman_area.monitorable = false
+	iman_area.monitoring = false
 	initial_position = position
 	initial_rotation = rotation
 	name_label.text = "John Doe"
@@ -81,6 +96,7 @@ func _ready():
 	last_update_time = Time.get_ticks_msec()
 
 func _physics_process(delta):
+	iman_power_up_update_lines()
 	var now = Time.get_ticks_msec()
 	if now - last_update_time > update_timeout_ms:
 		input_dir = Vector2.ZERO
@@ -384,7 +400,6 @@ func update_name(new_name: String):
 		name_label.text = new_name
 
 #POWER UPS
-
 func speed_powerup():
 	if !speed_timer.is_stopped():
 		speed_timer.stop()
@@ -418,6 +433,22 @@ func add_banana_powerup():
 	banana_ball.shooter_id = player_id
 	banana_ball.modulate = modulate
 	get_parent().add_child(banana_ball)
+
+func add_iman_powerup():
+	if !iman_timer.is_stopped():
+		iman_timer.stop()
+	iman_timer.start()
+	iman.visible = true
+	iman_area.monitorable = true
+	iman_area.monitoring = true
+
+func _on_iman_timer_timeout() -> void:
+	iman.visible = false
+	iman_area.monitorable = false
+	iman_area.monitoring = false
+	for target in iman_players_theft:
+		if is_instance_valid(target):
+			target.points -= iman_steal_rate
 
 #MOVEMENT AND CORE
 func set_left_enabled(enabled: bool):
@@ -486,3 +517,41 @@ func set_character(character_type: int):
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	#TODO add sound
 	position = GenericPositions.get_random_position_in_screen()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		if body.player_id != player_id:
+			Global.rpc_id(body.player_id, "hit_by_iman_sound")
+			iman_players_theft.append(Global.players.get(body.player_id))
+			iman_power_up_add_line(body)
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		if body.player_id != player_id:
+			Global.rpc_id(body.player_id, "remove_hit_by_iman_sound")
+			iman_players_theft.erase(Global.players.get(body.player_id))
+			iman_power_up_remove_line(body.player_id)
+
+func iman_power_up_add_line(target: Node2D):
+	var line = Line2D.new()
+	line.width = line_width
+	line.default_color = iman_line_color
+	line.antialiased = true
+	add_child(line)
+	active_lines[target.player_id] = line
+
+func iman_power_up_remove_line(target_id: int):
+	if active_lines.has(target_id):
+		active_lines[target_id].queue_free()
+		active_lines.erase(target_id)
+
+func iman_power_up_update_lines():
+	for target in iman_players_theft:
+		if active_lines.has(target.player_id):
+			var line = active_lines[target.player_id]
+			line.clear_points()
+			line.add_point(Vector2.ZERO)
+			line.add_point(to_local(target.global_position))
+		else:
+			iman_power_up_add_line(target)

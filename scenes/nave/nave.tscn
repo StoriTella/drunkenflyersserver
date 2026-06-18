@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://kkifsidkncfn" path="res://assets/fonts/oh-whale-font/Ohwhale-6Ozo.otf" id="3_k7ih5"]
 [ext_resource type="Texture2D" uid="uid://cegu4p8befyvw" path="res://assets/fire2.png" id="4_k7ih5"]
 [ext_resource type="Texture2D" uid="uid://da1i5fiorbc63" path="res://assets/fire3.png" id="5_vflh6"]
+[ext_resource type="Texture2D" uid="uid://cj6w5x2h3ltgd" path="res://assets/boat/iman.png" id="7_vflh6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jqj6o"]
 size = Vector2(12.333333, 18)
@@ -26,45 +27,19 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_vflh6")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 8.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bvf6k"]
+radius = 2065.2498
 
 [node name="Nave" type="CharacterBody2D" unique_id=1137107852 groups=["player"]]
 z_index = 5
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_8xiky")
-current_speed = null
-default_speed = null
-speed_boost = null
-dents = null
-max_dents = null
-can_move = null
-speed_line_timer = null
-speed_line_interval = null
-speed_line_width = null
-speed_line_length = null
-speed_line_color = null
-speed_line_side_width = null
-speed_line_side_length_factor = null
-speed_line_side_color = null
-speed_line_offset_x = null
-speed_line_offset_y = null
-speed_line_duration = null
-shield_radius = null
-shield_line_width = null
-shield_color = null
-shield_segment_count = null
-shield_pulse_speed = null
-line_width = null
-duration = null
-teleport_min_times = null
-teleport_max_times = null
-min_distance_teleport = null
-max_distance_teleport = null
-core_damaged_animated_sprite_rotation_speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1028532905]
 rotation = -1.5707964
@@ -96,6 +71,10 @@ one_shot = true
 wait_time = 20.0
 one_shot = true
 
+[node name="ImanTimer" type="Timer" parent="." unique_id=1151134397]
+wait_time = 20.0
+one_shot = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=558309071]
 visible = false
 modulate = Color(1, 1, 1, 0.5411765)
@@ -109,6 +88,23 @@ frame_progress = 0.49320102
 position = Vector2(0, 7)
 rect = Rect2(-14, -21, 30, 41)
 
+[node name="Iman" type="Sprite2D" parent="." unique_id=648488067]
+position = Vector2(-1, -70)
+scale = Vector2(0.15591398, 0.17)
+texture = ExtResource("7_vflh6")
+
+[node name="Area2D" type="Area2D" parent="Iman" unique_id=2023380130]
+collision_layer = 0
+collision_mask = 2
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Iman/Area2D" unique_id=246859333]
+position = Vector2(-6.413793, 447.0588)
+shape = SubResource("CircleShape2D_bvf6k")
+
 [connection signal="timeout" from="SpeedTimer" to="." method="_on_speed_timer_timeout"]
 [connection signal="timeout" from="ShieldTimer" to="." method="_on_shield_timer_timeout"]
+[connection signal="timeout" from="ImanTimer" to="." method="_on_iman_timer_timeout"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="Iman/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Iman/Area2D" to="." method="_on_area_2d_body_exited"]

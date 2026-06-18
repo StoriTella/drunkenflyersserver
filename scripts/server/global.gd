@@ -146,6 +146,14 @@ func hit_by_banana_sound():
 func core_disabled_sound(player_id):
 	pass
 
+@rpc("any_peer", "call_remote", "reliable")
+func hit_by_iman_sound():
+	pass
+
+@rpc("any_peer", "call_remote", "reliable")
+func remove_hit_by_iman_sound():
+	pass
+
 #SETTINGS
 @rpc("any_peer", "call_remote", "reliable")
 func set_player_name(player_name: String):
@@ -204,6 +212,14 @@ func add_banana_powerup():
 		players[player_id].add_banana_powerup()
 		print("Player: ", player_id, " banana power up")
 
+@rpc("any_peer", "call_remote", "reliable")
+func add_iman_powerup():
+	var player_id = multiplayer.get_remote_sender_id()
+	
+	if players.has(player_id):
+		players[player_id].add_iman_powerup()
+		print("Player: ", player_id, " iman power up")
+
 #TODO
 @rpc("any_peer", "call_remote", "reliable")
 func nuclear_missile_powerup():
@@ -217,6 +233,7 @@ func nuclear_missile_powerup():
 
 func vibrate_all_players(vibrate_time):
 	rpc("vibrate_player", vibrate_time)
+
 
 #system movement and core
 func disable_player_direction(player_id: int, direction: String):
