@@ -82,10 +82,6 @@ func select_random_ball_type():
 	spawn_timers.resize(current_ball_scenes.size())
 	for i in range(spawn_timers.size()):
 		spawn_timers[i] = 0.0
-	
-	print("N Ball types: ", current_ball_scenes.size())
-	for ball_scene in current_ball_scenes:
-		print("Ball types: ", get_type_ball(ball_scene))
 
 func get_ball_min_vel(ball_scene):
 	var instance = ball_scene.instantiate()

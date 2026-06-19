@@ -74,7 +74,6 @@ func reset_orientation():
 	var player_id = multiplayer.get_remote_sender_id()
 	if players.has(player_id):
 		players[player_id].reset_rotation()
-		print("🔄 Reset recebido do jogador ", player_id)
 
 func get_local_ip():
 	var ip = IP.get_local_addresses()
@@ -169,7 +168,6 @@ func set_player_name(player_name: String):
 	
 	if players.has(player_id):
 		players[player_id].name_label.text = player_name
-		print("Player: ", player_id, " name: ", player_name)
 
 @rpc("any_peer", "call_remote", "reliable")
 func set_player_color(player_color: Color):
@@ -177,7 +175,6 @@ func set_player_color(player_color: Color):
 	
 	if players.has(player_id):
 		players[player_id].modulate = player_color
-		print("Player: ", player_id, " color: ", player_color)
 
 @rpc("any_peer", "call_remote", "unreliable")
 func set_player_character(character_type: int):
@@ -185,7 +182,6 @@ func set_player_character(character_type: int):
 	
 	if players.has(player_id):
 		players[player_id].set_character(character_type)
-		print("Player: ", player_id, " chose character: ", CharacterType.keys()[character_type])
 
 #POWER UPS
 @rpc("any_peer", "call_remote", "reliable")
@@ -194,7 +190,6 @@ func add_speed_powerup():
 	
 	if players.has(player_id):
 		players[player_id].speed_powerup()
-		print("Player: ", player_id, " speed power up")
 
 
 @rpc("any_peer", "call_remote", "reliable")
@@ -203,7 +198,6 @@ func add_shield_powerup():
 	
 	if players.has(player_id):
 		players[player_id].shield_powerup()
-		print("Player: ", player_id, " speed power up")
 		
 @rpc("any_peer", "call_remote", "reliable")
 func cannonball_powerup(direction: Vector2, force: float):
@@ -218,7 +212,6 @@ func add_banana_powerup():
 	
 	if players.has(player_id):
 		players[player_id].add_banana_powerup()
-		print("Player: ", player_id, " banana power up")
 
 @rpc("any_peer", "call_remote", "reliable")
 func add_iman_powerup():
@@ -226,7 +219,6 @@ func add_iman_powerup():
 	
 	if players.has(player_id):
 		players[player_id].add_iman_powerup()
-		print("Player: ", player_id, " iman power up")
 
 #TODO
 @rpc("any_peer", "call_remote", "reliable")
@@ -236,12 +228,9 @@ func nuclear_missile_powerup():
 	for p in players:
 		rpc_id(p, "set_core_enabled", false)
 		players[p].set_core_enabled(false)
-	
-	print("Player: ", player_id, " nuked")
 
 func vibrate_all_players(vibrate_time):
 	rpc("vibrate_player", vibrate_time)
-
 
 #system movement and core
 func disable_player_direction(player_id: int, direction: String):
@@ -270,8 +259,6 @@ func update_systems_left():
 	for p in players:
 		rpc_id(p, "set_left_enabled", false)
 		players[p].set_left_enabled(false)
-	
-	print("Player: ", player_id, " disabled left for all")
 
 @rpc("any_peer", "call_remote", "reliable")
 func update_systems_right():
@@ -280,8 +267,6 @@ func update_systems_right():
 	for p in players:
 		rpc_id(p, "set_right_enabled", false)
 		players[p].set_right_enabled(false)
-	
-	print("Player: ", player_id, " disabled right for all")
 
 @rpc("any_peer", "call_remote", "reliable")
 func update_systems_up():
@@ -290,8 +275,6 @@ func update_systems_up():
 	for p in players:
 		rpc_id(p, "set_up_enabled", false)
 		players[p].set_up_enabled(false)
-	
-	print("Player: ", player_id, " disabled up for all")
 
 @rpc("any_peer", "call_remote", "reliable")
 func update_systems_down():
@@ -300,8 +283,6 @@ func update_systems_down():
 	for p in players:
 		rpc_id(p, "set_down_enabled", false)
 		players[p].set_down_enabled(false)
-	
-	print("Player: ", player_id, " disabled down for all")
 
 @rpc("any_peer", "call_remote", "reliable")
 func update_systems_core():
@@ -310,8 +291,6 @@ func update_systems_core():
 	for p in players:
 		rpc_id(p, "set_core_enabled", false)
 		players[p].set_core_enabled(false)
-	
-	print("Player: ", player_id, " disabled core for all")
 
 @rpc("any_peer", "call_remote", "reliable")
 func repair_systems_left():

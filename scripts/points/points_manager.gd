@@ -79,11 +79,6 @@ func select_random_points():
 	spawn_timers.resize(current_points_scenes.size())
 	for i in range(spawn_timers.size()):
 		spawn_timers[i] = 0.0
-	
-	
-	print("N Points types: ", current_points_scenes.size())
-	for point_scene in current_points_scenes:
-		print("Ball types: ", get_coin_type(point_scene))
 
 func start_spawning():
 	spawning = true

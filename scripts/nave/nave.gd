@@ -138,7 +138,8 @@ func _process(delta):
 		#core_damaged_animated_sprite.rotation = 0
 		rotation = 0
 	
-	for target in iman_players_theft:
+	var valid_players = iman_players_theft.filter(func(p): return is_instance_valid(p))
+	for target in valid_players:
 		if active_lines.has(target.player_id) and coin_sprites.has(target.player_id):
 			var sprites = coin_sprites[target.player_id]
 			var progresses = coin_progress[target.player_id]
@@ -272,7 +273,6 @@ func reset_rotation():
 	position = initial_position
 	rotation = initial_rotation
 	velocity = Vector2.ZERO
-	print("Reset")
 
 func can_be_damaged():
 	if is_in_group("player_shield"):
@@ -462,8 +462,9 @@ func add_iman_powerup():
 
 func process_iman_powerup():
 	var iman_active = iman.visible
+	var valid_players = iman_players_theft.filter(func(p): return is_instance_valid(p))
 	if iman_active:
-		for player in iman_players_theft:
+		for player in valid_players:
 			var has_player_active_line = active_lines.has(player.player_id)
 			if !has_player_active_line:
 				if player.can_be_damaged():
@@ -472,7 +473,7 @@ func process_iman_powerup():
 					Global.rpc_id(player.player_id, "remove_hit_by_iman_sound")
 					iman_power_up_remove_line(player.player_id)
 	else:
-		for player in iman_players_theft:
+		for player in valid_players:
 			if active_lines.has(player.player_id):
 				Global.rpc_id(player.player_id, "remove_hit_by_iman_sound")
 				iman_power_up_remove_line(player.player_id)
@@ -595,12 +596,19 @@ func iman_power_up_remove_line(target_id: int):
 
 func iman_power_up_update_lines(delta):
 	for target in iman_players_theft:
-		if active_lines.has(target.player_id):
+		if !target:
+			for line in active_lines.values():
+				line.queue_free()
+			for sprites_array in coin_sprites.values():
+				for sprite in sprites_array:
+					sprite.queue_free()
+			active_lines.clear()
+			coin_sprites.clear()
+			iman_players_theft.clear()
+		elif active_lines.has(target.player_id):
 			var line = active_lines[target.player_id]
 			line.clear_points()
 			line.add_point(Vector2.ZERO)
 			line.add_point(to_local(target.global_position))
 			Global.players.get(player_id).points += iman_steal_rate
 			Global.players.get(target.player_id).points -= iman_steal_rate
-			print("nave que está a roubar:", Global.players.get(player_id).points)
-			print("nave que está a ser roubada:", Global.players.get(target.player_id).points)

@@ -27,7 +27,6 @@ func play_random_music():
 	
 	var new_stream = load(path)
 	if new_stream == null:
-		print("❌ Falha ao carregar: ", path)
 		return
 	
 	new_stream.loop = false
@@ -42,7 +41,7 @@ func display_scoreboard():
 		players_array.append({
 			"player_id": player.player_id,
 			"name": player.name_label.text if player.has_node("NameLabel") else "Player " + str(player_id),
-			"points": player.points
+			"points": int(player.points)
 		})
 	
 	players_array.sort_custom(func(a, b): return a.points > b.points)
@@ -63,7 +62,6 @@ func display_scoreboard():
 		player_entry.add_child(points_label)
 		players_container.add_child(player_entry)
 		
-		print("Added player: ", player_data.name, " - ", player_data.points)
 		i = i + 1
 		if winners >= i:
 			Global.win_round_sound(player_data.player_id)

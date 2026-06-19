@@ -41,4 +41,3 @@ func process_flag(delta):
 	if player_owner and is_active:
 		rotation += rotation_angle * delta
 		Global.players.get(player_owner.player_id).points += points_per_tick
-		print(Global.players.get(player_owner.player_id).points)
