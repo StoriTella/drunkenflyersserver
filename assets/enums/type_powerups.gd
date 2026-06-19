@@ -8,6 +8,7 @@ enum PointsType {
 	GOLD_SNAKE,
 	GOLD_SPAWNER,
 	DIAMOND,
+	FLAG,
 }
 
 @export var points_type: PointsType = PointsType.COIN

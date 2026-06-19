@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://be1txb2b7e5wa"]
+
+[ext_resource type="Script" uid="uid://bm217eqsyw62k" path="res://scripts/points/flag.gd" id="1_duseo"]
+[ext_resource type="Texture2D" uid="uid://ohoma26f86lg" path="res://assets/points/flag.png" id="2_duseo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p63nc"]
+radius = 54.230988
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_krk5w"]
+radius = 64.381676
+
+[node name="Flag" type="RigidBody2D" unique_id=1898899945 groups=["game_server"]]
+collision_layer = 0
+collision_mask = 2
+gravity_scale = 0.0
+script = ExtResource("1_duseo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1904329162]
+position = Vector2(25, -61)
+shape = SubResource("CircleShape2D_p63nc")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1108638638]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=904347766]
+position = Vector2(26, -60)
+shape = SubResource("CircleShape2D_krk5w")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=764580286]
+position = Vector2(36, -59)
+scale = Vector2(0.43782386, 0.5327869)
+texture = ExtResource("2_duseo")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -9,6 +9,7 @@ extends Node
 	preload("res://scenes/points/gold_snake.tscn"),
 	preload("res://scenes/points/gold_spawner.tscn"),
 	preload("res://scenes/points/diamond.tscn"),
+	preload("res://scenes/points/flag.tscn"),
 ]
 
 @onready var margin = 50.0
@@ -19,6 +20,7 @@ var screen_size: Vector2
 var spawning: bool = false
 var current_points_scenes: Array[PackedScene] = []
 var spawn_timers: Array[float] = []
+var first_spawn_done: bool = false
 
 func _ready():
 	await get_tree().process_frame
@@ -46,6 +48,9 @@ func _process(delta):
 		if spawn_timers[i] >= delay:
 			spawn_timers[i] = 0.0
 			spawn_points(i)
+		if !first_spawn_done:
+			spawn_points(i)
+			first_spawn_done = true
 
 func get_points_delay(points_scene: PackedScene) -> float:
 	var instance = points_scene.instantiate()
@@ -112,6 +117,7 @@ func get_points_max_vel(points_scene):
 	return point_max_vel
 
 func _on_timer_timeout() -> void:
+	first_spawn_done = false
 	select_random_points()
 
 func spawn_points(index: int):
@@ -129,6 +135,8 @@ func spawn_points(index: int):
 		PointsTypeEnum.PointsType.GOLD_SPAWNER:
 			default_points(points_scene)
 		PointsTypeEnum.PointsType.DIAMOND:
+			default_points(points_scene)
+		PointsTypeEnum.PointsType.FLAG:
 			default_points(points_scene)
 
 func _on_difficulty_timer_timeout() -> void:

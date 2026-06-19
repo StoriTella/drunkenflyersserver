@@ -154,6 +154,14 @@ func hit_by_iman_sound():
 func remove_hit_by_iman_sound():
 	pass
 
+@rpc("any_peer", "call_remote", "reliable")
+func flag_collect_sound():
+	pass
+
+@rpc("any_peer", "call_remote", "reliable")
+func flag_steal_sound():
+	pass
+
 #SETTINGS
 @rpc("any_peer", "call_remote", "reliable")
 func set_player_name(player_name: String):

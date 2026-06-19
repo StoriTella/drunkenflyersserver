@@ -23,6 +23,7 @@ var game_server: Node2D
 var spawning: bool = false
 var current_ball_scenes: Array[PackedScene] = []
 var spawn_timers: Array[float] = []
+var first_spawn_done: bool = false
 
 func _ready():
 	await get_tree().process_frame
@@ -49,6 +50,10 @@ func _process(delta):
 		if spawn_timers[i] >= delay:
 			spawn_timers[i] = 0.0
 			spawn_balls(i)
+			
+		if !first_spawn_done:
+			spawn_balls(i)
+			first_spawn_done = true
 
 func get_ball_delay(ball_scene):
 	var instance = ball_scene.instantiate()
@@ -105,6 +110,7 @@ func remove_ball(ball):
 		ball.queue_free()
 
 func _on_timer_timeout() -> void:
+	first_spawn_done = false
 	select_random_ball_type()
 
 func spawn_balls(index: int):
