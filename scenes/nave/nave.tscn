@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dn77p5cetq3ms"]
 
 [ext_resource type="Script" uid="uid://d0d67m47ftqck" path="res://scripts/nave/nave.gd" id="1_8xiky"]
-[ext_resource type="Texture2D" uid="uid://bkl6l0vsrha1s" path="res://assets/boat/basic_boat.png" id="2_iu351"]
+[ext_resource type="Texture2D" uid="uid://dlkcqhvrf8a3d" path="res://assets/player_characters/BOIA1.png" id="2_vflh6"]
 [ext_resource type="Texture2D" uid="uid://c7ypbayup78g5" path="res://assets/fire1.png" id="3_iu351"]
 [ext_resource type="FontFile" uid="uid://kkifsidkncfn" path="res://assets/fonts/oh-whale-font/Ohwhale-6Ozo.otf" id="3_k7ih5"]
 [ext_resource type="Texture2D" uid="uid://cegu4p8befyvw" path="res://assets/fire2.png" id="4_k7ih5"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cj6w5x2h3ltgd" path="res://assets/boat/iman.png" id="7_vflh6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jqj6o"]
-size = Vector2(12.333333, 18)
+size = Vector2(10.333333, 11)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8xiky"]
 font = ExtResource("3_k7ih5")
@@ -42,15 +42,13 @@ collision_mask = 13
 script = ExtResource("1_8xiky")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1028532905]
-rotation = -1.5707964
-scale = Vector2(0.36088502, 0.45689708)
-texture = ExtResource("2_iu351")
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("2_vflh6")
 
 [node name="BananaPlace" type="Node2D" parent="Sprite2D" unique_id=1429508979]
-position = Vector2(-119.15153, 0)
+position = Vector2(-19.151367, 1150)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1471938425]
-position = Vector2(1, 6)
 scale = Vector2(3, 3)
 shape = SubResource("RectangleShape2D_jqj6o")
 
@@ -85,11 +83,11 @@ autoplay = "default"
 frame_progress = 0.49320102
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=438038834]
+visible = false
 position = Vector2(0, 7)
-rect = Rect2(-14, -21, 30, 41)
+rect = Rect2(-12, -16, 25, 21)
 
 [node name="Iman" type="Sprite2D" parent="." unique_id=648488067]
-visible = false
 position = Vector2(-1, -70)
 scale = Vector2(0.15591398, 0.17)
 texture = ExtResource("7_vflh6")

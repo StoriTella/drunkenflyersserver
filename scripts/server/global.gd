@@ -1,19 +1,12 @@
 extends Node2D
 
 enum CharacterType {
-	WARRIOR,
-	MAGE,
-	ARCHER,
-	PRIEST,
-	DRUID,
-	NANI,
-	VIBE,
-	INVENTOR,
-	BARBARIAN,
-	GUNSLINGUER,
-	WARLOCK,
-	BARD,
-	ARTIFICER
+	BOIA1,
+	BOIA2,
+	PEIXE,
+	SUBMARINO,
+	CERVEJA,
+	BALDE,
 }
 
 @export var vibrate_time: int  = 500

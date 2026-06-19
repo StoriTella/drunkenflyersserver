@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var default_speed: float = 200.0
 @export var speed_boost: float = 300.0
 @export var dents: int = 0
-@export var max_dents: int = 5
+@export var max_dents: int = 10
 @export var can_move: bool = true
 
 @onready var cannonball_scene: PackedScene = preload("res://scenes/nave/cannon_ball.tscn")
@@ -36,6 +36,9 @@ var player_id
 #Invert Controls
 var invert_controls: bool = false
 var invert_timer: Timer
+
+#sprite
+@export var sprite_size: int = 64
 
 #Speed power up
 var speed_lines: Array = []
@@ -109,7 +112,6 @@ func _physics_process(delta):
 		return
 	
 	velocity = input_dir * current_speed
-	sprite.rotation = velocity.angle()
 	
 	if current_speed > default_speed:
 		speed_line_timer += get_process_delta_time()
@@ -117,6 +119,7 @@ func _physics_process(delta):
 			speed_line_timer = 0.0
 			create_speed_line()
 	
+	sprite.rotation = velocity.angle() + PI/2
 	move_and_slide()
 
 func _process(delta):
@@ -133,9 +136,7 @@ func _process(delta):
 			shield_circle.add_point(Vector2(x, y))
 	if !core_enabled:
 		rotation += core_damaged_animated_sprite_rotation_speed * delta
-		#core_damaged_animated_sprite.rotation -= core_damaged_animated_sprite_rotation_speed * delta
 	else:
-		#core_damaged_animated_sprite.rotation = 0
 		rotation = 0
 	
 	var valid_players = iman_players_theft.filter(func(p): return is_instance_valid(p))
@@ -508,36 +509,21 @@ func _on_invert_timeout():
 #Settings
 
 func set_character(character_type: int):
-	return
 	match character_type:
-		Global.CharacterType.WARRIOR:
-			sprite.texture = preload("res://assets/player_characters/warrior.jpeg")
-		Global.CharacterType.MAGE:
-			sprite.texture = preload("res://assets/player_characters/mage.png")
-		Global.CharacterType.ARCHER:
-			sprite.texture = preload("res://assets/player_characters/archer.jpeg")
-		Global.CharacterType.PRIEST:
-			sprite.texture = preload("res://assets/player_characters/priest.jpg")
-		Global.CharacterType.DRUID:
-			sprite.texture = preload("res://assets/player_characters/druid.png")
-		Global.CharacterType.NANI:
-			sprite.texture = preload("res://assets/player_characters/nani.png")
-		Global.CharacterType.VIBE:
-			sprite.texture = preload("res://assets/player_characters/vibe.png")
-		Global.CharacterType.INVENTOR:
-			sprite.texture = preload("res://assets/player_characters/inventor.png")
-		Global.CharacterType.BARBARIAN:
-			sprite.texture = preload("res://assets/player_characters/barbarian.png")
-		Global.CharacterType.GUNSLINGUER:
-			sprite.texture = preload("res://assets/player_characters/gunslinguer.png")
-		Global.CharacterType.WARLOCK:
-			sprite.texture = preload("res://assets/player_characters/warlock.png")
-		Global.CharacterType.BARD:
-			sprite.texture = preload("res://assets/player_characters/bard.jpeg")
-		Global.CharacterType.ARTIFICER:
-			sprite.texture = preload("res://assets/player_characters/artificer.png")
+		Global.CharacterType.BOIA1:
+			sprite.texture = preload("res://assets/player_characters/BOIA1.png")
+		Global.CharacterType.BOIA2:
+			sprite.texture = preload("res://assets/player_characters/BOIA2.png")
+		Global.CharacterType.PEIXE:
+			sprite.texture = preload("res://assets/player_characters/PEIXE.png")
+		Global.CharacterType.SUBMARINO:
+			sprite.texture = preload("res://assets/player_characters/SUBMARINO.png")
+		Global.CharacterType.CERVEJA:
+			sprite.texture = preload("res://assets/player_characters/CERVEJA.png")
+		Global.CharacterType.BALDE:
+			sprite.texture = preload("res://assets/player_characters/BALDE.png")
 	
-	var target_size = Vector2(64, 64)
+	var target_size = Vector2(sprite_size, sprite_size)
 	var texture_size = sprite.texture.get_size()
 	var scale_x = target_size.x / texture_size.x
 	var scale_y = target_size.y / texture_size.y
