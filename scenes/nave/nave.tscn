@@ -89,6 +89,7 @@ position = Vector2(0, 7)
 rect = Rect2(-14, -21, 30, 41)
 
 [node name="Iman" type="Sprite2D" parent="." unique_id=648488067]
+visible = false
 position = Vector2(-1, -70)
 scale = Vector2(0.15591398, 0.17)
 texture = ExtResource("7_vflh6")

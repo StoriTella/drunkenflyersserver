@@ -1,26 +1,12 @@
 TodoList
 
 Done TODO Place:
-D-Disconnect tira o som do fire
-D-Melhorar Ui inicio
-D-Os butões não ficam direitos talvez trocar por imagens nos botões para ser mais intuitivo
-D-Por o som da moeda mais baixo
-D-Reset points after restart
-D-Mudar tumbleweeed para teleporte
-D-Ajustar direção do diamond
-D-Criar failsafe se o player sair do mapa (linked com o ping (com a cor obviamente))
-D-Criar menos icebergs mas durarem imenso tempo
-D-Aumentar o som do bonk
-D-Mudar sprite moeda grande
-D-Fix background se mexer
+D.Bugfix timings do iman
 
 Next:
-D-Criar poder na nave que deixa uma banana peel o minigame é clicar numa banana e come lá até ficar só casca.
-D-Quando alguém bate na nave criar script que para de mexer e que comece a rodar durante prai 2s
-D-Criar um node com o sprite como pai 100px debaixo da nave para quando for criar a banana peel dar spawn na posição do node no sprite para
-Roubar moedas dos oponentes power up
+Fix imans quando um player da disconnect (talvez dar reload sempre que alguem sai?)
 Fazer pico a frente do player
-
+Melhorar UI scoreboard
 Fazer tipo roleta das cannonballs com efeitos diferentes:
 -Normal
 -Que dá track
@@ -29,38 +15,23 @@ Fazer tipo roleta das cannonballs com efeitos diferentes:
 -manda uma gigante
 -manda um pequenina
 -manda uma mais rapida
--etc
-D-Scoreboard melhor ui
-
-Cosmeticos:
 Tipos de naves diferentes (esperar pela minha irmã pelos sprites)
-Linked cima-tirar a cor porque com sprites fica melhor
-
-Mudar:
-D-Moedas e coins aparecem sempre quem muda é as moedas especiais que spawnam de 5 em 5 segundos
-D-Quando tiver muitos hazards adicionar dois de cada vez
-D-Fazer animações na nave quando ativa os power ups ou quando o core fica estragado
-D-Corrigir bug do tempo dos power ups ficar guardado entre jogos
 Alguns hazards dão trigger aos mini games
-
-Hazards:
-D-Anvils a cair do ceu
-D-Polen a spawnar no meio do ecra e a flutuar random
-D-Tumbleweeds a aparecer dum dos lados do ecrã
-D-Rubber ball que bloqueia tipo paredes
-D-Icebergs substituir base_balls
 Web _ball que quando colide da trigger a um minigame de rodar o telemóvel nos eixos dos x lara positivo e negativo
 Bolas interligadas com um laser
 Canhão de bolas
 Ondas
-Criar um portal?
-
-Moedas:
-D-Uma cobra de moedas em fila
-D-Uma spawn que manda imensas moedas para essa zona
-D-Diamond - oeda que da muitos pontos mas foge do player
 Moeda raspadinha completamente gamba podes receber entre 5 a 1000 e da trigger a um minigame de raspadinha
 Moeda explosiva que guando apanhas há um timer de explosão
+
+
+Server:
+D-Mudar sprite dos spikes para cannonballs
+D-Mudar sprite base_balls para icebergs
+D-tirar os vibrates e só vibrar quando um dos lados coordenais deixa de funcionar
+D-Melhorar Ui inicio
+D-Fix background se mexer
+D-Scoreboard melhor ui
 
 Client:
 D-Core dá um som de danger quando é ativado
@@ -68,8 +39,11 @@ D-Melhorar UI jogo
 D-Melhorar UI minigames
 D-Melhorar Ui inicioi
 D-Ajustar ligeriamente UI
+D-Aumentar o som do bonk
+D-Reset points after restart
+D-Os butões não ficam direitos talvez trocar por imagens nos botões para ser mais intuitivo
 
-Minigames:
+PowerUps:
 D-Shield é beber cerveja cada click é um glu no final é um arroto
 D-Speed - rema sound e melhorar ui
 D-Tirar o dash
@@ -77,12 +51,24 @@ D-Core mudar sprite para agua e por um background do navio a arder
 D-Mudar minigame do cannon (tipo slide mas uma bola de canhão no meio e envia com a velocidade doa bola do telemovel)
 D-Mudar o som do cannon
 D-Ajustar bola de canhão e po-la no meio do ecra
+D-Roubar moedas dos oponentes power up
+D-Criar um node com o sprite como pai 100px debaixo da nave para quando for criar a banana peel dar spawn na posição do node no sprite para
+D-Criar poder na nave que deixa uma banana peel o minigame é clicar numa banana e come lá até ficar só casca.
 
-Server:
-D-Mudar sprite dos spikes para cannonballs
-D-Mudar sprite base_balls para icebergs
-D-tirar os vibrates e só vibrar quando um dos lados coordenais deixa de funcionar
-Melhorar UI scoreboard
+Balls:
+D-Anvils a cair do ceu
+D-Polen a spawnar no meio do ecra e a flutuar random
+D-Tumbleweeds a aparecer dum dos lados do ecrã
+D-Rubber ball que bloqueia tipo paredes
+D-Icebergs substituir base_balls
+D-Mudar tumbleweeed para teleporte
+
+Moedas:
+D-Uma cobra de moedas em fila
+D-Uma spawn que manda imensas moedas para essa zona
+D-Diamond - oeda que da muitos pontos mas foge do player
+D-Mudar sprite moeda grande
+D-Ajustar direção do diamond
 
 Extras:
 D-Sons das bolas
@@ -91,6 +77,15 @@ D-Ajustar tipos de nave
 D-Mudar o sprite para a nave e mexer o angulo do barco
 D-Background da agua a merxer ligeiramente
 D-Musica no fim do servidor
+
+Cosmeticos:
+
+Misk:
+D-Moedas e coins aparecem sempre quem muda é as moedas especiais que spawnam de 5 em 5 segundos
+D-Quando tiver muitos hazards adicionar dois de cada vez
+D-Fazer animações na nave quando ativa os power ups ou quando o core fica estragado
+D-Corrigir bug do tempo dos power ups ficar guardado entre jogos
+D-Quando alguém bate na nave criar script que para de mexer e que comece a rodar durante prai 2s
 
 BugFix:
 D-Menos moedas
@@ -107,3 +102,7 @@ D-Bugfix das cenas darem despawn fora do ecrã
 D-Cannonball empura players quando dá spawn
 D-Nava não fica parada nos minigames
 D-Cannon ball não dá despawn
+D-Disconnect tira o som do fire
+D-Criar menos icebergs mas durarem imenso tempo
+D-Por o som da moeda mais baixo
+D-Criar failsafe se o player sair do mapa (linked com o ping (com a cor obviamente))

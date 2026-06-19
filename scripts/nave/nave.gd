@@ -76,16 +76,19 @@ var input_dir: Vector2 = Vector2.ZERO
 
 #iman power up
 var iman_players_theft = []
-@export var iman_steal_rate: int = 1
-@export var iman_line_color: Color = Color.PURPLE
+@export var iman_steal_rate: float = 0.1
 @export var iman_line_width: float = 2.0
-
 var active_lines: Dictionary = {} 
+var coin_sprites: Dictionary = {}
+var coin_progress: Dictionary = {}
+@export var coin_speed: float = 1.5
+@export var coin_scale: float = 0.3
+@onready var coin_frames: SpriteFrames = preload("res://assets/points/gold/gold_sprite_frames.tres")
+@export var coin_count: int = 5
+@export var coin_spacing: float = 0.15
 
 func _ready():
 	iman.visible = false
-	iman_area.monitorable = false
-	iman_area.monitoring = false
 	initial_position = position
 	initial_rotation = rotation
 	name_label.text = "John Doe"
@@ -96,7 +99,8 @@ func _ready():
 	last_update_time = Time.get_ticks_msec()
 
 func _physics_process(delta):
-	iman_power_up_update_lines()
+	process_iman_powerup()
+	iman_power_up_update_lines(delta)
 	var now = Time.get_ticks_msec()
 	if now - last_update_time > update_timeout_ms:
 		input_dir = Vector2.ZERO
@@ -133,6 +137,22 @@ func _process(delta):
 	else:
 		#core_damaged_animated_sprite.rotation = 0
 		rotation = 0
+	
+	for target in iman_players_theft:
+		if active_lines.has(target.player_id) and coin_sprites.has(target.player_id):
+			var sprites = coin_sprites[target.player_id]
+			var progresses = coin_progress[target.player_id]
+			var line = active_lines[target.player_id]
+			if line.get_point_count() < 2:
+				continue
+			var start = line.get_point_position(1)
+			var end = line.get_point_position(0)
+			for i in range(sprites.size()):
+				progresses[i] += delta * coin_speed
+				if progresses[i] > 1.0:
+					progresses[i] = 0.0
+				var pos = start.lerp(end, progresses[i])
+				sprites[i].position = pos
 
 func update_from_gravity(gravity: Vector3):
 	if !can_move && !core_enabled:
@@ -439,16 +459,26 @@ func add_iman_powerup():
 		iman_timer.stop()
 	iman_timer.start()
 	iman.visible = true
-	iman_area.monitorable = true
-	iman_area.monitoring = true
+
+func process_iman_powerup():
+	var iman_active = iman.visible
+	if iman_active:
+		for player in iman_players_theft:
+			var has_player_active_line = active_lines.has(player.player_id)
+			if !has_player_active_line:
+				if player.can_be_damaged():
+					iman_power_up_add_line(player)
+			elif !player.can_be_damaged():
+					Global.rpc_id(player.player_id, "remove_hit_by_iman_sound")
+					iman_power_up_remove_line(player.player_id)
+	else:
+		for player in iman_players_theft:
+			if active_lines.has(player.player_id):
+				Global.rpc_id(player.player_id, "remove_hit_by_iman_sound")
+				iman_power_up_remove_line(player.player_id)
 
 func _on_iman_timer_timeout() -> void:
 	iman.visible = false
-	iman_area.monitorable = false
-	iman_area.monitoring = false
-	for target in iman_players_theft:
-		if is_instance_valid(target):
-			target.points -= iman_steal_rate
 
 #MOVEMENT AND CORE
 func set_left_enabled(enabled: bool):
@@ -513,7 +543,6 @@ func set_character(character_type: int):
 	
 	sprite.scale = Vector2(scale_x, scale_y)
 
-
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	#TODO add sound
 	position = GenericPositions.get_random_position_in_screen()
@@ -521,37 +550,57 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		if body.player_id != player_id:
-			Global.rpc_id(body.player_id, "hit_by_iman_sound")
 			iman_players_theft.append(Global.players.get(body.player_id))
-			iman_power_up_add_line(body)
-
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		if body.player_id != player_id:
-			Global.rpc_id(body.player_id, "remove_hit_by_iman_sound")
+		if body.player_id != player_id and iman_players_theft.has(Global.players.get(body.player_id)):
 			iman_players_theft.erase(Global.players.get(body.player_id))
+			Global.rpc_id(body.player_id, "remove_hit_by_iman_sound")
 			iman_power_up_remove_line(body.player_id)
 
 func iman_power_up_add_line(target: Node2D):
+	Global.rpc_id(target.player_id, "hit_by_iman_sound")
 	var line = Line2D.new()
 	line.width = line_width
-	line.default_color = iman_line_color
+	line.default_color = modulate
 	line.antialiased = true
 	add_child(line)
 	active_lines[target.player_id] = line
+	
+	var sprites = []
+	var progresses = []
+	for i in range(coin_count):
+		var sprite = AnimatedSprite2D.new()
+		sprite.sprite_frames = coin_frames
+		sprite.play("default")
+		sprite.scale = Vector2(coin_scale, coin_scale)
+		sprite.z_index = 10
+		add_child(sprite)
+		sprites.append(sprite)
+		progresses.append(float(i) / coin_count)
+	coin_sprites[target.player_id] = sprites
+	coin_progress[target.player_id] = progresses
 
 func iman_power_up_remove_line(target_id: int):
 	if active_lines.has(target_id):
 		active_lines[target_id].queue_free()
 		active_lines.erase(target_id)
+		
+	if coin_sprites.has(target_id):
+		for sprite in coin_sprites[target_id]:
+			sprite.queue_free()
+		coin_sprites.erase(target_id)
+		coin_progress.erase(target_id)
 
-func iman_power_up_update_lines():
+func iman_power_up_update_lines(delta):
 	for target in iman_players_theft:
 		if active_lines.has(target.player_id):
 			var line = active_lines[target.player_id]
 			line.clear_points()
 			line.add_point(Vector2.ZERO)
 			line.add_point(to_local(target.global_position))
-		else:
-			iman_power_up_add_line(target)
+			Global.players.get(player_id).points += iman_steal_rate
+			Global.players.get(target.player_id).points -= iman_steal_rate
+			print("nave que está a roubar:", Global.players.get(player_id).points)
+			print("nave que está a ser roubada:", Global.players.get(target.player_id).points)
